@@ -24,19 +24,12 @@ const contactLimiter = rateLimit({
     legacyHeaders: false,
 });
 
-// === POPRAWIONY TRANSPORTER (FIX DLA IPv6) ===
 const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false, 
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-    },
-    family: 4, // WYMUSZA IPv4 - To usuwa błąd ENETUNREACH z logów!
-    tls: {
-        rejectUnauthorized: false
-    }
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  }
 });
 
 app.post('/api/contact', contactLimiter, async (req, res) => {
