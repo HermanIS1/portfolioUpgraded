@@ -894,3 +894,12 @@ filter:
 drop-shadow(0 0 6px #00ff66)
 drop-shadow(0 0 16px rgba(0,255,102,0.7));
 }
+
+.hero{
+    min-height:100vh;
+}
+@media (max-width:768px){
+    .hero{
+        flex-direction: column;
+    }
+}
