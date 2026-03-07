@@ -34,6 +34,14 @@ const transporter = nodemailer.createTransport({
     }
 });
 
+transporter.verify(function (error, success) {
+    if (error) {
+        console.error("SMTP ERROR:", error);
+    } else {
+        console.log("SMTP READY - serwer może wysyłać maile");
+    }
+});
+
 app.post('/api/contact', contactLimiter, async (req, res) => {
     console.log("Form request:", req.body);
     const { email, message } = req.body;
