@@ -27,9 +27,9 @@ const contactLimiter = rateLimit({
     legacyHeaders: false,
 });
 
-// === SEKCJA 1: KONTAKT (E-MAIL) ===
 const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
+    // Zamiast 'smtp.gmail.com' wpisujemy bezpośredni adres IPv4:
+    host: '74.125.140.108', 
     port: 587,
     secure: false, 
     auth: {
@@ -37,10 +37,11 @@ const transporter = nodemailer.createTransport({
         pass: process.env.EMAIL_PASS
     },
     tls: {
-        rejectUnauthorized: false 
+        rejectUnauthorized: false,
+        // Ta linia dodatkowo wymusza IPv4:
+        servername: 'smtp.gmail.com' 
     }
 });
-
 app.post('/api/contact', contactLimiter, async (req, res) => {
     const { email, message } = req.body;
     if (!email || !message) return res.status(400).json({ error: 'Wypełnij wszystkie pola!' });
