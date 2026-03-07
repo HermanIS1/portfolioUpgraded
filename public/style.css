@@ -903,3 +903,22 @@ drop-shadow(0 0 16px rgba(0,255,102,0.7));
         flex-direction: column;
     }
 }
+@media (max-width:768px){
+
+.terminal{
+max-width:100%;
+width:100%;
+height:auto;
+padding:20px;
+}
+
+.terminal pre{
+font-size:15px;
+line-height:1.7;
+}
+
+.terminal-btn{
+width:180px;
+}
+
+}
