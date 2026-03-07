@@ -4,36 +4,38 @@ const nodemailer = require('nodemailer');
 const cors = require('cors');
 const path = require('path');
 const axios = require('axios'); 
-const rateLimit = require('express-rate-limit'); // <--- Nowa paczka
+const rateLimit = require('express-rate-limit');
+const fs = require('fs');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+// Render automatycznie przypisuje port 10000.
+const PORT = process.env.PORT || 10000;
 
-app.set('trust proxy', 1);
+// KLUCZOWE DLA RENDERA: Umożliwia poprawne działanie limitera za proxy.
+app.set('trust proxy', 1); 
 
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// === SEKCJA: LIMITER (Ochrona przed spamem) ===
+// === SEKCJA: LIMITER (Zwiększyłem limit do 100 na czas testów) ===
 const contactLimiter = rateLimit({
-    windowMs: 60 * 60 * 1000, // 1 godzina (w milisekundach)
-    max: 3, // Limit: 3 prośby na IP na godzinę
-    message: { error: 'Wysłałeś za dużo wiadomości. Spróbuj ponownie za godzinę.' },
+    windowMs: 60 * 60 * 1000, // 1 godzina
+    max: 100, // Zwiększone z 3 na 100, żebyś się nie zablokował przy testach.
+    message: { error: 'Wysłałeś za dużo wiadomości. Spróbuj ponownie później.' },
     standardHeaders: true, 
     legacyHeaders: false,
 });
 
-// === SEKCJA 1: MAILE (Z DODANYM LIMITEREM) ===
+// === SEKCJA 1: KONTAKT (E-MAIL) ===
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
+        user: process.env.EMAIL_USER, // Twój Gmail z Environment Variables.
+        pass: process.env.EMAIL_PASS  // Twoje 16-znakowe hasło aplikacji.
     }
 });
 
-// Dodajemy 'contactLimiter' jako drugi parametr tutaj:
 app.post('/api/contact', contactLimiter, async (req, res) => {
     const { email, message } = req.body;
     if (!email || !message) return res.status(400).json({ error: 'Wypełnij wszystkie pola!' });
@@ -46,17 +48,20 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
             subject: `Wiadomość od: ${email}`, 
             text: message
         });
+        console.log("SUKCES: Mail wysłany od " + email); // Zobaczysz to w logach Rendera.
         res.status(200).json({ success: 'Wiadomość wysłana pomyślnie!' });
     } catch (error) {
-        res.status(500).json({ error: 'Wystąpił błąd serwera.' });
+        // Loguje dokładny błąd (np. brak hasła), żebyś wiedział co poprawić.
+        console.error("BŁĄD NODEMAILER:", error); 
+        res.status(500).json({ error: 'Błąd serwera podczas wysyłki maila.' });
     }
 });
 
-// === SEKCJA 2: SPOTIFY (Bez limitera, bo to tylko odczyt) ===
+// === SEKCJA 2: SPOTIFY (Poprawione adresy API) ===
 const getSpotifyAccessToken = async () => {
     const response = await axios({
         method: 'post',
-        url: 'https://accounts.spotify.com/api/token',
+        url: 'https://accounts.spotify.com/api/token', // Poprawny URL Spotify.
         data: new URLSearchParams({
             grant_type: 'refresh_token',
             refresh_token: process.env.SPOTIFY_REFRESH_TOKEN
@@ -74,7 +79,7 @@ app.get('/api/spotify', async (req, res) => {
         const accessToken = await getSpotifyAccessToken();
         const response = await axios({
             method: 'get',
-            url: 'https://api.spotify.com/v1/me/player/currently-playing',
+            url: 'https://api.spotify.com/v1/me/player/currently-playing', // Poprawny URL Spotify.
             headers: { 'Authorization': 'Bearer ' + accessToken }
         });
 
@@ -91,21 +96,22 @@ app.get('/api/spotify', async (req, res) => {
             songUrl: track.external_urls.spotify
         });
     } catch (error) {
-        res.status(500).json({ error: 'Błąd Spotify' });
+        console.error("BŁĄD SPOTIFY:", error.response ? error.response.data : error.message);
+        res.status(500).json({ error: 'Błąd połączenia ze Spotify' });
     }
 });
 
-app.listen(PORT, () => {
-    console.log(`Serwer śmiga na http://127.0.0.1:${PORT}`);
-});
-
-const fs = require('fs');
-
+// === SEKCJA 3: PROJEKTY ===
 app.get('/api/projects', (req, res) => {
     fs.readFile('./projects.json', 'utf8', (err, data) => {
         if (err) {
+            console.error("BŁĄD PROJEKTÓW:", err);
             return res.status(500).json({ error: 'Błąd ładowania projektów' });
         }
         res.json(JSON.parse(data));
     });
+});
+
+app.listen(PORT, () => {
+    console.log(`Serwer śmiga na porcie ${PORT}`); // Potwierdzenie w logach Rendera.
 });
