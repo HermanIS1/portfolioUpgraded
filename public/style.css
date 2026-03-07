@@ -752,29 +752,32 @@ text-shadow:
 }
 
 
-/* MOBILE */
+/* ================= MOBILE FIX ================= */
 
-@media(max-width:900px){
+@media (max-width: 768px){
+
+.hero{
+padding:40px 20px 20px;
+}
 
 .hero-content{
 flex-direction:column;
+align-items:center;
 text-align:center;
-gap:35px;
+gap:30px;
 }
 
-.photo-wrap{
-border-left:none;
-border-top:3px solid var(--green);
-padding-left:0;
-padding-top:14px;
+/* zdjęcie */
+
+.profile-img{
+width:220px;
+height:220px;
 }
 
-.hero-title{
-font-size:52px;
-}
+/* spotify */
 
-.hero-claim{
-font-size:18px;
+.vinyl-widget{
+max-width:220px;
 }
 
 .album{
@@ -783,9 +786,64 @@ height:150px;
 }
 
 .cd-disc{
-width:150px;
-height:150px;
-left:60px;
+width:160px;
+height:160px;
+left:65px;
+}
+
+/* tytuł */
+
+.hero-title{
+font-size:46px;
+}
+
+.hero-claim{
+font-size:18px;
+line-height:1.6;
+}
+
+/* terminal */
+
+.terminal{
+max-width:320px;
+height:180px;
+margin-top:15px;
+}
+
+.terminal pre{
+font-size:13px;
+line-height:1.6;
+}
+
+.terminal-btn{
+width:140px;
+font-size:13px;
+}
+
+/* sekcje */
+
+.section-box{
+padding:30px 25px;
+margin:30px 15px;
+}
+
+/* skills */
+
+.skills{
+justify-content:center;
+}
+
+/* kontakt */
+
+.contact-form input,
+.contact-form textarea{
+font-size:14px;
+}
+
+/* ikony */
+
+.contact-links{
+justify-content:center;
 }
 
 }
