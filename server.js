@@ -25,14 +25,17 @@ const contactLimiter = rateLimit({
 });
 
 const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  }
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+    }
 });
 
 app.post('/api/contact', contactLimiter, async (req, res) => {
+    console.log("Form request:", req.body);
     const { email, message } = req.body;
     if (!email || !message) return res.status(400).json({ error: 'Wypełnij wszystkie pola!' });
     
