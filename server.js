@@ -1,12 +1,12 @@
 require('dotenv').config();
 const express = require('express');
-const nodemailer = require('nodemailer');
 const cors = require('cors');
 const path = require('path');
 const axios = require('axios');
 const rateLimit = require('express-rate-limit');
 const fs = require('fs');
-
+const { Resend } = require("resend");
+const resend = new Resend(process.env.RESEND_API_KEY);
 const app = express();
 const PORT = process.env.PORT || 10000;
 
@@ -30,28 +30,6 @@ const contactLimiter = rateLimit({
 });
 
 
-// ==============================
-// SMTP EMAILLABS
-// ==============================
-
-const transporter = nodemailer.createTransport({
-    host: "smtp.emaillabs.net.pl",
-    port: 587,
-    secure: false,
-    auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
-    },
-    tls: {
-        rejectUnauthorized: false
-    }
-});
-
-
-// ==============================
-// FORMULARZ KONTAKTOWY
-// ==============================
-
 app.post('/api/contact', contactLimiter, async (req, res) => {
 
     console.log("Form request:", req.body);
@@ -64,21 +42,21 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
 
     try {
 
-        await transporter.sendMail({
-            from: "contact@hermanportfolio.pl",
+        await resend.emails.send({
+            from: "onboarding@resend.dev",
             to: process.env.EMAIL_USER,
-            replyTo: email,
             subject: `Wiadomość od: ${email}`,
-            text: message
+            text: message,
+            reply_to: email
         });
 
-        console.log("SUKCES: Mail wysłany od " + email);
+        console.log("MAIL WYSŁANY");
 
         res.status(200).json({ success: 'Wysłano!' });
 
     } catch (error) {
 
-        console.error("BŁĄD NODEMAILER:", error);
+        console.error("MAIL ERROR:", error);
 
         res.status(500).json({ error: 'Błąd serwera.' });
     }
