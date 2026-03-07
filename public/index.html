@@ -1,72 +1,183 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Herman</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Portfolio | Herman</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div id="cursor-glow"></div>
 <div id="intro-screen">
-    <h1 class="hero-title"><span class="white">HER</span><span class="green">MAN</span></h1>
-    <p class="loading-text">Inicjowanie systemu...</p>
+<h1 class="hero-title"><span class="white">HER</span><span class="green">MAN</span></h1>
+<p class="loading-text">Inicjowanie systemu...</p>
 </div>
 
+
+<!-- HERO -->
+
 <header class="hero">
-    <div class="hero-content">
-        <div class="photo-wrap">
-            <img src="images/profilowe.png" alt="Herman" class="profile-img">
-        </div>
-        <div class="vinyl-widget">
-            <div class="album">
-                <div class="cover">
-                    <img src="images/chivas-cover.png" alt="Chivas cover">
-                </div>
-                <img src="images/cd.png" class="cd-disc" alt="CD disc">
-            </div>
-            <div class="music-text">
-                <span class="label">NOW LISTENING</span>
-                <span class="track">CHIVAS – NAWET NIE WIESZ JAK CHCIAŁBYM MÓC TO POCZUĆ JESZCZE RAZ</span>
-            </div>
-        </div>
-        <div class="hero-text">
-            <h1 class="hero-title"><span class="white">HER</span><span class="green">MAN</span></h1>
-            <p class="hero-claim">
-                Dobry w wielu rzeczach.<br>
-                Perfekcyjny w żadnej.<br>
-                Ale się staram.
-            </p>
-            <a href="projects.html" class="scroll">projekty →</a>
-        </div>
-    </div>
+
+<div class="hero-content">
+
+<div class="photo-wrap">
+<img src="images/profilowe.png" alt="Herman" class="profile-img">
+</div>
+
+
+<div class="vinyl-widget">
+
+<div class="album">
+
+<div class="cover">
+<img src="images/chivas-cover.png" alt="Chivas cover">
+</div>
+
+<img src="images/cd.png" class="cd-disc" alt="CD disc">
+
+</div>
+
+<div class="music-text">
+<span class="label">NOW LISTENING</span>
+<span class="track">
+CHIVAS – NAWET NIE WIESZ JAK CHCIAŁBYM MÓC TO POCZUĆ JESZCZE RAZ
+</span>
+</div>
+
+</div>
+
+
+<div class="hero-text">
+
+<h1 class="hero-title">
+<span class="white">HER</span><span class="green">MAN</span>
+</h1>
+
+<p class="hero-claim">
+Dobry w wielu rzeczach.<br>
+Perfekcyjny w żadnej.<br>
+Ale się staram.
+</p>
+
+<div class="terminal">
+
+<pre id="terminal-text"></pre>
+
+<div class="terminal-input-line">
+<span>herman@dev:~$</span>
+<input id="terminal-input">
+</div>
+
+<a href="projects.html" id="terminal-btn" class="terminal-btn">
+view projects →
+</a>
+
+</div>
+
 </header>
 
-<section class="section-box">
-    <h3>O mnie</h3>
-    <p>
-        Student informatyki. Interesuję się IT szeroko – od sprzętu po podstawy programowania.
-        Składam i konfiguruję komputery, zajmuję się diagnostyką i naprawą sprzętu.
-        Uczę się programowania, znam podstawy C/C++, HTML i CSS.
-    </p>
-</section>
+
+<!-- TECH STACK -->
 
 <section class="section-box">
-    <h3>Kontakt</h3>
-    <p>Zostaw wiadomość, a odezwę się najszybciej jak to możliwe.</p>
-    <form id="contact-form" class="contact-form">
-        <input type="email" id="email" placeholder="Twój e-mail" required>
-        <textarea id="message" rows="4" placeholder="Twoja wiadomość..." required></textarea>
-        <button type="submit" class="scroll btn-submit">Wyślij</button>
-    </form>
-    <p style="margin-top: 15px;">github: <a href="https://github.com/HermanIS1" target="_blank">github.com/HermanIS1</a></p>
+
+<h3>Umiem podstawy</h3>
+
+<div class="skills">
+
+<span>C</span>
+<span>JavaScript</span>
+<span>Node.js</span>
+<span>HTML</span>
+<span>CSS</span>
+
+</div>
+
 </section>
+
+
+<!-- O MNIE -->
+
+<section class="section-box">
+
+<h3>O mnie</h3>
+
+<p>
+Student informatyki. Interesuję się IT szeroko – od sprzętu po podstawy programowania.
+Składam i konfiguruję komputery, zajmuję się diagnostyką i naprawą sprzętu.
+Uczę się programowania!
+</p>
+
+</section>
+
+<!-- KONTAKT -->
+
+<section class="section-box">
+
+<h3>Kontakt</h3>
+
+<p>Zostaw wiadomość, a odezwę się najszybciej jak to możliwe.</p>
+
+<form id="contact-form" class="contact-form">
+
+<input type="email" id="email" placeholder="Twój e-mail" required>
+
+<textarea id="message" rows="4" placeholder="Twoja wiadomość..." required></textarea>
+
+<button type="submit" class="scroll btn-submit">Wyślij</button>
+
+<div id="form-status" class="form-status"></div>
+
+</form>
+
+
+<div class="contact-links">
+
+<!-- GITHUB -->
+
+<a
+href="https://github.com/HermanIS1"
+target="_blank"
+class="contact-icon"
+title="GitHub"
+>
+
+<svg viewBox="0 0 24 24">
+
+<path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.09-.745.082-.729.082-.729 1.205.085 1.84 1.236 1.84 1.236 1.07 1.835 2.807 1.305 3.492.998.108-.775.418-1.305.762-1.605-2.665-.3-5.467-1.333-5.467-5.93 0-1.31.465-2.38 1.235-3.22-.124-.303-.536-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.49 11.49 0 0 1 3.003-.404c1.02.005 2.045.138 3.003.404 2.29-1.552 3.296-1.23 3.296-1.23.655 1.653.243 2.873.12 3.176.77.84 1.233 1.91 1.233 3.22 0 4.61-2.807 5.625-5.48 5.92.43.372.823 1.103.823 2.222 0 1.606-.014 2.902-.014 3.293 0 .322.216.694.825.576C20.565 21.796 24 17.298 24 12 24 5.37 18.63 0 12 0z"/>
+
+</svg>
+
+</a>
+
+
+<!-- DISCORD -->
+<a href="https://discord.com/users/1223183600380416001" target="_blank" class="contact-icon" title="Discord">
+
+<svg viewBox="0 0 127.14 96.36">
+
+<path fill="#00ff66" d="M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.09 0A72.37 72.37 0 0 0 45.64 0 105.89 105.89 0 0 0 19.39 8.09C2.79 33.58-1.71 58.45.54 82.97a105.73 105.73 0 0 0 32.17 16.24 77.7 77.7 0 0 0 6.89-11.17 68.42 68.42 0 0 1-10.85-5.18c.91-.68 1.8-1.39 2.66-2.12 20.92 9.76 43.69 9.76 64.39 0 .87.73 1.76 1.44 2.66 2.12a68.68 68.68 0 0 1-10.87 5.19 77.39 77.39 0 0 0 6.89 11.17 105.25 105.25 0 0 0 32.19-16.24c2.64-28.43-4.5-53.07-19-74.9zM42.45 65.69c-6.23 0-11.35-5.65-11.35-12.61s5-12.61 11.35-12.61c6.38 0 11.46 5.7 11.35 12.61 0 6.96-5 12.61-11.35 12.61zm42.24 0c-6.23 0-11.35-5.65-11.35-12.61s5-12.61 11.35-12.61c6.38 0 11.46 5.7 11.35 12.61 0 6.96-4.97 12.61-11.35 12.61z"/>
+
+</svg>
+
+</a>
+
+</div>
+
+</section>
+
 
 <div id="scroll-sigil">⛧</div>
 
 <script src="main.js"></script>
+
 </body>
 </html>

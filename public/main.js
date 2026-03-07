@@ -1,194 +1,401 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // ==========================================
-    // 1. INTRO (Ładowanie strony)
-    // ==========================================
-    const introScreen = document.getElementById("intro-screen");
-    if (introScreen) {
-        if (!sessionStorage.getItem("introPlayed")) {
-            setTimeout(() => {
-                introScreen.classList.add("fade-out");
-                sessionStorage.setItem("introPlayed", "true");
-                setTimeout(() => {
-                    introScreen.style.display = "none";
-                }, 800); 
-            }, 2000);
-        } else {
-            introScreen.style.display = "none";
-        }
-    }
 
-    // ==========================================
-    // 2. INTENT (Podświetlanie sekcji po najechaniu)
-    // ==========================================
-    const intentSections = document.querySelectorAll(".section-box");
-    intentSections.forEach(section => {
-        section.addEventListener("mouseenter", () => section.classList.add("intent"));
-        section.addEventListener("mouseleave", () => section.classList.remove("intent"));
-    });
+initIntro()
+initReveal()
+initScrollSigil()
+initContactForm()
+initSpotify()
+initProjects()
+initTerminal()
+initParallax()
 
-    // ==========================================
-    // 3. REVEAL (Pojawianie się sekcji przy scrollu)
-    // ==========================================
-    const revealSections = document.querySelectorAll("section");
-    const revealObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-            }
-        });
-    }, { threshold: 0.2 });
+})
 
-    revealSections.forEach(section => {
-        section.classList.add("hidden");
-        revealObserver.observe(section);
-    });
 
-    // ==========================================
-    // 4. SCROLL SIGIL (Pentagram na dole)
-    // ==========================================
-    let lastScrollY = window.scrollY;
-    let sigilTimeout = null;
-    const sigil = document.getElementById("scroll-sigil");
+/* ================= INTRO ================= */
 
-    if (sigil) {
-        window.addEventListener("scroll", () => {
-            const currentScrollY = window.scrollY;
+function initIntro(){
 
-            if (currentScrollY > lastScrollY) {
-                sigil.style.top = "auto";
-                sigil.style.bottom = "30px";
-            } else {
-                sigil.style.bottom = "auto";
-                sigil.style.top = "30px";
-            }
+const intro = document.getElementById("intro-screen")
+if(!intro) return
 
-            sigil.style.opacity = "1";
+if(!sessionStorage.getItem("introPlayed")){
 
-            if (sigilTimeout) clearTimeout(sigilTimeout);
-            sigilTimeout = setTimeout(() => {
-                sigil.style.opacity = "0";
-            }, 600);
+setTimeout(()=>{
 
-            lastScrollY = currentScrollY;
-        });
-    }
+intro.classList.add("fade-out")
+sessionStorage.setItem("introPlayed","true")
 
-    // Reset scrolla na start
-    if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/') {
-        history.scrollRestoration = "manual";
-        window.scrollTo(0, 0);
-    }
+setTimeout(()=>{
+intro.style.display="none"
+},800)
 
-    // ==========================================
-    // 5. OBSŁUGA FORMULARZA KONTAKTOWEGO
-    // ==========================================
-    const contactForm = document.getElementById("contact-form");
-    if (contactForm) {
-        contactForm.addEventListener("submit", async (e) => {
-            e.preventDefault();
+},2000)
 
-            const emailInput = document.getElementById("email").value;
-            const messageInput = document.getElementById("message").value;
-            const submitBtn = contactForm.querySelector('.btn-submit');
+}else{
 
-            const originalBtnText = submitBtn.innerText;
-            submitBtn.innerText = "Wysyłanie...";
-            submitBtn.disabled = true;
+intro.style.display="none"
 
-            try {
-                const response = await fetch('/api/contact', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email: emailInput, message: messageInput })
-                });
+}
 
-                const result = await response.json();
+}
 
-                if (response.ok) {
-                    alert("Wiadomość wysłana! Dzięki.");
-                    contactForm.reset();
-                } else {
-                    alert("Ups: " + result.error);
-                }
-            } catch (error) {
-                console.error("Błąd sieci:", error);
-                alert("Nie udało się połączyć z serwerem.");
-            } finally {
-                submitBtn.innerText = originalBtnText;
-                submitBtn.disabled = false;
-            }
-        });
-    }
 
-    // ==========================================
-    // 6. SPOTIFY WIDGET NA ŻYWO
-    // ==========================================
-    const fetchSpotifyData = async () => {
-        const trackElement = document.querySelector('.track');
-        const coverElement = document.querySelector('.cover img');
-        const labelElement = document.querySelector('.label');
-        const cdDisc = document.querySelector('.cd-disc');
+/* ================= REVEAL ================= */
 
-        if (!trackElement || !coverElement || !labelElement || !cdDisc) return;
+function initReveal(){
 
-        try {
-            const response = await fetch('/api/spotify');
-            const data = await response.json();
+const sections = document.querySelectorAll("section")
 
-            if (data.isPlaying) {
-                labelElement.innerText = "NOW LISTENING";
-                trackElement.innerHTML = `<a href="${data.songUrl}" target="_blank" style="color: inherit; text-decoration: none; border-bottom: 1px solid var(--green);">${data.artist} – ${data.title}</a>`;
-                coverElement.src = data.albumImageUrl;
-                cdDisc.style.left = '85px';
-                cdDisc.style.animationPlayState = 'running';
-            } else {
-                labelElement.innerText = "PAUSED";
-                trackElement.innerText = "Cisza w eterze...";
-                coverElement.src = "images/chivas-cover.png";
-                cdDisc.style.left = '45px';
-                cdDisc.style.animationPlayState = 'paused';
-            }
-        } catch (error) {
-            console.error("Błąd ładowania Spotify:", error);
-        }
-    };
+const observer = new IntersectionObserver(entries => {
 
-    // ==========================================
-    // 7. DYNAMICZNE ŁADOWANIE PROJEKTÓW
-    // ==========================================
-    const loadProjects = async () => {
-        const container = document.getElementById('projects-container');
-        if (!container) return;
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("visible")
+}
+})
 
-        try {
-            const response = await fetch('/api/projects');
-            const projects = await response.json();
+},{threshold:0.2})
 
-            container.innerHTML = ""; 
+sections.forEach(section=>{
+section.classList.add("hidden")
+observer.observe(section)
+})
 
-            projects.forEach(p => {
-                const section = document.createElement('section');
-                section.className = 'section-box visible'; 
-                section.innerHTML = `
-                    <h3>${p.title}</h3>
-                    <p>${p.description}</p>
-                    <span>${p.tech}</span>
-                    <div class="links">
-                        ${p.live ? `<a href="${p.live}" target="_blank">live</a>` : ''}
-                        <a href="${p.github}" target="_blank">github</a>
-                    </div>
-                `;
-                container.appendChild(section);
-            });
-        } catch (error) {
-            console.error("Błąd ładowania projektów:", error);
-            container.innerHTML = "<p>Nie udało się załadować projektów.</p>";
-        }
-    };
+}
 
-    // Odpalanie funkcji
-    fetchSpotifyData();
-    setInterval(fetchSpotifyData, 15000);
-    loadProjects();
 
-}); // <--- TEGO BRAKOWAŁO! To zamyka całe DOMContentLoaded
+/* ================= SCROLL SIGIL ================= */
+
+function initScrollSigil(){
+
+const sigil = document.getElementById("scroll-sigil")
+if(!sigil) return
+
+let lastScroll = window.scrollY
+let timeout = null
+
+window.addEventListener("scroll",()=>{
+
+const current = window.scrollY
+
+if(current > lastScroll){
+sigil.style.top="auto"
+sigil.style.bottom="30px"
+}else{
+sigil.style.bottom="auto"
+sigil.style.top="30px"
+}
+
+sigil.style.opacity="1"
+
+clearTimeout(timeout)
+
+timeout=setTimeout(()=>{
+sigil.style.opacity="0"
+},600)
+
+lastScroll=current
+
+})
+
+}
+
+
+/* ================= CONTACT FORM ================= */
+
+function initContactForm(){
+
+const form = document.getElementById("contact-form")
+const status = document.getElementById("form-status")
+
+if(!form) return
+
+form.addEventListener("submit", async e => {
+
+e.preventDefault()
+
+const email = document.getElementById("email").value
+const message = document.getElementById("message").value
+
+const btn = form.querySelector(".btn-submit")
+const original = btn.innerText
+
+btn.innerText="Sending..."
+btn.disabled=true
+
+try{
+
+const res = await fetch("/api/contact",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({email,message})
+})
+
+const data = await res.json()
+
+if(res.ok){
+
+form.reset()
+
+status.textContent="✔ Message sent"
+status.className="form-status success"
+
+}else{
+
+status.textContent=data.error || "Something went wrong"
+status.className="form-status error"
+
+}
+
+}catch(err){
+
+console.error(err)
+
+status.textContent="Server error"
+status.className="form-status error"
+
+}
+
+btn.innerText=original
+btn.disabled=false
+
+})
+
+}
+
+
+/* ================= SPOTIFY ================= */
+
+function initSpotify(){
+
+fetchSpotify()
+setInterval(fetchSpotify,15000)
+
+}
+
+async function fetchSpotify(){
+
+const track = document.querySelector(".track")
+const cover = document.querySelector(".cover img")
+const label = document.querySelector(".label")
+const disc = document.querySelector(".cd-disc")
+
+if(!track || !cover || !label || !disc) return
+
+try{
+
+const res = await fetch("/api/spotify")
+const data = await res.json()
+
+if(data.isPlaying){
+
+label.innerText="NOW LISTENING"
+
+track.innerHTML=`
+<a href="${data.songUrl}" target="_blank"
+style="color:inherit;text-decoration:none;border-bottom:1px solid var(--green)">
+${data.artist} – ${data.title}
+</a>`
+
+cover.src=data.albumImageUrl
+
+disc.style.left="85px"
+disc.style.animationPlayState="running"
+
+}else{
+
+label.innerText="PAUSED"
+track.innerText="Cisza w eterze..."
+
+cover.src="images/chivas-cover.png"
+
+disc.style.left="45px"
+disc.style.animationPlayState="paused"
+
+}
+
+}catch(err){
+
+console.error("Spotify error:",err)
+
+}
+
+}
+
+
+/* ================= PROJECTS ================= */
+
+function initProjects(){
+
+loadProjects()
+
+}
+
+async function loadProjects(){
+
+const container=document.getElementById("projects-container")
+if(!container) return
+
+try{
+
+const res=await fetch("/api/projects")
+const projects=await res.json()
+
+container.innerHTML=""
+
+projects.forEach(p=>{
+
+const section=document.createElement("section")
+section.className="section-box"
+
+section.innerHTML=`
+<h3>${p.title}</h3>
+<p>${p.description}</p>
+<span>${p.tech}</span>
+<div class="links">
+${p.live ? `<a href="${p.live}" target="_blank">live</a>`:""}
+<a href="${p.github}" target="_blank">github</a>
+</div>
+`
+
+container.appendChild(section)
+
+})
+
+}catch(err){
+
+console.error("Projects error:",err)
+container.innerHTML="<p>Nie udało się załadować projektów.</p>"
+
+}
+
+}
+
+
+/* ================= TERMINAL ================= */
+
+function initTerminal(){
+
+const terminal = document.querySelector(".terminal")
+const text = document.getElementById("terminal-text")
+const input = document.getElementById("terminal-input")
+const inputLine = document.querySelector(".terminal-input-line")
+const btn = document.getElementById("terminal-btn")
+
+if(!terminal || !text) return
+
+
+/* jeśli terminal był już odpalony */
+
+if(sessionStorage.getItem("terminalPlayed")){
+
+text.textContent = 
+`herman@dev:~$ boot portfolio
+loading modules...
+spotify connected
+projects loaded
+system ready
+`
+
+inputLine.style.display="flex"
+btn.style.opacity="1"
+input.focus()
+
+return
+
+}
+
+
+/* boot linie */
+
+const lines = [
+"herman@dev:~$ boot portfolio",
+"loading modules...",
+"spotify connected",
+"projects loaded",
+"system ready "
+]
+
+let line = 0
+let char = 0
+
+function type(){
+
+if(line < lines.length){
+
+if(char < lines[line].length){
+
+text.textContent += lines[line][char]
+char++
+
+setTimeout(type,25)
+
+}else{
+
+text.textContent += "\n"
+line++
+char = 0
+
+setTimeout(type,300)
+
+}
+
+}else{
+
+sessionStorage.setItem("terminalPlayed","true")
+
+inputLine.style.display="flex"
+btn.style.opacity="1"
+input.focus()
+
+}
+
+}
+
+
+/* glitch + CRT */
+
+setTimeout(()=>{
+
+terminal.style.animation="terminalGlitch .25s steps(2,end)"
+
+const bootLine = document.createElement("div")
+bootLine.className="terminal-boot"
+
+terminal.appendChild(bootLine)
+
+bootLine.animate([
+{transform:"scaleY(0)",opacity:1},
+{transform:"scaleY(25)",opacity:0}
+],{
+duration:350,
+easing:"ease-out"
+})
+
+setTimeout(()=>{
+
+bootLine.remove()
+type()
+
+},350)
+
+},3000)
+
+}
+
+
+/* ================= PARALLAX ================= */
+
+function initParallax(){
+
+document.addEventListener("mousemove", e => {
+
+const x = (e.clientX / window.innerWidth) * 10
+const y = (e.clientY / window.innerHeight) * 10
+
+document.body.style.backgroundPosition = `${50 - x/2}% ${50 - y/2}%`
+
+})
+
+}
