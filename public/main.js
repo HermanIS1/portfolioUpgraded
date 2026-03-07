@@ -273,14 +273,12 @@ container.innerHTML="<p>Nie udało się załadować projektów.</p>"
 }
 
 
-/* ================= TERMINAL ================= */
-
 function initTerminal(){
 
 const terminal = document.querySelector(".terminal")
 const text = document.getElementById("terminal-text")
-const input = document.getElementById("terminal-input")
 const inputLine = document.querySelector(".terminal-input-line")
+const input = document.getElementById("terminal-input")
 const btn = document.getElementById("terminal-btn")
 
 if(!terminal || !text) return
@@ -290,7 +288,7 @@ if(!terminal || !text) return
 
 if(sessionStorage.getItem("terminalPlayed")){
 
-text.textContent = 
+text.textContent =
 `herman@dev:~$ boot portfolio
 loading modules...
 spotify connected
@@ -298,9 +296,10 @@ projects loaded
 system ready
 `
 
-inputLine.style.display="flex"
-btn.style.opacity="1"
-input.focus()
+inputLine.style.display = "flex"
+btn.style.display = "block"
+
+if(input) input.focus()
 
 return
 
@@ -314,7 +313,7 @@ const lines = [
 "loading modules...",
 "spotify connected",
 "projects loaded",
-"system ready "
+"system ready"
 ]
 
 let line = 0
@@ -327,6 +326,7 @@ if(line < lines.length){
 if(char < lines[line].length){
 
 text.textContent += lines[line][char]
+
 char++
 
 setTimeout(type,25)
@@ -334,6 +334,7 @@ setTimeout(type,25)
 }else{
 
 text.textContent += "\n"
+
 line++
 char = 0
 
@@ -345,23 +346,29 @@ setTimeout(type,300)
 
 sessionStorage.setItem("terminalPlayed","true")
 
-inputLine.style.display="flex"
-btn.style.opacity="1"
-input.focus()
+/* pokaz prompt */
+
+inputLine.style.display = "flex"
+
+/* pokaz przycisk */
+
+btn.style.display = "block"
+
+if(input) input.focus()
 
 }
 
 }
 
 
-/* glitch + CRT */
+/* glitch + CRT boot */
 
 setTimeout(()=>{
 
-terminal.style.animation="terminalGlitch .25s steps(2,end)"
+terminal.style.animation = "terminalGlitch .25s steps(2,end)"
 
 const bootLine = document.createElement("div")
-bootLine.className="terminal-boot"
+bootLine.className = "terminal-boot"
 
 terminal.appendChild(bootLine)
 
@@ -380,11 +387,9 @@ type()
 
 },350)
 
-},3000)
+},2000)
 
 }
-
-
 /* ================= PARALLAX ================= */
 
 function initParallax(){

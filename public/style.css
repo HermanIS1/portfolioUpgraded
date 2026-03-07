@@ -411,15 +411,13 @@ box-shadow:
 
 /* ================= TERMINAL ================= */
 
-/* ================= TERMINAL ================= */
+
 
 .terminal{
-
 margin-top:25px;
 
 background:#000;
 border:1px solid rgba(0,255,102,0.5);
-
 padding:22px;
 
 font-family:monospace;
@@ -428,7 +426,12 @@ color:#00ff66;
 width:100%;
 max-width:420px;
 
-height:240px;
+height:240px;      /* duża wysokość od startu */
+min-height:240px;
+max-height:240px;
+
+display:flex;
+flex-direction:column;
 
 position:relative;
 overflow:hidden;
@@ -440,83 +443,57 @@ box-shadow:
 text-shadow:
 0 0 4px rgba(0,255,102,0.8),
 0 0 10px rgba(0,255,102,0.4);
-
 }
 
-
-/* ================= TERMINAL TEXT ================= */
+/* tekst */
 
 .terminal pre{
-
 margin:0;
 line-height:1.8;
-
-white-space:pre-wrap;
-
+white-space:pre;
+height:180px;      /* rezerwuje miejsce na linie */
 }
 
-
-/* ================= INPUT LINE ================= */
+/* input */
 
 .terminal-input-line{
-
+display:flex;
+gap:8px;
+margin-top:10px;
 display:none;
-
-margin-top:4px;
-
-font-family:monospace;
-
-color:#00ff66;
-
 }
 
-.terminal-input-line span{
-margin-right:6px;
-}
-
-
-/* ================= INPUT ================= */
+/* input pole */
 
 #terminal-input{
-
 background:none;
 border:none;
 outline:none;
-
 color:#00ff66;
-
 font-family:monospace;
-font-size:14px;
-
-width:220px;
-
+font-size:16px;
+width:100%;
 }
 
-
-/* ================= BUTTON ================= */
+/* przycisk */
 
 .terminal-btn{
+display:none;
+margin-top:15px;
 
-display:block;
-
-margin-top:12px;
-
-opacity:0;
-
-border:1px solid #00ff66;
-
-padding:8px 14px;
+width:170px;
 
 color:#00ff66;
 text-decoration:none;
 
+border:1px solid #00ff66;
+
+padding:8px 12px;
+
 font-family:monospace;
 font-size:14px;
 
-width:fit-content;
-
 transition:.25s;
-
 }
 
 .terminal-btn:hover{
@@ -895,15 +872,6 @@ drop-shadow(0 0 6px #00ff66)
 drop-shadow(0 0 16px rgba(0,255,102,0.7));
 }
 
-.hero{
-    min-height:100vh;
-}
-@media (max-width:768px){
-    .hero{
-        flex-direction: column;
-    }
-}
-@media (max-width:768px){
 
 .terminal{
 max-width:100%;
@@ -919,6 +887,81 @@ line-height:1.7;
 
 .terminal-btn{
 width:180px;
+}
+
+.scroll-indicator{
+position:absolute;
+bottom: 450px;
+left:50%;
+transform:translateX(-50%);
+width:26px;
+height:42px;
+border:2px solid #00ff66;
+border-radius:20px;
+display:flex;
+justify-content:center;
+transition: opacity .4s ease;
+}
+
+.scroll-indicator span{
+width:4px;
+height:8px;
+background:#00ff66;
+margin-top:6px;
+border-radius:2px;
+animation:scrollAnim 1.6s infinite;
+}
+
+@keyframes scrollAnim{
+
+0%{
+opacity:0;
+transform:translateY(0);
+}
+
+40%{
+opacity:1;
+}
+
+80%{
+transform:translateY(14px);
+opacity:0;
+}
+
+100%{
+opacity:0;
+}
+
+}
+.section-box{
+transition:transform .25s ease, box-shadow .25s ease;
+}
+
+.section-box:hover{
+transform:translateY(-6px);
+
+box-shadow:
+0 0 12px rgba(0,255,102,0.35),
+0 0 30px rgba(0,255,102,0.25);
+}
+
+.profile-img{
+opacity:0;
+transform:translateY(20px);
+animation:photoReveal 1.2s ease forwards;
+animation-delay:1.8s;
+}
+
+@keyframes photoReveal{
+
+0%{
+opacity:0;
+transform:translateY(20px);
+}
+
+100%{
+opacity:1;
+transform:translateY(0);
 }
 
 }
