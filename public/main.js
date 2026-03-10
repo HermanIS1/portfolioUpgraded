@@ -8,8 +8,12 @@ initSpotify()
 initProjects()
 initTerminal()
 initParallax()
-
+loadGithub()
 })
+
+/* ================= GLOBAL ================= */
+
+const INTRO_DURATION = 2800
 
 
 /* ================= INTRO ================= */
@@ -30,7 +34,7 @@ setTimeout(()=>{
 intro.style.display="none"
 },800)
 
-},2000)
+},INTRO_DURATION - 800)
 
 }else{
 
@@ -73,18 +77,22 @@ const sigil = document.getElementById("scroll-sigil")
 if(!sigil) return
 
 let lastScroll = window.scrollY
-let timeout = null
+let timeout
 
 window.addEventListener("scroll",()=>{
 
 const current = window.scrollY
 
 if(current > lastScroll){
+
 sigil.style.top="auto"
-sigil.style.bottom="30px"
+sigil.style.bottom="40px"
+
 }else{
+
 sigil.style.bottom="auto"
-sigil.style.top="30px"
+sigil.style.top="40px"
+
 }
 
 sigil.style.opacity="1"
@@ -93,14 +101,13 @@ clearTimeout(timeout)
 
 timeout=setTimeout(()=>{
 sigil.style.opacity="0"
-},600)
+},700)
 
 lastScroll=current
 
 })
 
 }
-
 
 /* ================= CONTACT FORM ================= */
 
@@ -200,6 +207,8 @@ ${data.artist} – ${data.title}
 
 cover.src=data.albumImageUrl
 
+cover.parentElement.classList.add("playing")
+
 disc.style.left="85px"
 disc.style.animationPlayState="running"
 
@@ -209,6 +218,8 @@ label.innerText="PAUSED"
 track.innerText="Cisza w eterze..."
 
 cover.src="images/chivas-cover.png"
+
+cover.parentElement.classList.remove("playing")
 
 disc.style.left="45px"
 disc.style.animationPlayState="paused"
@@ -252,7 +263,7 @@ section.className="section-box"
 section.innerHTML=`
 <h3>${p.title}</h3>
 <p>${p.description}</p>
-<span>${p.tech}</span>
+<div class="tech">${p.tech}</div>
 <div class="links">
 ${p.live ? `<a href="${p.live}" target="_blank">live</a>`:""}
 <a href="${p.github}" target="_blank">github</a>
@@ -273,6 +284,8 @@ container.innerHTML="<p>Nie udało się załadować projektów.</p>"
 }
 
 
+/* ================= TERMINAL ================= */
+
 function initTerminal(){
 
 const terminal = document.querySelector(".terminal")
@@ -291,9 +304,9 @@ if(sessionStorage.getItem("terminalPlayed")){
 text.textContent =
 `herman@dev:~$ boot portfolio
 loading modules...
-spotify connected
 projects loaded
 system ready
+welcome, herman
 `
 
 inputLine.style.display = "flex"
@@ -346,12 +359,7 @@ setTimeout(type,300)
 
 sessionStorage.setItem("terminalPlayed","true")
 
-/* pokaz prompt */
-
 inputLine.style.display = "flex"
-
-/* pokaz przycisk */
-
 btn.style.display = "block"
 
 if(input) input.focus()
@@ -361,11 +369,11 @@ if(input) input.focus()
 }
 
 
-/* glitch + CRT boot */
+/* CRT boot */
 
 setTimeout(()=>{
 
-terminal.style.animation = "terminalGlitch .25s steps(2,end)"
+terminal.classList.add("crt-glitch")
 
 const bootLine = document.createElement("div")
 bootLine.className = "terminal-boot"
@@ -387,9 +395,11 @@ type()
 
 },350)
 
-},2000)
+},INTRO_DURATION)
 
 }
+
+
 /* ================= PARALLAX ================= */
 
 function initParallax(){
@@ -402,5 +412,36 @@ const y = (e.clientY / window.innerHeight) * 10
 document.body.style.backgroundPosition = `${50 - x/2}% ${50 - y/2}%`
 
 })
+
+}
+
+async function loadGithub(){
+
+try{
+
+const res = await fetch("/api/stats")
+const data = await res.json()
+
+const repos = document.getElementById("github-repos")
+const followers = document.getElementById("github-followers")
+const badge = document.getElementById("github-repos-badge")
+
+if(repos){
+repos.innerText = data.githubRepos
+}
+
+if(followers){
+followers.innerText = data.githubFollowers
+}
+
+if(badge){
+badge.innerText = data.githubRepos
+}
+
+}catch(err){
+
+console.error("GitHub error:",err)
+
+}
 
 }
