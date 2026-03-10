@@ -326,7 +326,7 @@ const lines = [
 "loading modules...",
 "spotify connected",
 "projects loaded",
-"system ready"
+"welcome, herman"
 ]
 
 let line = 0
