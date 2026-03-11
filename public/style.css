@@ -1118,11 +1118,18 @@ opacity:1;
 }
 
 }
+
+.github-activity{
+overflow-x:auto;
+width:100%;
+}
+
+
 .github-activity img{
 
 width:100%;
 max-width:700px;
-
+min-width:600px;
 margin-top:20px;
 
 filter:drop-shadow(0 0 8px rgba(0,255,102,0.5));
