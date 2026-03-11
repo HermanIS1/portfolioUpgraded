@@ -1360,3 +1360,53 @@ overflow-x:auto;
 min-width:600px;
 height:auto;
 }
+.form-status{
+
+margin-top:14px;
+
+font-family:monospace;
+
+font-size:14px;
+
+color:#00ff66;
+
+line-height:1.6;
+
+opacity:.85;
+
+text-shadow:
+0 0 6px rgba(0,255,102,.6);
+
+}
+
+.form-status{
+margin-top:12px;
+font-family:Inter,sans-serif;
+font-size:14px;
+}
+
+.form-status.success{
+
+color:#00ff66;
+
+letter-spacing:2px;
+
+text-shadow:
+0 0 6px #00ff66,
+0 0 16px rgba(0,255,102,.6);
+
+animation:successPulse 1.8s ease infinite;
+
+}
+
+.form-status.error{
+color:#ff4b4b;
+}
+
+@keyframes successPulse{
+
+0%{opacity:.6}
+50%{opacity:1}
+100%{opacity:.6}
+
+}

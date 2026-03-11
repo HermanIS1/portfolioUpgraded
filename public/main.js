@@ -133,6 +133,8 @@ const original = btn.innerText
 btn.innerText="Sending..."
 btn.disabled=true
 
+status.textContent="Sending message..."
+
 try{
 
 const res = await fetch("/api/contact",{
@@ -147,8 +149,12 @@ if(res.ok){
 
 form.reset()
 
-status.textContent="✔ Message sent"
+status.innerHTML="✓ MESSAGE DELIVERED"
 status.className="form-status success"
+
+setTimeout(()=>{
+status.innerHTML=""
+},3500)
 
 }else{
 
@@ -172,7 +178,6 @@ btn.disabled=false
 })
 
 }
-
 
 /* ================= SPOTIFY ================= */
 
