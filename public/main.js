@@ -9,6 +9,7 @@ initProjects()
 initTerminal()
 initParallax()
 loadGithub()
+
 })
 
 /* ================= GLOBAL ================= */
@@ -109,6 +110,7 @@ lastScroll=current
 
 }
 
+
 /* ================= CONTACT FORM ================= */
 
 function initContactForm(){
@@ -206,7 +208,6 @@ ${data.artist} – ${data.title}
 </a>`
 
 cover.src=data.albumImageUrl
-
 cover.parentElement.classList.add("playing")
 
 disc.style.left="85px"
@@ -218,7 +219,6 @@ label.innerText="PAUSED"
 track.innerText="Cisza w eterze..."
 
 cover.src="images/chivas-cover.png"
-
 cover.parentElement.classList.remove("playing")
 
 disc.style.left="45px"
@@ -238,9 +238,7 @@ console.error("Spotify error:",err)
 /* ================= PROJECTS ================= */
 
 function initProjects(){
-
 loadProjects()
-
 }
 
 async function loadProjects(){
@@ -285,7 +283,6 @@ container.innerHTML="<p>Nie udało się załadować projektów.</p>"
 
 
 /* ================= TERMINAL ================= */
-
 function initTerminal(){
 
 const terminal = document.querySelector(".terminal")
@@ -304,9 +301,9 @@ if(sessionStorage.getItem("terminalPlayed")){
 text.textContent =
 `herman@dev:~$ boot portfolio
 loading modules...
+spotify connected
 projects loaded
-system ready
-welcome, herman
+welcome back, herman
 `
 
 inputLine.style.display = "flex"
@@ -326,7 +323,7 @@ const lines = [
 "loading modules...",
 "spotify connected",
 "projects loaded",
-"welcome, herman"
+"welcome back, herman"
 ]
 
 let line = 0
@@ -339,7 +336,6 @@ if(line < lines.length){
 if(char < lines[line].length){
 
 text.textContent += lines[line][char]
-
 char++
 
 setTimeout(type,25)
@@ -369,7 +365,7 @@ if(input) input.focus()
 }
 
 
-/* CRT boot */
+/* CRT flash + start typing */
 
 setTimeout(()=>{
 
@@ -400,7 +396,28 @@ type()
 }
 
 
-/* ================= PARALLAX ================= */
+/* ================= GITHUB ================= */
+
+async function loadGithub(){
+
+try{
+
+const badge = document.getElementById("github-repos-badge")
+
+if(!badge) return
+
+const res = await fetch("https://api.github.com/users/HermanIS1")
+const data = await res.json()
+
+badge.textContent = data.public_repos
+
+}catch(err){
+
+console.error("GitHub API error:",err)
+
+}
+
+}
 
 function initParallax(){
 
@@ -414,34 +431,46 @@ document.body.style.backgroundPosition = `${50 - x/2}% ${50 - y/2}%`
 })
 
 }
+/* ================= BLOCK COPY ================= */
 
-async function loadGithub(){
+document.addEventListener("contextmenu",e=>{
+e.preventDefault()
+})
 
-try{
+document.addEventListener("dragstart",e=>{
+e.preventDefault()
+})
 
-const res = await fetch("/api/stats")
-const data = await res.json()
+document.querySelectorAll("a").forEach(link => {
 
-const repos = document.getElementById("github-repos")
-const followers = document.getElementById("github-followers")
-const badge = document.getElementById("github-repos-badge")
+link.addEventListener("click", e => {
 
-if(repos){
-repos.innerText = data.githubRepos
+const url = link.getAttribute("href")
+
+/* ignoruj brak linku */
+if(!url) return
+
+/* ignoruj kotwice */
+if(url.startsWith("#")) return
+
+/* ignoruj linki zewnętrzne */
+if(url.startsWith("http")) return
+
+/* ignoruj target blank */
+if(link.target === "_blank") return
+
+e.preventDefault()
+
+const transition = document.getElementById("page-transition")
+
+if(transition){
+transition.classList.add("active")
 }
 
-if(followers){
-followers.innerText = data.githubFollowers
-}
+setTimeout(()=>{
+window.location.href = url
+},400)
 
-if(badge){
-badge.innerText = data.githubRepos
-}
+})
 
-}catch(err){
-
-console.error("GitHub error:",err)
-
-}
-
-}
+})

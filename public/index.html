@@ -27,7 +27,6 @@ onload="this.onload=null;this.rel='stylesheet'">
 <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 </noscript>
 
-<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -92,6 +91,7 @@ IT / Games / Programming
 <div class="terminal-input-line">
 <span>herman@dev:~$</span>
 <input id="terminal-input">
+<span class="terminal-cursor">█</span>
 </div>
 
 <a href="projects.html" id="terminal-btn" class="terminal-btn">
@@ -104,7 +104,31 @@ view projects →
 </div>
 
 </header>
+<section class="section-box dev-status">
 
+<h3>System status</h3>
+
+<div class="status-line">
+<span>Backend API</span>
+<span class="status ok">ONLINE</span>
+</div>
+
+<div class="status-line">
+<span>Spotify API</span>
+<span class="status ok">CONNECTED</span>
+</div>
+
+<div class="status-line">
+<span>Portfolio Server</span>
+<span class="status ok">RUNNING</span>
+</div>
+
+<div class="status-line">
+<span>GitHub</span>
+<span class="status ok">SYNCED</span>
+</div>
+
+</section>
 
 <!-- TECH STACK -->
 
@@ -157,7 +181,7 @@ Uczę się programowania!
 <div id="form-status" class="form-status"></div>
 
 </form>
-
+<div class="section-divider"></div>
 
 <div class="contact-links">
 
@@ -197,7 +221,16 @@ C20.565 21.796 24 17.298 24 12
 <div class="github-badge" id="github-repos-badge">0</div>
 
 </a>
+<section class="section-box github-activity">
 
+<h3>GitHub Activity</h3>
+
+<img 
+src="https://ghchart.rshah.org/00ff66/HermanIS1"
+alt="GitHub activity chart"
+/>
+
+</section>
 
 <!-- DISCORD -->
 <a href="https://discord.com/users/1223183600380416001" target="_blank" class="contact-icon" title="Discord">
@@ -219,8 +252,7 @@ C20.565 21.796 24 17.298 24 12
 </footer>
 
 <div id="scroll-sigil">⛧</div>
-
-<script src="main.js" defer></script>
+<script src="main.js"></script>
 <div id="page-transition"></div>
 </body>
 </html>

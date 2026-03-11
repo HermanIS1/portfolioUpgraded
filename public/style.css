@@ -494,25 +494,45 @@ white-space:pre;
 height:180px;      /* rezerwuje miejsce na linie */
 }
 
-/* input */
-
 .terminal-input-line{
-display:flex;
-gap:8px;
-margin-top:10px;
 display:none;
+align-items:center;
+gap:6px;
+margin-top:10px;
 }
-
-/* input pole */
 
 #terminal-input{
 background:none;
 border:none;
 outline:none;
-color:#00ff66;
+color:var(--green);
 font-family:monospace;
 font-size:16px;
-width:100%;
+
+width:1px;
+opacity:0;
+position:absolute;
+}
+
+.terminal-cursor{
+color:var(--green);
+animation:terminalBlink 1s infinite;
+}
+
+@keyframes terminalBlink{
+
+0%{
+opacity:1;
+}
+
+50%{
+opacity:0;
+}
+
+100%{
+opacity:1;
+}
+
 }
 
 /* przycisk */
@@ -877,20 +897,6 @@ justify-content:center;
 font-size:14px;
 }
 
-/* ikony */
-
-.contact-links{
-justify-content:center;
-}
-
-}
-/* ================= SOCIAL / ICONS ================= */
-
-.contact-links{
-display:flex;
-gap:25px;
-margin-top:20px;
-align-items:center;
 }
 
 .contact-icon{
@@ -1160,12 +1166,12 @@ position:absolute;
 
 bottom:-4px;
 right:-8px;
-
+text-align:center;
 background:#00ff66;
 color:#000;
-
+min-width:20px;
 font-size:11px;
-font-family:monospace;
+font-weight: bold;
 
 padding:3px 6px;
 
@@ -1220,5 +1226,100 @@ opacity:0;
 to{
 opacity:1;
 }
+
+}
+.github-activity img{
+
+width:100%;
+max-width:700px;
+
+margin-top:20px;
+
+filter:drop-shadow(0 0 8px rgba(0,255,102,0.5));
+
+}
+
+img{
+-webkit-user-drag:none;
+user-select:none;
+}
+.dev-status{
+
+font-family:monospace;
+
+}
+
+.status-line{
+
+display:flex;
+justify-content:space-between;
+
+padding:8px 0;
+
+border-bottom:1px dashed rgba(0,255,102,0.2);
+
+}
+
+.status{
+
+color:#00ff66;
+
+letter-spacing:1px;
+
+}
+
+.status.ok{
+
+text-shadow:0 0 6px #00ff66;
+
+}
+.section-divider{
+
+width:100%;
+max-width:900px;
+
+height:1px;
+
+margin:90px auto;
+
+background:linear-gradient(
+to right,
+transparent,
+rgba(0,255,102,0.7),
+transparent
+);
+
+box-shadow:0 0 10px rgba(0,255,102,.6);
+
+animation:dividerPulse 3s ease-in-out infinite;
+
+}
+
+@keyframes dividerPulse{
+
+0%{
+opacity:.6;
+}
+
+50%{
+opacity:1;
+}
+
+100%{
+opacity:.6;
+}
+
+}
+.system-log{
+
+font-family:monospace;
+
+color:#00ff66;
+
+opacity:.7;
+
+margin-bottom:15px;
+
+letter-spacing:1px;
 
 }
