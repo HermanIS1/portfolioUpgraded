@@ -1336,5 +1336,27 @@ font-size:14px;
 display:none;
 }
 
+.github-activity{
+width:100%;
+overflow-x:auto;
+padding-bottom:10px;
+display:flex;
+align-items:center;
+gap:20px;
+}
 
+.github-activity img{
+min-width:600px;
+width:auto;
+max-width:none;
+}
+}
+.github-chart-wrapper{
+width:100%;
+overflow-x:auto;
+}
+
+.github-chart-wrapper img{
+min-width:600px;
+height:auto;
 }
