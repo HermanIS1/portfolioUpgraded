@@ -789,116 +789,6 @@ text-shadow:
 }
 
 
-/* ================= MOBILE FIX ================= */
-
-@media (max-width: 768px){
-
-.hero{
-padding:40px 20px 20px;
-}
-.hero::after{
-
-content:"";
-
-position:absolute;
-
-bottom:0;
-left:0;
-
-width:100%;
-height:120px;
-
-background:linear-gradient(
-to bottom,
-transparent,
-rgba(0,0,0,.8)
-);
-
-pointer-events:none;
-
-}
-.hero-content{
-flex-direction:column;
-align-items:center;
-text-align:center;
-gap:30px;
-}
-
-/* zdjęcie */
-
-.profile-img{
-width:220px;
-height:220px;
-}
-
-/* spotify */
-
-.vinyl-widget{
-max-width:220px;
-}
-
-.album{
-width:150px;
-height:150px;
-}
-
-.cd-disc{
-width:160px;
-height:160px;
-left:65px;
-}
-
-/* tytuł */
-
-.hero-title{
-font-size:46px;
-}
-
-.hero-claim{
-font-size:18px;
-line-height:1.6;
-}
-
-/* terminal */
-
-.terminal{
-max-width:320px;
-height:180px;
-margin-top:15px;
-}
-
-.terminal pre{
-font-size:13px;
-line-height:1.6;
-}
-
-.terminal-btn{
-width:140px;
-font-size:13px;
-}
-
-/* sekcje */
-
-.section-box{
-padding:30px 25px;
-margin:30px 15px;
-}
-
-/* skills */
-
-.skills{
-justify-content:center;
-}
-
-/* kontakt */
-
-.contact-form input,
-.contact-form textarea{
-font-size:14px;
-}
-
-}
-
 .contact-icon{
 display:flex;
 align-items:center;
@@ -1322,4 +1212,107 @@ margin-bottom:15px;
 
 letter-spacing:1px;
 
+}
+/* ================= MOBILE FIX ================= */
+/* WKLEJ TO NA SAMYM DOLE PLIKU CSS */
+
+@media (max-width: 768px) {
+  
+  /* Zabezpieczenie przed poziomym paskiem przewijania (przez wyjeżdżającą płytę CD) */
+  body, html {
+    overflow-x: hidden;
+  }
+
+  .hero {
+    padding: 30px 15px 20px;
+  }
+
+  .hero-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 25px;
+  }
+
+  /* Usunięcie lewej ramki ze zdjęcia, która psuła symetrię przy wycentrowanym układzie */
+  .photo-wrap {
+    border-left: none;
+    padding-left: 0;
+    margin-top: 10px;
+  }
+
+  .profile-img {
+    width: 200px;
+    height: 200px;
+  }
+
+  /* Zmniejszenie sekcji Spotify i schowanie płyty bliżej okładki */
+  .vinyl-widget {
+    max-width: 100%;
+    width: 280px;
+  }
+
+  .album {
+    width: 140px;
+    height: 140px;
+  }
+
+  .cd-disc {
+    width: 140px;
+    height: 140px;
+    left: 50px; 
+  }
+
+  /* Typografia dostosowana do małych ekranów */
+  .hero-title {
+    font-size: 42px;
+    margin-bottom: 15px;
+  }
+
+  .hero-claim {
+    font-size: 16px;
+  }
+
+  /* Terminal - mniejszy, by nie rozpychał ekranu */
+  .terminal {
+    max-width: 100%;
+    width: 90vw;
+    height: 180px !important;
+    min-height: 180px !important;
+    max-height: 180px !important;
+    padding: 15px;
+  }
+
+  .terminal pre {
+    font-size: 11px;
+    line-height: 1.5;
+    height: 120px;
+  }
+
+  .terminal-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Mniejsze marginesy w boksach z treścią */
+  .section-box {
+    padding: 25px 20px;
+    margin: 30px 15px;
+    border-left: none;
+    border-top: 3px solid var(--green); /* Na telefonie pozioma ramka u góry wygląda lepiej */
+  }
+
+  .skills {
+    justify-content: center; /* Wyśrodkowanie kafelków ze skillami */
+  }
+
+  /* Wyśrodkowanie ikonek kontaktu na dole */
+  .contact-links {
+    justify-content: center;
+  }
+
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 14px;
+  }
 }
