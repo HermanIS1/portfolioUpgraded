@@ -26,5 +26,12 @@
     "tech": "C · Stringi · Losowość · Walidacja",
     "live": "",
     "github": "https://github.com/HermanIS1/Generator-hase-"
+  },
+  {
+    "title": "AI Notes App",
+    "description": "Aplikacja do tworzenia i synchronizacji notatek z integracją AI do pracy z tekstem (np. tłumaczenie, pomoc w organizacji notatek).",
+    "tech": "React · Node.js · Prisma · AI · Full-stack",
+    "live": "",
+    "WorkInProgress": "Work in Progress"
   }
 ]

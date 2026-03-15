@@ -269,7 +269,8 @@ section.innerHTML=`
 <div class="tech">${p.tech}</div>
 <div class="links">
 ${p.live ? `<a href="${p.live}" target="_blank">live</a>`:""}
-<a href="${p.github}" target="_blank">github</a>
+${p.github ? `<a href="${p.github}" target="_blank">github</a>`:""}
+${p.WorkInProgress ? `<span class="status-wip">⚙ Work in Progress</span>` : ""}
 </div>
 `
 

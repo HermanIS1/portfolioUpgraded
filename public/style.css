@@ -1410,3 +1410,19 @@ color:#ff4b4b;
 100%{opacity:.6}
 
 }
+.status-wip{
+margin-top: 15px;
+display:inline-block;
+padding:4px 10px;
+border:1px solid var(--green);
+border-radius:20px;
+
+font-size:0.75rem;
+letter-spacing:1px;
+text-transform:uppercase;
+
+color:var(--green);
+background:rgba(0,255,120,0.08);
+
+cursor:default;
+}
