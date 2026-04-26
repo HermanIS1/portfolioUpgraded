@@ -1206,3 +1206,74 @@ textarea {
   opacity: 1;
   transform: translateY(0);
 }
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+
+  /* HERO */
+  .hero-content {
+    flex-direction: column;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .hero-right {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-divider {
+    display: none;
+  }
+
+  /* AVATAR */
+  .profile-img.circle {
+    width: 180px;
+    height: 180px;
+  }
+
+  /* IKONKI */
+  .github-mini {
+    left: 0;
+    bottom: 0;
+  }
+
+  .spotify-mini {
+    right: 0;
+    bottom: 0;
+  }
+
+  /* TEKST */
+  .hero-title {
+    font-size: 42px;
+  }
+
+  .hero-claim {
+    font-size: 18px;
+  }
+
+  /* SEKCJE */
+  .section-box {
+    padding: 25px;
+    margin: 20px;
+  }
+
+  /* PROJEKTY */
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* FORMULARZ */
+  .contact-form {
+    gap: 12px;
+  }
+
+  .btn-submit {
+    width: 100%;
+  }
+
+  /* TERMINAL OFF (żeby nie rozwalał layoutu) */
+  .terminal {
+    display: none;
+  }
+
+}
