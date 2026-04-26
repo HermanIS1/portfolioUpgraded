@@ -3,35 +3,38 @@
     "title": "Portfolio v2",
     "description": "Moja strona zintegrowana ze Spotify API i Node.js.",
     "tech": "Node.js · Express · Spotify API",
-    "live": "#",
-    "github": "https://github.com/HermanIS1/portfolioUpgraded"
+    "live": "https://hermanportfolio.pl/",
+    "github": "https://github.com/HermanIS1/portfolioUpgraded",
+    "image": "images/portfolio.png"
   },
   {
     "title": "Beyond Earth",
     "description": "Landing page wykonany w HTML i CSS. Projekt postawiony online i wersjonowany w GitHub Pages.",
     "tech": "HTML · CSS · GitHub Pages",
     "live": "https://hermanis1.github.io/website/",
-    "github": "https://github.com/HermanIS1/website"
+    "github": "https://github.com/HermanIS1/website",
+    "image": "images/beyond.png"
   },
   {
     "title": "Symulacja rzutu ukośnego",
-    "description": "Program w C symuluje rzut ukośny i automatycznie generuje dane lotu. Wykorzystuje Pythona do wizualizacji toru lotu.",
-    "tech": "C · Fizyka · Matematyka · Wykresy",
-    "live": "",
-    "github": "https://github.com/HermanIS1/Symulacja-rzutu-ukosnego"
+    "description": "Program w C symuluje rzut ukośny i generuje dane lotu.",
+    "tech": "C · Matematyka",
+    "github": "https://github.com/HermanIS1/Symulacja-rzutu-ukosnego",
+    "image": "images/rzut.png"
   },
+
   {
-    "title": "Generator haseł w C",
-    "description": "Program umożliwia generowanie losowych haseł na podstawie wybranych typów znaków z walidacją danych.",
-    "tech": "C · Stringi · Losowość · Walidacja",
+    "title": "AutoClicker Python",
+    "description": "Prosty autoclicker napisany w Pythonie z regulacją CPS i GUI.",
+    "image": "images/autoclicker.png",
+    "github": "https://github.com/twojnick/autoclicker",
     "live": "",
-    "github": "https://github.com/HermanIS1/Generator-hase-"
+    "tech": "Python / Tkinter"
   },
   {
     "title": "AI Notes App",
-    "description": "Aplikacja do tworzenia i synchronizacji notatek z integracją AI do pracy z tekstem (np. tłumaczenie, pomoc w organizacji notatek).",
-    "tech": "React · Node.js · Prisma · AI · Full-stack",
-    "live": "",
-    "WorkInProgress": "Work in Progress"
+    "description": "Notatki z integracją AI.",
+    "tech": "React · Node",
+    "image": "images/ai.png"
   }
 ]

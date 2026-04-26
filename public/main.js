@@ -1,482 +1,373 @@
 document.addEventListener("DOMContentLoaded", () => {
+  initIntro();
+  initReveal();
+  initScrollSigil();
+  initContactForm();
+  initSpotify();
+  initProjects();
+  initTerminal();
 
-initIntro()
-initReveal()
-initScrollSigil()
-initContactForm()
-initSpotify()
-initProjects()
-initTerminal()
-initParallax()
-loadGithub()
-
-})
+  initPageTransitions();
+});
 
 /* ================= GLOBAL ================= */
 
-const INTRO_DURATION = 2800
-
+const INTRO_DURATION = 2800;
 
 /* ================= INTRO ================= */
 
-function initIntro(){
+function initIntro() {
+  const intro = document.getElementById("intro-screen");
+  if (!intro) return;
 
-const intro = document.getElementById("intro-screen")
-if(!intro) return
+  const alreadyPlayed = sessionStorage.getItem("introPlayed");
 
-if(!sessionStorage.getItem("introPlayed")){
+  if (alreadyPlayed) {
+    intro.style.display = "none";
+    return;
+  }
 
-setTimeout(()=>{
+  setTimeout(() => {
+    intro.classList.add("fade-out");
 
-intro.classList.add("fade-out")
-sessionStorage.setItem("introPlayed","true")
+    setTimeout(() => {
+      intro.style.display = "none";
+    }, 800);
 
-setTimeout(()=>{
-intro.style.display="none"
-},800)
-
-},INTRO_DURATION - 800)
-
-}else{
-
-intro.style.display="none"
-
+    sessionStorage.setItem("introPlayed", "true");
+  }, 2000);
 }
-
-}
-
-
 /* ================= REVEAL ================= */
 
-function initReveal(){
+function initReveal() {
+  const sections = document.querySelectorAll("section");
 
-const sections = document.querySelectorAll("section")
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    },
+    { threshold: 0.2 },
+  );
 
-const observer = new IntersectionObserver(entries => {
-
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add("visible")
+  sections.forEach((section) => {
+    section.classList.add("hidden");
+    observer.observe(section);
+  });
 }
-})
-
-},{threshold:0.2})
-
-sections.forEach(section=>{
-section.classList.add("hidden")
-observer.observe(section)
-})
-
-}
-
 
 /* ================= SCROLL SIGIL ================= */
 
-function initScrollSigil(){
+function initScrollSigil() {
+  const sigil = document.getElementById("scroll-sigil");
+  if (!sigil) return;
 
-const sigil = document.getElementById("scroll-sigil")
-if(!sigil) return
+  let lastScroll = window.scrollY;
+  let timeout;
 
-let lastScroll = window.scrollY
-let timeout
+  window.addEventListener("scroll", () => {
+    const current = window.scrollY;
 
-window.addEventListener("scroll",()=>{
+    if (current > lastScroll) {
+      sigil.style.top = "auto";
+      sigil.style.bottom = "40px";
+    } else {
+      sigil.style.bottom = "auto";
+      sigil.style.top = "40px";
+    }
 
-const current = window.scrollY
+    sigil.style.opacity = "1";
 
-if(current > lastScroll){
+    clearTimeout(timeout);
 
-sigil.style.top="auto"
-sigil.style.bottom="40px"
+    timeout = setTimeout(() => {
+      sigil.style.opacity = "0";
+    }, 700);
 
-}else{
-
-sigil.style.bottom="auto"
-sigil.style.top="40px"
-
+    lastScroll = current;
+  });
 }
-
-sigil.style.opacity="1"
-
-clearTimeout(timeout)
-
-timeout=setTimeout(()=>{
-sigil.style.opacity="0"
-},700)
-
-lastScroll=current
-
-})
-
-}
-
 
 /* ================= CONTACT FORM ================= */
 
-function initContactForm(){
+function initContactForm() {
+  const form = document.getElementById("contact-form");
+  const status = document.getElementById("form-status");
 
-const form = document.getElementById("contact-form")
-const status = document.getElementById("form-status")
+  if (!form) return;
 
-if(!form) return
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-form.addEventListener("submit", async e => {
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
 
-e.preventDefault()
+    const btn = form.querySelector(".btn-submit");
+    const original = btn.innerText;
 
-const email = document.getElementById("email").value
-const message = document.getElementById("message").value
+    btn.innerText = "Sending...";
+    btn.disabled = true;
 
-const btn = form.querySelector(".btn-submit")
-const original = btn.innerText
+    status.textContent = "Sending message...";
 
-btn.innerText="Sending..."
-btn.disabled=true
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, message }),
+      });
 
-status.textContent="Sending message..."
+      const data = await res.json();
 
-try{
+      if (res.ok) {
+        form.reset();
 
-const res = await fetch("/api/contact",{
-method:"POST",
-headers:{"Content-Type":"application/json"},
-body:JSON.stringify({email,message})
-})
+        status.innerHTML = "✓ MESSAGE DELIVERED";
+        status.className = "form-status success";
 
-const data = await res.json()
+        setTimeout(() => {
+          status.innerHTML = "";
+        }, 3500);
+      } else {
+        status.textContent = data.error || "Something went wrong";
+        status.className = "form-status error";
+      }
+    } catch (err) {
+      console.error(err);
 
-if(res.ok){
+      status.textContent = "Server error";
+      status.className = "form-status error";
+    }
 
-form.reset()
-
-status.innerHTML="✓ MESSAGE DELIVERED"
-status.className="form-status success"
-
-setTimeout(()=>{
-status.innerHTML=""
-},3500)
-
-}else{
-
-status.textContent=data.error || "Something went wrong"
-status.className="form-status error"
-
-}
-
-}catch(err){
-
-console.error(err)
-
-status.textContent="Server error"
-status.className="form-status error"
-
-}
-
-btn.innerText=original
-btn.disabled=false
-
-})
-
+    btn.innerText = original;
+    btn.disabled = false;
+  });
 }
 
 /* ================= SPOTIFY ================= */
 
-function initSpotify(){
-
-fetchSpotify()
-setInterval(fetchSpotify,15000)
-
+function initSpotify() {
+  fetchSpotify();
+  setInterval(fetchSpotify, 15000);
 }
 
-async function fetchSpotify(){
+async function fetchSpotify() {
+  const track = document.querySelector(".spotify-track");
+  const cover = document.querySelector(".spotify-cover");
+  const label = document.querySelector(".spotify-label");
 
-const track = document.querySelector(".track")
-const cover = document.querySelector(".cover img")
-const label = document.querySelector(".label")
-const disc = document.querySelector(".cd-disc")
+  if (!track || !cover || !label) return;
 
-if(!track || !cover || !label || !disc) return
+  try {
+    const res = await fetch("/api/spotify");
+    const data = await res.json();
 
-try{
+    if (data.isPlaying) {
+      label.innerText = "NOW PLAYING";
 
-const res = await fetch("/api/spotify")
-const data = await res.json()
-
-if(data.isPlaying){
-
-label.innerText="NOW LISTENING"
-
-track.innerHTML=`
+      track.innerHTML = `
 <a href="${data.songUrl}" target="_blank"
-style="color:inherit;text-decoration:none;border-bottom:1px solid var(--green)">
+style="color:inherit;text-decoration:none;">
 ${data.artist} – ${data.title}
-</a>`
+</a>`;
 
-cover.src=data.albumImageUrl
-cover.parentElement.classList.add("playing")
-
-disc.style.left="85px"
-disc.style.animationPlayState="running"
-
-}else{
-
-label.innerText="PAUSED"
-track.innerText="Cisza w eterze..."
-
-cover.src="images/chivas-cover.png"
-cover.parentElement.classList.remove("playing")
-
-disc.style.left="45px"
-disc.style.animationPlayState="paused"
-
+      cover.src = data.albumImageUrl;
+    } else {
+      label.innerText = "PAUSED";
+      track.innerText = "nic nie leci";
+      cover.src = "images/chivas-cover.png";
+    }
+  } catch (err) {
+    console.error("Spotify error:", err);
+  }
 }
-
-}catch(err){
-
-console.error("Spotify error:",err)
-
-}
-
-}
-
 
 /* ================= PROJECTS ================= */
 
-function initProjects(){
-loadProjects()
+function initProjects() {
+  loadProjects();
 }
 
-async function loadProjects(){
+/* ================= CARD GENERATOR ================= */
 
-const container=document.getElementById("projects-container")
-if(!container) return
+function createProjectCard(p, mode = "preview") {
+  return `
+  <div class="project-card">
 
-try{
+    <div class="project-preview">
+      <img src="${p.image || "images/project1.png"}" alt="${p.title}">
 
-const res=await fetch("/api/projects")
-const projects=await res.json()
+      ${
+        mode === "preview"
+          ? `
+      <div class="project-overlay">
+        ${p.live ? `<a href="${p.live}" target="_blank" class="project-btn">LIVE</a>` : ""}
+        ${p.github ? `<a href="${p.github}" target="_blank" class="project-btn">CODE</a>` : ""}
+      </div>
+      `
+          : ""
+      }
 
-container.innerHTML=""
+    </div>
 
-projects.forEach(p=>{
+    <div class="project-content">
+      <h4>${p.title}</h4>
+      <p>${p.description}</p>
 
-const section=document.createElement("section")
-section.className="section-box"
+      ${
+        mode === "full"
+          ? `
+      <div class="project-actions">
+        ${p.live ? `<a href="${p.live}" target="_blank" class="project-link">LIVE</a>` : ""}
+        ${p.github ? `<a href="${p.github}" target="_blank" class="project-link secondary">CODE</a>` : ""}
+        ${p.WorkInProgress ? `<span class="project-wip">${p.WorkInProgress}</span>` : ""}
+      </div>
+      `
+          : ""
+      }
 
-section.innerHTML=`
-<h3>${p.title}</h3>
-<p>${p.description}</p>
-<div class="tech">${p.tech}</div>
-<div class="links">
-${p.live ? `<a href="${p.live}" target="_blank">live</a>`:""}
-${p.github ? `<a href="${p.github}" target="_blank">github</a>`:""}
-${p.WorkInProgress ? `<span class="status-wip">⚙ Work in Progress</span>` : ""}
-</div>
-`
+    </div>
 
-container.appendChild(section)
-
-})
-
-}catch(err){
-
-console.error("Projects error:",err)
-container.innerHTML="<p>Nie udało się załadować projektów.</p>"
-
+  </div>
+  `;
 }
 
-}
+/* ================= LOAD ================= */
 
+async function loadProjects() {
+  const preview = document.getElementById("projects-preview");
+  const container = document.getElementById("projects-container");
+
+  try {
+    const res = await fetch("/api/projects");
+    const projects = await res.json();
+
+    /* ===== GŁÓWNA ===== */
+
+    if (preview) {
+      preview.innerHTML = "";
+
+      projects.slice(0, 3).forEach((p) => {
+        preview.innerHTML += createProjectCard(p, "preview");
+      });
+    }
+
+    /* ===== PROJECTS PAGE ===== */
+
+    if (container) {
+      container.innerHTML = "";
+
+      projects.forEach((p) => {
+        const section = document.createElement("section");
+        section.className = "section-box";
+
+        section.innerHTML = `
+          <h3>${p.title}</h3>
+
+          ${createProjectCard(p, "full")}
+
+          <div class="tech" style="margin-top:10px;">
+            ${p.tech || ""}
+          </div>
+        `;
+
+        container.appendChild(section);
+      });
+    }
+  } catch (err) {
+    console.error("Projects error:", err);
+  }
+}
 
 /* ================= TERMINAL ================= */
-function initTerminal(){
+function initTerminal() {
+  const text = document.getElementById("terminal-text");
+  const inputLine = document.querySelector(".terminal-input-line");
+  const input = document.getElementById("terminal-input");
 
-const terminal = document.querySelector(".terminal")
-const text = document.getElementById("terminal-text")
-const inputLine = document.querySelector(".terminal-input-line")
-const input = document.getElementById("terminal-input")
-const btn = document.getElementById("terminal-btn")
+  if (!text) return;
 
-if(!terminal || !text) return
+  const lines = [
+    "herman@dev:~$ boot portfolio",
+    "loading modules...",
+    "spotify connected",
+    "projects loaded",
+    "welcome back, herman",
+  ];
 
+  let line = 0;
+  let char = 0;
 
-/* jeśli terminal był już odpalony */
+  function type() {
+    if (line < lines.length) {
+      if (char < lines[line].length) {
+        text.textContent += lines[line][char];
+        char++;
+        setTimeout(type, 25);
+      } else {
+        text.textContent += "\n";
+        line++;
+        char = 0;
+        setTimeout(type, 250);
+      }
+    } else {
+      if (inputLine) inputLine.style.display = "flex";
+      if (input) input.focus();
+    }
+  }
 
-if(sessionStorage.getItem("terminalPlayed")){
-
-text.textContent =
-`herman@dev:~$ boot portfolio
-loading modules...
-spotify connected
-projects loaded
-welcome back, herman
-`
-
-inputLine.style.display = "flex"
-btn.style.display = "block"
-
-if(input) input.focus()
-
-return
-
-}
-
-
-/* boot linie */
-
-const lines = [
-"herman@dev:~$ boot portfolio",
-"loading modules...",
-"spotify connected",
-"projects loaded",
-"welcome back, herman"
-]
-
-let line = 0
-let char = 0
-
-function type(){
-
-if(line < lines.length){
-
-if(char < lines[line].length){
-
-text.textContent += lines[line][char]
-char++
-
-setTimeout(type,25)
-
-}else{
-
-text.textContent += "\n"
-
-line++
-char = 0
-
-setTimeout(type,300)
-
-}
-
-}else{
-
-sessionStorage.setItem("terminalPlayed","true")
-
-inputLine.style.display = "flex"
-btn.style.display = "block"
-
-if(input) input.focus()
-
-}
-
-}
-
-
-/* CRT flash + start typing */
-
-setTimeout(()=>{
-
-terminal.classList.add("crt-glitch")
-
-const bootLine = document.createElement("div")
-bootLine.className = "terminal-boot"
-
-terminal.appendChild(bootLine)
-
-bootLine.animate([
-{transform:"scaleY(0)",opacity:1},
-{transform:"scaleY(25)",opacity:0}
-],{
-duration:350,
-easing:"ease-out"
-})
-
-setTimeout(()=>{
-
-bootLine.remove()
-type()
-
-},350)
-
-},INTRO_DURATION)
-
-}
-
-
-/* ================= GITHUB ================= */
-
-async function loadGithub(){
-
-try{
-
-const badge = document.getElementById("github-repos-badge")
-
-if(!badge) return
-
-const res = await fetch("https://api.github.com/users/HermanIS1")
-const data = await res.json()
-
-badge.textContent = data.public_repos
-
-}catch(err){
-
-console.error("GitHub API error:",err)
-
-}
-
-}
-
-function initParallax(){
-
-document.addEventListener("mousemove", e => {
-
-const x = (e.clientX / window.innerWidth) * 10
-const y = (e.clientY / window.innerHeight) * 10
-
-document.body.style.backgroundPosition = `${50 - x/2}% ${50 - y/2}%`
-
-})
-
+  type();
 }
 /* ================= BLOCK COPY ================= */
 
-document.addEventListener("contextmenu",e=>{
-e.preventDefault()
-})
+document.addEventListener("contextmenu", (e) => {
+  e.preventDefault();
+});
 
-document.addEventListener("dragstart",e=>{
-e.preventDefault()
-})
+document.addEventListener("dragstart", (e) => {
+  e.preventDefault();
+});
 
-document.querySelectorAll("a").forEach(link => {
+function initPageTransitions() {
+  const links = document.querySelectorAll("a");
 
-link.addEventListener("click", e => {
+  links.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const url = link.getAttribute("href");
 
-const url = link.getAttribute("href")
+      if (!url) return;
+      if (url.startsWith("#")) return;
+      if (url.startsWith("http")) return;
+      if (link.target === "_blank") return;
 
-/* ignoruj brak linku */
-if(!url) return
+      e.preventDefault();
 
-/* ignoruj kotwice */
-if(url.startsWith("#")) return
+      const transition = document.getElementById("page-transition");
 
-/* ignoruj linki zewnętrzne */
-if(url.startsWith("http")) return
+      if (transition) {
+        transition.classList.add("active");
+      }
 
-/* ignoruj target blank */
-if(link.target === "_blank") return
-
-e.preventDefault()
-
-const transition = document.getElementById("page-transition")
-
-if(transition){
-transition.classList.add("active")
+      setTimeout(() => {
+        window.location.href = url;
+      }, 400);
+    });
+  });
 }
 
-setTimeout(()=>{
-window.location.href = url
-},400)
+// FAILSAFE jeśli coś rozwali JS wcześniej
+window.addEventListener("load", () => {
+  const intro = document.getElementById("intro-screen");
+  if (intro) {
+    setTimeout(() => {
+      intro.classList.add("fade-out");
 
-})
-
-})
+      setTimeout(() => {
+        intro.style.display = "none";
+      }, 800);
+    }, 2500);
+  }
+});

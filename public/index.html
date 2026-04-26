@@ -1,262 +1,197 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Portfolio Hermana – student informatyki. Projekty programistyczne, Node.js, JavaScript, IT i technologie.">
-<meta name="keywords" content="portfolio, programming, javascript, nodejs, IT, developer, herman">
-<meta name="author" content="Herman">
-<meta property="og:title" content="Herman – Portfolio">
-<meta property="og:description" content="IT / Games / Programming. Projekty, kod i technologie.">
-<meta property="og:image" content="/images/preview.png">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://hermanportfolio.pl">
-<title>Portfolio | Herman</title>
-<link rel="icon" href="images/favicon.ico">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" href="style.css" as="style">
-<link rel="stylesheet" href="style.css">
-<link rel="preload" as="style"
-href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Inter:wght@400;500&display=swap"
-onload="this.onload=null;this.rel='stylesheet'">
-
-<noscript>
-<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-</noscript>
-
-</head>
-
-<body>
-<div id="cursor-glow"></div>
-<div id="intro-screen">
-<h1 class="hero-title"><span class="white">HER</span><span class="green">MAN</span></h1>
-<p class="loading-text">Inicjowanie systemu...</p>
-</div>
-
-
-<!-- HERO -->
-
-<header class="hero">
-
-<div class="hero-content">
-
-<div class="photo-wrap">
-<img src="images/profilowe.png" alt="Herman" class="profile-img">
-</div>
-
-
-<div class="vinyl-widget">
-
-<div class="album">
-
-<div class="cover">
-<img src="images/chivas-cover.png" alt="Chivas cover">
-</div>
-
-<img src="images/cd.png" class="cd-disc" alt="CD disc">
-
-</div>
-
-<div class="music-text">
-<span class="label">NOW LISTENING</span>
-<span class="track">
-CHIVAS – NAWET NIE WIESZ JAK CHCIAŁBYM MÓC TO POCZUĆ JESZCZE RAZ
-</span>
-</div>
-
-</div>
-
-
-<div class="hero-text">
-
-<h1 class="hero-title">
-<span class="white">HER</span><span class="green">MAN</span>
-</h1>
-
-<p class="hero-claim">
-Dobry w wielu rzeczach.<br>
-Perfekcyjny w żadnej.<br>
-Ale się staram.
-</p>
-<p class="hero-role">
-IT / Games / Programming
-</p>
-<div class="terminal">
-
-<pre id="terminal-text"></pre>
-
-<div class="terminal-input-line">
-<span>herman@dev:~$</span>
-<input id="terminal-input">
-<span class="terminal-cursor">█</span>
-</div>
-
-<a href="projects.html" id="terminal-btn" class="terminal-btn">
-view projects →
-</a>
-
-</div>
-<div id="scroll-indicator" class="scroll-indicator">
-<span></span>
-</div>
-
-</header>
-<section class="section-box dev-status">
-
-<h3>System status</h3>
-
-<div class="status-line">
-<span>Backend API</span>
-<span class="status ok">ONLINE</span>
-</div>
-
-<div class="status-line">
-<span>Spotify API</span>
-<span class="status ok">CONNECTED</span>
-</div>
-
-<div class="status-line">
-<span>Portfolio Server</span>
-<span class="status ok">RUNNING</span>
-</div>
-
-<div class="status-line">
-<span>GitHub</span>
-<span class="status ok">SYNCED</span>
-</div>
-
-</section>
-
-<!-- TECH STACK -->
-
-<section class="section-box">
-
-<h3>Umiem podstawy</h3>
-
-<div class="skills">
-
-<span>C</span>
-<span>JavaScript</span>
-<span>Node.js</span>
-<span>HTML</span>
-<span>CSS</span>
-
-</div>
-
-</section>
-
-
-<!-- O MNIE -->
-<section class="section-box">
-
-<h3>O mnie</h3>
-
-<p>
-Student informatyki. Interesuję się IT szeroko – od sprzętu po podstawy programowania.
-Składam i konfiguruję komputery, zajmuję się diagnostyką i naprawą sprzętu.
-Uczę się programowania!
-</p>
-
-</section>
-
-<!-- KONTAKT -->
-
-<section class="section-box">
-
-<h3>Kontakt</h3>
-
-<p>Zostaw wiadomość, a odezwę się najszybciej jak to możliwe.</p>
-
-<form id="contact-form" class="contact-form">
-
-<input type="email" id="email" placeholder="Twój e-mail" required>
-
-<textarea id="message" rows="4" placeholder="Twoja wiadomość..." required></textarea>
-
-<button type="submit" class="scroll btn-submit">Wyślij</button>
-
-<div id="form-status" class="form-status"></div>
-
-</form>
-<div class="section-divider"></div>
-
-<div class="contact-links">
-
-<!-- GITHUB -->
-<a
-href="https://github.com/HermanIS1"
-target="_blank"
-class="contact-icon github-icon"
-title="GitHub"
->
-
-<svg viewBox="0 0 24 24" class="github-svg">
-
-<path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577
-0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756
--1.09-.745.082-.729.082-.729 1.205.085 1.84 1.236 1.84 1.236
-1.07 1.835 2.807 1.305 3.492.998
-.108-.775.418-1.305.762-1.605
--2.665-.3-5.467-1.333-5.467-5.93
-0-1.31.465-2.38 1.235-3.22
--.124-.303-.536-1.523.117-3.176
-0 0 1.008-.322 3.3 1.23
-a11.49 11.49 0 0 1 3.003-.404
-c1.02.005 2.045.138 3.003.404
-2.29-1.552 3.296-1.23 3.296-1.23
-.655 1.653.243 2.873.12 3.176
-.77.84 1.233 1.91 1.233 3.22
-0 4.61-2.807 5.625-5.48 5.92
-.43.372.823 1.103.823 2.222
-0 1.606-.014 2.902-.014 3.293
-0 .322.216.694.825.576
-C20.565 21.796 24 17.298 24 12
-0 5.37 18.63 0 12 0z"/>
-
-</svg>
-
-<div class="github-badge" id="github-repos-badge">0</div>
-
-</a>
-<section class="section-box github-activity">
-
-<h3>GitHub Activity</h3>
-
-<div class="github-chart-wrapper">
-
-<img 
-src="https://ghchart.rshah.org/00ff66/HermanIS1"
-alt="GitHub activity chart"
-/>
-
-</div>
-
-</section>
-
-<!-- DISCORD -->
-<a href="https://discord.com/users/1223183600380416001" target="_blank" class="contact-icon" title="Discord">
-
-<svg viewBox="0 0 127.14 96.36">
-
-<path fill="#00ff66" d="M107.7 8.07A105.15 105.15 0 0 0 81.47 0a72.06 72.06 0 0 0-3.36 6.83 97.68 97.68 0 0 0-29.09 0A72.37 72.37 0 0 0 45.64 0 105.89 105.89 0 0 0 19.39 8.09C2.79 33.58-1.71 58.45.54 82.97a105.73 105.73 0 0 0 32.17 16.24 77.7 77.7 0 0 0 6.89-11.17 68.42 68.42 0 0 1-10.85-5.18c.91-.68 1.8-1.39 2.66-2.12 20.92 9.76 43.69 9.76 64.39 0 .87.73 1.76 1.44 2.66 2.12a68.68 68.68 0 0 1-10.87 5.19 77.39 77.39 0 0 0 6.89 11.17 105.25 105.25 0 0 0 32.19-16.24c2.64-28.43-4.5-53.07-19-74.9zM42.45 65.69c-6.23 0-11.35-5.65-11.35-12.61s5-12.61 11.35-12.61c6.38 0 11.46 5.7 11.35 12.61 0 6.96-5 12.61-11.35 12.61zm42.24 0c-6.23 0-11.35-5.65-11.35-12.61s5-12.61 11.35-12.61c6.38 0 11.46 5.7 11.35 12.61 0 6.96-4.97 12.61-11.35 12.61z"/>
-
-</svg>
-
-</a>
-
-</div>
-
-</section>
-
-<footer class="footer">
-<p>© 2026 Herman</p>
-</footer>
-
-<div id="scroll-sigil">⛧</div>
-<script src="main.js"></script>
-<div id="page-transition"></div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio Hermana – student informatyki. Projekty programistyczne, Node.js, JavaScript, IT i technologie."
+    />
+    <meta
+      name="keywords"
+      content="portfolio, programming, javascript, nodejs, IT, developer, herman"
+    />
+    <meta name="author" content="Herman" />
+    <meta property="og:title" content="Herman – Portfolio" />
+    <meta
+      property="og:description"
+      content="IT / Games / Programming. Projekty, kod i technologie."
+    />
+    <meta property="og:image" content="/images/preview.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hermanportfolio.pl" />
+    <title>Portfolio | Herman</title>
+    <link rel="icon" href="images/favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href="style.css" as="style" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Inter:wght@400;500&display=swap"
+      onload="
+        this.onload = null;
+        this.rel = 'stylesheet';
+      "
+    />
+
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Inter:wght@400;500&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
+  </head>
+
+  <body>
+    <div id="cursor-glow"></div>
+
+    <div id="intro-screen">
+      <h1 class="hero-title">
+        <span class="white">HER</span><span class="green">MAN</span>
+      </h1>
+      <p class="loading-text">Inicjowanie systemu...</p>
+    </div>
+
+    <header class="hero">
+      <div class="hero-content">
+        <!-- LEWA STRONA -->
+        <div class="hero-left">
+          <div class="photo-wrap">
+            <!-- SPOTIFY MINI -->
+            <div class="spotify-mini">
+              <div class="spotify-icon">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    fill="#ffffff"
+                    d="M12 0C5.37 0 0 5.373 0 12c0 6.627 5.37 12 12 12s12-5.373 12-12c0-6.627-5.37-12-12-12zm5.52 17.34c-.22.36-.69.48-1.05.27-2.87-1.76-6.49-2.16-10.77-1.2-.41.09-.82-.17-.91-.58-.09-.41.17-.82.58-.91 4.66-1.04 8.66-.58 11.88 1.38.36.22.48.69.27 1.05zm1.5-3.34c-.27.44-.85.58-1.29.31-3.29-2.02-8.32-2.61-12.21-1.43-.5.15-1.02-.13-1.17-.63-.15-.5.13-1.02.63-1.17 4.36-1.32 9.86-.68 13.78 1.69.44.27.58.85.31 1.29zm.13-3.5c-3.95-2.34-10.48-2.56-14.23-1.38-.6.18-1.23-.15-1.41-.75-.18-.6.15-1.23.75-1.41 4.28-1.29 11.4-1.04 15.74 1.56.54.32.71 1.01.39 1.55-.32.54-1.01.71-1.55.39z"
+                  />
+                </svg>
+              </div>
+
+              <div class="spotify-popup">
+                <img class="spotify-cover" src="images/chivas-cover.png" />
+
+                <div class="spotify-info">
+                  <span class="spotify-label">NOW PLAYING</span>
+                  <span class="spotify-track">loading...</span>
+                </div>
+              </div>
+            </div>
+            <a
+              href="https://github.com/HermanIS1"
+              target="_blank"
+              class="github-mini"
+            >
+              <div class="github-icon">
+                <svg viewBox="0 0 24 24">
+                  <path
+                    fill="#ffffff"
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.207 11.385.6.111.793-.261.793-.579 0-.285-.011-1.04-.016-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756 -1.089-.745.082-.729.082-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.492.998.108-.776.418-1.305.76-1.605-2.665-.303-5.466-1.332-5.466-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23 .655 1.653.243 2.874.119 3.176.77.84 1.235 1.91 1.235 3.221 0 4.61-2.805 5.625-5.475 5.921.43.37.814 1.102.814 2.222 0 1.604-.015 2.896-.015 3.286 0 .321.192.694.801.576 C20.565 21.796 24 17.296 24 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+              </div>
+
+              <span class="github-tooltip">GitHub</span>
+            </a>
+            <!-- PROFIL -->
+            <img src="images/profilowe.png" class="profile-img circle" />
+          </div>
+
+          <p class="hero-role">IT / Games / Programming</p>
+        </div>
+
+        <!-- PIONOWA LINIA -->
+        <div class="hero-divider"></div>
+
+        <!-- PRAWA STRONA -->
+        <div class="hero-right">
+          <h1 class="hero-title">
+            <span class="white">HER</span><span class="green">MAN</span>
+          </h1>
+          <div class="hero-claim">
+            <div class="hero-line strong">Dobry w wielu rzeczach.</div>
+            <div class="hero-line">Perfekcyjny w żadnej.</div>
+            <div class="hero-line faded">Ale się staram.</div>
+          </div>
+          <div class="about-inline">
+            <h4>O mnie</h4>
+            <p>
+              Student informatyki. Interesuję się IT szeroko – od sprzętu po
+              podstawy programowania. Składam i konfiguruję komputery, zajmuję
+              się diagnostyką i naprawą sprzętu. Uczę się programowania!
+            </p>
+          </div>
+
+          <div class="terminal">
+            <pre id="terminal-text"></pre>
+
+            <div class="terminal-input-line">
+              <span>herman@dev:~$</span>
+              <input id="terminal-input" />
+              <span class="terminal-cursor">█</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="section-box">
+      <h3><span>01.</span> Projekty</h3>
+
+      <div id="projects-preview" class="projects-grid"></div>
+
+      <a href="projects.html" class="scroll" style="margin-top: 20px">
+        Zobacz wszystkie →
+      </a>
+    </section>
+
+    <section class="section-box">
+      <h3>Umiem podstawy</h3>
+
+      <div class="skills">
+        <span>C</span>
+        <span>JavaScript</span>
+        <span>Node.js</span>
+        <span>HTML</span>
+        <span>CSS</span>
+      </div>
+    </section>
+
+    <!-- KONTAKT -->
+
+    <section class="section-box">
+      <h3>Kontakt</h3>
+
+      <p>Zostaw wiadomość, a odezwę się najszybciej jak to możliwe.</p>
+      <form id="contact-form" class="contact-form">
+        <div class="input-group">
+          <input type="email" id="email" required />
+          <label for="email">Twój e-mail</label>
+        </div>
+
+        <div class="input-group">
+          <textarea id="message" rows="4" required></textarea>
+          <label for="message">Twoja wiadomość...</label>
+        </div>
+
+        <button type="submit" class="scroll btn-submit">Wyślij</button>
+
+        <div id="form-status" class="form-status"></div>
+      </form>
+
+      <div class="section-divider"></div>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-left">© 2026 Herman</div>
+
+      <div class="footer-right"><span class="footer-status"></span> ONLINE</div>
+    </footer>
+
+    <div id="scroll-sigil">⛧</div>
+    <script src="main.js"></script>
+    <div id="page-transition"></div>
+  </body>
 </html>
