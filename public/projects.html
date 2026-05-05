@@ -1,31 +1,73 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pl">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Projekty | Herman</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" href="images/favicon.ico">
-</head>
-<body class="projects-page">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<header class="hero">
-  <div class="hero-content">
-    <div class="hero-text">
-      <h1 class="hero-title"><span class="white">PRO</span><span class="green">JEKTY</span></h1>
-      <p class="hero-claim">Moje realizacje.<br>Każdy projekt to krok do przodu.</p>
-      <a href="index.html" class="scroll">← wróć na główną</a>
+    <link rel="icon" href="images/favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="projects-page">
+    <div class="os-shell">
+      <main class="os-desktop">
+        <section class="os-window section-box projects-archive-window">
+          <div class="window-bar">
+            <span>projects.archive</span>
+            <div class="window-actions"><i></i><i></i><i></i></div>
+          </div>
+
+          <div class="projects-archive-head">
+            <h1 class="hero-title">
+              <span class="white">PRO</span><span class="green">JEKTY</span>
+            </h1>
+
+            <p>
+              Moje realizacje. Każdy projekt to kolejny zapis w bazie HermanOS.
+            </p>
+
+            <a href="index.html" class="scroll">← wróć na główną</a>
+          </div>
+
+          <div id="projects-container" class="projects-grid">
+            <p class="projects-loading">Przywoływanie projektów...</p>
+          </div>
+        </section>
+      </main>
+
+      <div class="os-taskbar">
+        <div class="taskbar-left">
+          <div class="taskbar-logo">H</div>
+          <span>HERMANOS v2.1.3.7</span>
+        </div>
+
+        <nav class="taskbar-center">
+          <a href="index.html">Home</a>
+          <a href="index.html#skills">Skills</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+
+        <div class="taskbar-right">
+          <span class="footer-status"></span>
+          <span>ONLINE</span>
+          <span id="taskbar-clock">00:00</span>
+          <span id="taskbar-date">05.05.2026</span>
+        </div>
+      </div>
+
+      <div id="scroll-sigil">⛧</div>
     </div>
-  </div>
-</header>
 
-<main id="projects-container">
-    <p style="text-align: center; color: var(--green); margin-top: 50px;">Przywoływanie projektów...</p>
-</main>
+    <div id="page-transition"></div>
 
-<script src="main.js"></script>
-</body>
+    <script src="main.js"></script>
+  </body>
 </html>

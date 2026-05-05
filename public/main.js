@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initSpotify();
   initProjects();
   initTerminal();
+  initTaskbarClock();
+  initSecretFolder();
 
   initPageTransitions();
 });
@@ -18,6 +20,12 @@ const INTRO_DURATION = 2800;
 
 function initIntro() {
   const intro = document.getElementById("intro-screen");
+  const percent = document.getElementById("hack-percent");
+  const progress = document.getElementById("hack-progress");
+  const log = document.getElementById("hack-log");
+  const hackPhase = document.getElementById("hack-phase");
+  const accessPhase = document.getElementById("access-phase");
+
   if (!intro) return;
 
   const alreadyPlayed = sessionStorage.getItem("introPlayed");
@@ -27,15 +35,74 @@ function initIntro() {
     return;
   }
 
-  setTimeout(() => {
-    intro.classList.add("fade-out");
+  const logs = [
+    "[SCAN] searching exposed portfolio ports...",
+    "[FOUND] /api/projects endpoint",
+    "[INJECT] loading interface payload",
+    "[DECRYPT] visual_layer.css",
+    "[DECRYPT] spotify_module.js",
+    "[AUTH] bypassing portfolio protection",
+    "[BYPASS] injecting HermanOS kernel",
+    "[MOUNT] /public/index.html",
+    "[SYNC] synchronizing project database",
+    "[VERIFY] checking developer signature",
+    "[AUTH] verifying user: HERMAN",
+    "[OK] access level elevated",
+    "[BOOT] loading interface modules",
+    "[OK] HermanOS shell ready",
+  ];
 
-    setTimeout(() => {
-      intro.style.display = "none";
-    }, 800);
+  let value = 0;
+  let logIndex = 0;
 
-    sessionStorage.setItem("introPlayed", "true");
-  }, 2000);
+  const percentInterval = setInterval(() => {
+    const jump = Math.floor(Math.random() * 7) + 2;
+
+    value += jump;
+
+    if (value > 100) value = 100;
+
+    if (percent) {
+      percent.textContent = `${value}%`;
+    }
+
+    if (progress) {
+      progress.style.width = `${value}%`;
+    }
+
+    if (log && logIndex < logs.length && value >= logIndex * 7) {
+      log.textContent += logs[logIndex] + "\n";
+
+      log.scrollTop = log.scrollHeight;
+
+      logIndex++;
+    }
+
+    if (value >= 100) {
+      clearInterval(percentInterval);
+
+      setTimeout(() => {
+        if (hackPhase) {
+          hackPhase.style.transition = "0.4s ease";
+          hackPhase.style.opacity = "0";
+        }
+
+        if (accessPhase) {
+          accessPhase.classList.add("active");
+        }
+      }, 450);
+
+      setTimeout(() => {
+        intro.classList.add("fade-out");
+      }, 2200);
+
+      setTimeout(() => {
+        intro.style.display = "none";
+
+        sessionStorage.setItem("introPlayed", "true");
+      }, 3000);
+    }
+  }, 115);
 }
 /* ================= REVEAL ================= */
 
@@ -105,7 +172,7 @@ function initContactForm() {
     const email = document.getElementById("email").value;
     const message = document.getElementById("message").value;
 
-    const btn = form.querySelector(".btn-submit");
+    const btn = form.querySelector(".mail-send-btn");
     const original = btn.innerText;
 
     btn.innerText = "Sending...";
@@ -194,47 +261,40 @@ function initProjects() {
 /* ================= CARD GENERATOR ================= */
 
 function createProjectCard(p, mode = "preview") {
+  const techItems = p.tech
+    ? p.tech
+        .split(/[,.·]/)
+        .map((item) => item.trim())
+        .filter(Boolean)
+        .slice(0, 4)
+        .map((item) => `<span>${item}</span>`)
+        .join("")
+    : "";
+
   return `
   <div class="project-card">
-
     <div class="project-preview">
       <img src="${p.image || "images/project1.png"}" alt="${p.title}">
-
-      ${
-        mode === "preview"
-          ? `
-      <div class="project-overlay">
-        ${p.live ? `<a href="${p.live}" target="_blank" class="project-btn">LIVE</a>` : ""}
-        ${p.github ? `<a href="${p.github}" target="_blank" class="project-btn">CODE</a>` : ""}
-      </div>
-      `
-          : ""
-      }
-
+      <div class="project-status">${p.WorkInProgress ? "WIP" : "ONLINE"}</div>
     </div>
 
     <div class="project-content">
       <h4>${p.title}</h4>
       <p>${p.description}</p>
 
-      ${
-        mode === "full"
-          ? `
+      <div class="project-tech">
+        ${techItems}
+      </div>
+
       <div class="project-actions">
-        ${p.live ? `<a href="${p.live}" target="_blank" class="project-link">LIVE</a>` : ""}
-        ${p.github ? `<a href="${p.github}" target="_blank" class="project-link secondary">CODE</a>` : ""}
+        ${p.live ? `<a href="${p.live}" target="_blank" class="project-btn">LIVE</a>` : ""}
+        ${p.github ? `<a href="${p.github}" target="_blank" class="project-btn">CODE</a>` : ""}
         ${p.WorkInProgress ? `<span class="project-wip">${p.WorkInProgress}</span>` : ""}
       </div>
-      `
-          : ""
-      }
-
     </div>
-
   </div>
   `;
 }
-
 /* ================= LOAD ================= */
 
 async function loadProjects() {
@@ -255,30 +315,38 @@ async function loadProjects() {
       });
     }
 
-    /* ===== PROJECTS PAGE ===== */
+    /* ===== PODSTRONA PROJECTS ===== */
 
     if (container) {
       container.innerHTML = "";
 
       projects.forEach((p) => {
-        const section = document.createElement("section");
-        section.className = "section-box";
-
-        section.innerHTML = `
-          <h3>${p.title}</h3>
-
-          ${createProjectCard(p, "full")}
-
-          <div class="tech" style="margin-top:10px;">
-            ${p.tech || ""}
-          </div>
-        `;
-
-        container.appendChild(section);
+        container.innerHTML += createProjectCard(p, "full");
       });
     }
   } catch (err) {
     console.error("Projects error:", err);
+
+    if (preview) {
+      preview.innerHTML = `
+        <p style="color: var(--green); font-family: monospace;">
+          failed to load projects
+        </p>
+      `;
+    }
+
+    if (container) {
+      container.innerHTML = `
+        <p style="
+          color: var(--green);
+          font-family: monospace;
+          text-align: center;
+          padding: 60px 0;
+        ">
+          failed to load projects database
+        </p>
+      `;
+    }
   }
 }
 
@@ -357,17 +425,85 @@ function initPageTransitions() {
     });
   });
 }
+/* ================= ZEGAR ================= */
+function initTaskbarClock() {
+  const clock = document.getElementById("taskbar-clock");
+  const date = document.getElementById("taskbar-date");
 
-// FAILSAFE jeśli coś rozwali JS wcześniej
-window.addEventListener("load", () => {
-  const intro = document.getElementById("intro-screen");
-  if (intro) {
-    setTimeout(() => {
-      intro.classList.add("fade-out");
+  if (!clock || !date) return;
+
+  function updateClock() {
+    const now = new Date();
+
+    clock.textContent = now.toLocaleTimeString("pl-PL", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+    date.textContent = now.toLocaleDateString("pl-PL", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+  }
+
+  updateClock();
+  setInterval(updateClock, 1000);
+}
+
+function initSecretFolder() {
+  const folder = document.getElementById("secret-folder");
+  const modal = document.getElementById("secret-modal");
+  const input = document.getElementById("secret-password");
+  const submit = document.getElementById("secret-submit");
+  const close = document.getElementById("secret-close");
+  const status = document.getElementById("secret-status");
+
+  if (!folder || !modal || !input || !submit || !close || !status) return;
+
+  function openModal() {
+    modal.classList.add("active");
+    input.value = "";
+    status.textContent = "";
+    setTimeout(() => input.focus(), 50);
+  }
+
+  function closeModal() {
+    modal.classList.remove("active");
+  }
+
+  function checkPassword() {
+    if (input.value === "2137") {
+      status.style.color = "var(--green)";
+      status.textContent = "ACCESS GRANTED";
 
       setTimeout(() => {
-        intro.style.display = "none";
-      }, 800);
-    }, 2500);
+        window.open("https://www.youtube.com/watch?v=iik25wqIuFo", "_blank");
+        closeModal();
+      }, 500);
+    } else {
+      status.style.color = "rgba(255, 60, 90, 0.9)";
+      status.textContent = "ACCESS DENIED";
+      input.value = "";
+      input.focus();
+    }
   }
-});
+
+  folder.addEventListener("click", (e) => {
+    e.preventDefault();
+    openModal();
+  });
+
+  submit.addEventListener("click", checkPassword);
+
+  input.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") checkPassword();
+    if (e.key === "Escape") closeModal();
+  });
+
+  close.addEventListener("click", closeModal);
+
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
+}
