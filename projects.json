@@ -1,8 +1,16 @@
 [
   {
+    "title": "Debloated Spotify App",
+    "description": "Zoptymalizowana aplikacja webowa integrująca Spotify API za pomocą Node.js. Skupiona na czystym przepływie danych i responsywnym dostępie do aktualnie odtwarzanych utworów.",
+    "tech": "Node.js · Express · Spotify API",
+    "live": "https://spotify-client-xi-cyan.vercel.app/",
+    "github": "https://github.com/HermanIS1/spotify-client",
+    "image": "images/spotifyapp.png"
+  },
+  {
     "title": "Portfolio v2",
     "description": "Moja strona zintegrowana ze Spotify API i Node.js.",
-    "tech": "Node.js · Express · Spotify API",
+    "tech": "Node.js · Express",
     "live": "https://hermanportfolio.pl/",
     "github": "https://github.com/HermanIS1/portfolioUpgraded",
     "image": "images/portfolio.png"
@@ -21,20 +29,5 @@
     "tech": "C · Matematyka",
     "github": "https://github.com/HermanIS1/Symulacja-rzutu-ukosnego",
     "image": "images/rzut.png"
-  },
-
-  {
-    "title": "AutoClicker Python",
-    "description": "Prosty autoclicker napisany w Pythonie z regulacją CPS i GUI.",
-    "image": "images/autoclicker.png",
-    "github": "https://github.com/twojnick/autoclicker",
-    "live": "",
-    "tech": "Python / Tkinter"
-  },
-  {
-    "title": "AI Notes App",
-    "description": "Notatki z integracją AI.",
-    "tech": "React · Node",
-    "image": "images/ai.png"
   }
 ]
