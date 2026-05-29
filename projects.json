@@ -2,7 +2,7 @@
   {
     "title": "Debloated Spotify App",
     "description": "Zoptymalizowana aplikacja webowa integrująca Spotify API za pomocą Node.js. Skupiona na czystym przepływie danych i responsywnym dostępie do aktualnie odtwarzanych utworów.",
-    "tech": "Node.js · Express · Spotify API",
+    "tech": "React · Spotify Web SDK · OAuth 2.0",
     "live": "https://spotify-client-xi-cyan.vercel.app/",
     "github": "https://github.com/HermanIS1/spotify-client",
     "image": "images/spotifyapp.png"
