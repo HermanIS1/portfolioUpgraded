@@ -18,19 +18,9 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-/* ==============================
-   PING (dla UptimeRobot)
-============================== */
-
 app.get("/ping", (req,res)=>{
 res.status(200).send("ok")
 })
-
-
-/* ==============================
-   RATE LIMITER FORMULARZA
-============================== */
 
 const contactLimiter = rateLimit({
 windowMs: 60 * 60 * 1000,
@@ -39,11 +29,6 @@ message: { error: 'Wysłałeś za dużo wiadomości. Spróbuj ponownie później
 standardHeaders: true,
 legacyHeaders: false,
 });
-
-
-/* ==============================
-   FORMULARZ KONTAKTOWY
-============================== */
 
 app.post('/api/contact', contactLimiter, async (req, res) => {
 
@@ -78,11 +63,6 @@ res.status(500).json({ error: 'Błąd serwera.' });
 }
 
 });
-
-
-/* ==============================
-   SPOTIFY API
-============================== */
 
 const getSpotifyAccessToken = async () => {
 
@@ -144,11 +124,6 @@ res.status(500).json({ isPlaying: false });
 
 });
 
-
-/* ==============================
-   PROJEKTY
-============================== */
-
 app.get('/api/projects', (req, res) => {
 
 fs.readFile('./projects.json', 'utf8', (err, data) => {
@@ -162,11 +137,6 @@ res.json(JSON.parse(data));
 });
 
 });
-
-
-/* ==============================
-   API STATS (GitHub)
-============================== */
 
 app.get("/api/stats", async (req,res)=>{
 
@@ -187,10 +157,6 @@ res.status(500).json({error:"stats error"})
 
 })
 
-
-/* ==============================
-   START SERWERA
-============================== */
 
 app.listen(PORT, () => {
 console.log(`Serwer działa na porcie ${PORT}`);
