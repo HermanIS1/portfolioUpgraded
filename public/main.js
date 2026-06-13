@@ -12,11 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initPageTransitions();
 });
 
-/* ================= GLOBAL ================= */
 
 const INTRO_DURATION = 2800;
 
-/* ================= INTRO ================= */
 
 function initIntro() {
   const intro = document.getElementById("intro-screen");
@@ -104,7 +102,6 @@ function initIntro() {
     }
   }, 115);
 }
-/* ================= REVEAL ================= */
 
 function initReveal() {
   const sections = document.querySelectorAll("section");
@@ -126,7 +123,6 @@ function initReveal() {
   });
 }
 
-/* ================= SCROLL SIGIL ================= */
 
 function initScrollSigil() {
   const sigil = document.getElementById("scroll-sigil");
@@ -158,7 +154,6 @@ function initScrollSigil() {
   });
 }
 
-/* ================= CONTACT FORM ================= */
 
 function initContactForm() {
   const form = document.getElementById("contact-form");
@@ -214,7 +209,6 @@ function initContactForm() {
   });
 }
 
-/* ================= SPOTIFY ================= */
 
 function initSpotify() {
   fetchSpotify();
@@ -252,13 +246,11 @@ ${data.artist} – ${data.title}
   }
 }
 
-/* ================= PROJECTS ================= */
 
 function initProjects() {
   loadProjects();
 }
 
-/* ================= CARD GENERATOR ================= */
 
 function createProjectCard(p, mode = "preview") {
   const techItems = p.tech
@@ -295,7 +287,6 @@ function createProjectCard(p, mode = "preview") {
   </div>
   `;
 }
-/* ================= LOAD ================= */
 
 async function loadProjects() {
   const preview = document.getElementById("projects-preview");
@@ -305,8 +296,6 @@ async function loadProjects() {
     const res = await fetch("/api/projects");
     const projects = await res.json();
 
-    /* ===== GŁÓWNA ===== */
-
     if (preview) {
       preview.innerHTML = "";
 
@@ -314,8 +303,6 @@ async function loadProjects() {
         preview.innerHTML += createProjectCard(p, "preview");
       });
     }
-
-    /* ===== PODSTRONA PROJECTS ===== */
 
     if (container) {
       container.innerHTML = "";
@@ -350,7 +337,6 @@ async function loadProjects() {
   }
 }
 
-/* ================= TERMINAL ================= */
 function initTerminal() {
   const text = document.getElementById("terminal-text");
   const inputLine = document.querySelector(".terminal-input-line");
@@ -389,7 +375,6 @@ function initTerminal() {
 
   type();
 }
-/* ================= BLOCK COPY ================= */
 
 document.addEventListener("contextmenu", (e) => {
   e.preventDefault();
@@ -425,7 +410,6 @@ function initPageTransitions() {
     });
   });
 }
-/* ================= ZEGAR ================= */
 function initTaskbarClock() {
   const clock = document.getElementById("taskbar-clock");
   const date = document.getElementById("taskbar-date");
