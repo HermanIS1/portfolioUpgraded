@@ -12,9 +12,11 @@ document.addEventListener("DOMContentLoaded", () => {
   initPageTransitions();
 });
 
+/* ================= GLOBAL ================= */
 
 const INTRO_DURATION = 2800;
 
+/* ================= INTRO ================= */
 
 function initIntro() {
   const intro = document.getElementById("intro-screen");
@@ -102,6 +104,7 @@ function initIntro() {
     }
   }, 115);
 }
+/* ================= REVEAL ================= */
 
 function initReveal() {
   const sections = document.querySelectorAll("section");
@@ -123,6 +126,7 @@ function initReveal() {
   });
 }
 
+/* ================= SCROLL SIGIL ================= */
 
 function initScrollSigil() {
   const sigil = document.getElementById("scroll-sigil");
@@ -154,6 +158,7 @@ function initScrollSigil() {
   });
 }
 
+/* ================= CONTACT FORM ================= */
 
 function initContactForm() {
   const form = document.getElementById("contact-form");
@@ -209,6 +214,7 @@ function initContactForm() {
   });
 }
 
+/* ================= SPOTIFY ================= */
 
 function initSpotify() {
   fetchSpotify();
@@ -246,11 +252,13 @@ ${data.artist} – ${data.title}
   }
 }
 
+/* ================= PROJECTS ================= */
 
 function initProjects() {
   loadProjects();
 }
 
+/* ================= CARD GENERATOR ================= */
 
 function createProjectCard(p, mode = "preview") {
   const techItems = p.tech
@@ -287,6 +295,7 @@ function createProjectCard(p, mode = "preview") {
   </div>
   `;
 }
+/* ================= LOAD ================= */
 
 async function loadProjects() {
   const preview = document.getElementById("projects-preview");
@@ -296,6 +305,8 @@ async function loadProjects() {
     const res = await fetch("/api/projects");
     const projects = await res.json();
 
+    /* ===== GŁÓWNA ===== */
+
     if (preview) {
       preview.innerHTML = "";
 
@@ -303,6 +314,8 @@ async function loadProjects() {
         preview.innerHTML += createProjectCard(p, "preview");
       });
     }
+
+    /* ===== PODSTRONA PROJECTS ===== */
 
     if (container) {
       container.innerHTML = "";
@@ -337,6 +350,7 @@ async function loadProjects() {
   }
 }
 
+/* ================= TERMINAL ================= */
 function initTerminal() {
   const text = document.getElementById("terminal-text");
   const inputLine = document.querySelector(".terminal-input-line");
@@ -375,6 +389,7 @@ function initTerminal() {
 
   type();
 }
+/* ================= BLOCK COPY ================= */
 
 document.addEventListener("contextmenu", (e) => {
   e.preventDefault();
@@ -410,6 +425,7 @@ function initPageTransitions() {
     });
   });
 }
+/* ================= ZEGAR ================= */
 function initTaskbarClock() {
   const clock = document.getElementById("taskbar-clock");
   const date = document.getElementById("taskbar-date");
@@ -491,3 +507,43 @@ function initSecretFolder() {
     if (e.target === modal) closeModal();
   });
 }
+
+/* ================= CV MODAL LOGIC ================= */
+function initCVModal() {
+  const openBtn = document.getElementById("open-cv-btn");
+  const overlay = document.getElementById("cv-modal-overlay");
+  const closeBtn = document.getElementById("cv-close-btn");
+
+  if (!openBtn || !overlay || !closeBtn) return;
+
+  // Otwieranie
+  openBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    overlay.classList.remove("hidden");
+  });
+
+  // Zamykanie krzyżykiem
+  closeBtn.addEventListener("click", () => {
+    overlay.classList.add("hidden");
+  });
+
+  // Zamykanie po kliknięciu w tło (poza oknem)
+  overlay.addEventListener("click", (e) => {
+    if (e.target === overlay) {
+      overlay.classList.add("hidden");
+    }
+  });
+
+  // Zamykanie Escapem
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !overlay.classList.contains("hidden")) {
+      overlay.classList.add("hidden");
+    }
+  });
+}
+
+// Upewnij się, że funkcja jest wywoływana po załadowaniu DOM
+// Dodaj to do swojego głównego bloku document.addEventListener("DOMContentLoaded", ...)
+document.addEventListener("DOMContentLoaded", () => {
+  initCVModal();
+});

@@ -2070,3 +2070,227 @@ body::after {
   letter-spacing: 1.5px;
   color: rgba(255, 60, 90, 0.9);
 }
+
+/* ================= CV MODAL (OKNO W OKNIE) ================= */
+
+.cv-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.cv-overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.cv-window {
+  /* ZWIĘKSZONA SZEROKOŚĆ I WYSOKOŚĆ OKNA */
+  width: min(1150px, 95vw);
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+  background:
+    linear-gradient(135deg, rgba(0, 255, 102, 0.05), transparent 40%),
+    rgba(2, 4, 3, 0.95);
+  border: 1px solid rgba(0, 255, 102, 0.4);
+  box-shadow:
+    0 0 40px rgba(0, 255, 102, 0.15),
+    inset 0 0 20px rgba(0, 255, 102, 0.05);
+  transform: translateY(0) scale(1);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cv-overlay.hidden .cv-window {
+  transform: translateY(20px) scale(0.95);
+}
+
+.cv-bar {
+  background: rgba(0, 255, 102, 0.1);
+  border-bottom: 1px solid rgba(0, 255, 102, 0.3);
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  color: var(--green);
+  font-family: monospace;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 1;
+  transition: 0.2s;
+}
+
+.close-btn:hover {
+  color: #fff;
+  text-shadow: 0 0 10px var(--green);
+  transform: scale(1.2);
+}
+
+.cv-layout {
+  /* POSZERZONY PANEL BOCZNY */
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  overflow: hidden;
+}
+
+.cv-sidebar {
+  padding: 40px 30px;
+  border-right: 1px dashed rgba(0, 255, 102, 0.2);
+  background: rgba(0, 255, 102, 0.02);
+  display: flex;
+  flex-direction: column;
+}
+
+.cv-name {
+  font-family: "UnifrakturCook", serif;
+  font-size: 54px; /* Większe imię */
+  color: var(--green);
+  text-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.cv-role {
+  font-family: monospace;
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 1px;
+  margin-bottom: 35px;
+  border-bottom: 1px solid rgba(0, 255, 102, 0.2);
+  padding-bottom: 12px;
+}
+
+.cv-info-list p {
+  font-family: monospace;
+  font-size: 13px;
+  color: rgba(234, 234, 234, 0.7);
+  margin-bottom: 14px;
+}
+
+.cv-info-list span {
+  color: var(--green);
+  margin-right: 6px;
+}
+
+.cv-terminal-mini {
+  margin-top: auto;
+  margin-bottom: 25px;
+  padding: 18px;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(0, 255, 102, 0.2);
+  font-family: monospace;
+  font-size: 11px;
+  color: rgba(0, 255, 102, 0.6);
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.cv-download-btn {
+  text-align: center;
+  display: block;
+  width: 100%;
+  text-decoration: none;
+  font-size: 13px; /* Większy przycisk */
+  padding: 14px 20px;
+}
+
+.cv-body {
+  padding: 40px 50px; /* Więcej oddechu od krawędzi */
+  overflow-y: auto;
+  max-height: 70vh; /* Wyższy obszar czytania */
+}
+
+/* Customowy Scrollbar dla CV */
+.cv-body::-webkit-scrollbar {
+  width: 8px;
+}
+.cv-body::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.5);
+}
+.cv-body::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 102, 0.3);
+  border-radius: 4px;
+}
+
+.cv-section {
+  margin-bottom: 40px;
+}
+
+.cv-section h3 {
+  color: var(--green);
+  font-family: monospace;
+  font-size: 16px; /* Większe nagłówki sekcji */
+  letter-spacing: 2px;
+  margin-bottom: 18px;
+}
+
+.cv-section p {
+  font-size: 15px; /* Podbity rozmiar tekstu */
+  line-height: 1.7;
+  color: rgba(234, 234, 234, 0.85);
+}
+
+.cv-highlight {
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px; /* Wyróżnienia trochę większe */
+}
+
+.cv-list {
+  list-style: none;
+}
+
+.cv-list li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 12px;
+  font-size: 15px; /* Podbity rozmiar tekstu na liście */
+  color: rgba(234, 234, 234, 0.85);
+  line-height: 1.6;
+}
+
+.cv-list li::before {
+  content: ">";
+  position: absolute;
+  left: 0;
+  color: var(--green);
+  font-family: monospace;
+  font-weight: bold;
+}
+
+.cv-footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background: var(--green);
+  color: #000;
+  font-family: monospace;
+  font-size: 12px; /* Większy tekst w stopce */
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 900px) {
+  .cv-layout {
+    grid-template-columns: 1fr;
+  }
+  .cv-sidebar {
+    border-right: none;
+    border-bottom: 1px dashed rgba(0, 255, 102, 0.2);
+    padding: 30px 20px;
+  }
+  .cv-body {
+    padding: 30px 20px;
+    max-height: 50vh;
+  }
+}
