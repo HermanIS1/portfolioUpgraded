@@ -1,163 +1,199 @@
 require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
+
 const path = require('path');
-const axios = require('axios');
-const rateLimit = require('express-rate-limit');
-const fs = require('fs');
-const { Resend } = require("resend");
+const express = require('express');
+const helmet = require('helmet');
+const { rateLimit } = require('express-rate-limit');
+const { Resend } = require('resend');
 
 const app = express();
-const PORT = process.env.PORT || 10000;
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const PORT = process.env.PORT || 3000;
+const PUBLIC_DIR = path.join(__dirname, 'public');
 
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+
+// ======================================================
+// BASIC HARDENING
+// ======================================================
+
+app.disable('x-powered-by');
+
+// Render / reverse proxy
 app.set('trust proxy', 1);
 
-app.use(cors());
-app.use(express.json());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(
+    helmet({
+        // Włączymy restrykcyjne CSP po posprzątaniu frontendu.
+        contentSecurityPolicy: false,
+    })
+);
 
-app.get("/ping", (req,res)=>{
-res.status(200).send("ok")
-})
+app.use(
+    express.json({
+        limit: '10kb',
+        type: 'application/json',
+    })
+);
+
+// ======================================================
+// RATE LIMITS
+// ======================================================
 
 const contactLimiter = rateLimit({
-windowMs: 60 * 60 * 1000,
-max: 100,
-message: { error: 'Wysłałeś za dużo wiadomości. Spróbuj ponownie później.' },
-standardHeaders: true,
-legacyHeaders: false,
+    windowMs: 15 * 60 * 1000,
+    limit: 5,
+    standardHeaders: 'draft-8',
+    legacyHeaders: false,
+
+    message: {
+        error: 'Za dużo prób. Spróbuj ponownie później.',
+    },
+});
+
+// ======================================================
+// API
+// ======================================================
+
+app.get('/healthz', (req, res) => {
+    res.status(200).json({
+        status: 'ok',
+    });
 });
 
 app.post('/api/contact', contactLimiter, async (req, res) => {
+    const { email, message, website } = req.body ?? {};
 
-console.log("Form request:", req.body);
+    // Honeypot
+    if (website) {
+        return res.status(200).json({
+            success: true,
+        });
+    }
 
-const { email, message } = req.body;
+    if (typeof email !== 'string' || typeof message !== 'string') {
+        return res.status(400).json({
+            error: 'Nieprawidłowe dane.',
+        });
+    }
 
-if (!email || !message) {
-return res.status(400).json({ error: 'Wypełnij wszystkie pola!' });
-}
+    const cleanEmail = email.trim();
+    const cleanMessage = message.trim();
 
-try {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-await resend.emails.send({
-from: "onboarding@resend.dev",
-to: process.env.EMAIL_USER,
-subject: `Wiadomość od: ${email}`,
-text: message,
-reply_to: email
+    if (cleanEmail.length < 3 || cleanEmail.length > 254 || !emailRegex.test(cleanEmail)) {
+        return res.status(400).json({
+            error: 'Podaj poprawny adres e-mail.',
+        });
+    }
+
+    if (cleanMessage.length < 10 || cleanMessage.length > 3000) {
+        return res.status(400).json({
+            error: 'Wiadomość musi mieć od 10 do 3000 znaków.',
+        });
+    }
+
+    if (!resend || !process.env.MAIL_TO) {
+        console.error('Missing email configuration');
+
+        return res.status(503).json({
+            error: 'Formularz kontaktowy jest chwilowo niedostępny.',
+        });
+    }
+
+    try {
+        const { data, error } = await resend.emails.send({
+            from: process.env.MAIL_FROM || 'Herman Portfolio <onboarding@resend.dev>',
+
+            to: process.env.MAIL_TO,
+
+            replyTo: cleanEmail,
+
+            subject: 'Nowa wiadomość z hermanportfolio.pl',
+
+            text: [`Nadawca: ${cleanEmail}`, '', cleanMessage].join('\n'),
+        });
+
+        if (error) {
+            console.error('Resend error:', {
+                name: error.name,
+                message: error.message,
+            });
+
+            return res.status(502).json({
+                error: 'Nie udało się wysłać wiadomości.',
+            });
+        }
+
+        console.log('Contact email sent:', data?.id);
+
+        return res.status(200).json({
+            success: true,
+        });
+    } catch (error) {
+        console.error('Unexpected contact error:', error?.message);
+
+        return res.status(500).json({
+            error: 'Błąd serwera.',
+        });
+    }
 });
 
-console.log("MAIL WYSŁANY");
+// ======================================================
+// STATIC FRONTEND
+// ======================================================
 
-res.status(200).json({ success: 'Wysłano!' });
+app.use(
+    express.static(PUBLIC_DIR, {
+        etag: true,
+        maxAge: '1h',
+    })
+);
 
-} catch (error) {
+// ======================================================
+// 404
+// ======================================================
 
-console.error("MAIL ERROR:", error);
+app.use((req, res) => {
+    if (req.path.startsWith('/api/')) {
+        return res.status(404).json({
+            error: 'Not found',
+        });
+    }
 
-res.status(500).json({ error: 'Błąd serwera.' });
-
-}
-
+    return res.status(404).sendFile(path.join(PUBLIC_DIR, 'index.html'));
 });
 
-const getSpotifyAccessToken = async () => {
+// ======================================================
+// GLOBAL ERROR HANDLER
+// ======================================================
 
-const response = await axios({
-method: 'post',
-url: 'https://accounts.spotify.com/api/token',
-data: new URLSearchParams({
-grant_type: 'refresh_token',
-refresh_token: process.env.SPOTIFY_REFRESH_TOKEN
-}).toString(),
-headers: {
-'Content-Type': 'application/x-www-form-urlencoded',
-'Authorization':
-'Basic ' +
-Buffer.from(
-process.env.SPOTIFY_CLIENT_ID +
-':' +
-process.env.SPOTIFY_CLIENT_SECRET
-).toString('base64')
-}
+app.use((error, req, res, next) => {
+    if (error?.type === 'entity.too.large') {
+        return res.status(413).json({
+            error: 'Request body too large.',
+        });
+    }
+
+    // Błędny JSON wysłany przez klienta.
+    if (error instanceof SyntaxError && error.status === 400 && 'body' in error) {
+        return res.status(400).json({
+            error: 'Invalid JSON.',
+        });
+    }
+
+    console.error('Unhandled server error:', error?.message);
+
+    return res.status(500).json({
+        error: 'Internal server error.',
+    });
 });
 
-return response.data.access_token;
-
-};
-
-
-app.get('/api/spotify', async (req, res) => {
-
-try {
-
-const accessToken = await getSpotifyAccessToken();
-
-const response = await axios({
-method: 'get',
-url: 'https://api.spotify.com/v1/me/player/currently-playing',
-headers: { Authorization: 'Bearer ' + accessToken }
-});
-
-if (response.status === 204 || !response.data || !response.data.item) {
-return res.status(200).json({ isPlaying: false });
-}
-
-const track = response.data.item;
-
-res.status(200).json({
-isPlaying: response.data.is_playing,
-title: track.name,
-artist: track.artists.map(a => a.name).join(', '),
-albumImageUrl: track.album.images[0].url,
-songUrl: track.external_urls.spotify
-});
-
-} catch (error) {
-
-res.status(500).json({ isPlaying: false });
-
-}
-
-});
-
-app.get('/api/projects', (req, res) => {
-
-fs.readFile('./projects.json', 'utf8', (err, data) => {
-
-if (err) {
-return res.status(500).json({ error: 'Błąd projektów' });
-}
-
-res.json(JSON.parse(data));
-
-});
-
-});
-
-app.get("/api/stats", async (req,res)=>{
-
-try{
-
-const githubResponse = await axios.get("https://api.github.com/users/HermanIS1")
-
-res.json({
-githubRepos: githubResponse.data.public_repos,
-githubFollowers: githubResponse.data.followers
-})
-
-}catch(err){
-
-res.status(500).json({error:"stats error"})
-
-}
-
-})
-
+// ======================================================
+// START
+// ======================================================
 
 app.listen(PORT, () => {
-console.log(`Serwer działa na porcie ${PORT}`);
+    console.log(`Herman Portfolio listening on port ${PORT}`);
 });
