@@ -6,3 +6,5 @@ server.legacy.js
 npm-debug.log*
 .DS_Store
 gitleaks-report.json
+zap-report.html
+zap.yaml

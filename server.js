@@ -44,6 +44,14 @@ app.use(
     })
 );
 
+app.use((req, res, next) => {
+    res.setHeader(
+        'Permissions-Policy',
+        'camera=(), microphone=(), geolocation=(), payment=(), usb=()'
+    );
+
+    next();
+});
 app.use(
     express.json({
         limit: '10kb',
@@ -62,10 +70,13 @@ const contactLimiter = rateLimit({
     legacyHeaders: false,
 
     keyGenerator: (req) => {
-        const cfIp = req.get('CF-Connecting-IP');
+        if (process.env.RENDER === 'true') {
+            const forwardedFor = req.get('X-Forwarded-For');
 
-        if (process.env.RENDER === 'true' && cfIp) {
-            return ipKeyGenerator(cfIp);
+            if (forwardedFor) {
+                const clientIp = forwardedFor.split(',')[0].trim();
+                return ipKeyGenerator(clientIp);
+            }
         }
 
         return ipKeyGenerator(req.socket.remoteAddress);
