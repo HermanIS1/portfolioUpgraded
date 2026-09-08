@@ -1,33 +1,32 @@
 [
-  {
-    "title": "Debloated Spotify App (In progress...)",
-    "description": "Zoptymalizowana aplikacja webowa integrująca Spotify API za pomocą Node.js. Skupiona na czystym przepływie danych i responsywnym dostępie do aktualnie odtwarzanych utworów.",
-    "tech": "React · Spotify Web SDK · OAuth v2",
-    "live": "https://spotify-client-xi-cyan.vercel.app/",
-    "github": "https://github.com/HermanIS1/spotify-client",
-    "image": "images/spotifyapp.png"
-  },
-  {
-    "title": "Portfolio v2",
-    "description": "Moja strona zintegrowana ze Spotify API i Node.js.",
-    "tech": "Node.js · Express",
-    "live": "https://hermanportfolio.pl/",
-    "github": "https://github.com/HermanIS1/portfolioUpgraded",
-    "image": "images/portfolio.png"
-  },
-  {
-    "title": "Beyond Earth",
-    "description": "Landing page wykonany w HTML i CSS. Projekt postawiony online i wersjonowany w GitHub Pages.",
-    "tech": "HTML · CSS · GitHub Pages",
-    "live": "https://hermanis1.github.io/website/",
-    "github": "https://github.com/HermanIS1/website",
-    "image": "images/beyond.png"
-  },
-  {
-    "title": "Symulacja rzutu ukośnego",
-    "description": "Program w C symuluje rzut ukośny i generuje dane lotu.",
-    "tech": "C · Matematyka",
-    "github": "https://github.com/HermanIS1/Symulacja-rzutu-ukosnego",
-    "image": "images/rzut.png"
-  }
+    {
+        "title": "HERMAN Workstation // Linux Infrastructure",
+        "description": "Własne środowisko oparte na Fedorze KDE łączące komputer stacjonarny i laptop. Synchronizacja plików przez Syncthing, prywatna sieć Tailscale, SSH z kluczami Ed25519, snapshoty BTRFS oraz automatyzacja usług systemowych.",
+        "tech": "Fedora · Linux · Tailscale · Syncthing · SSH · BTRFS · systemd",
+        "image": "images/linux-workstation.png"
+    },
+    {
+        "title": "Portfolio // Security Rebuild",
+        "description": "Przebudowa backendu portfolio pod kątem bezpieczeństwa. Ograniczenie powierzchni ataku, CSP, rate limiting, walidacja danych, skanowanie sekretów i testy ZAP. Podczas testów wykryłem i naprawiłem realny bypass limitera oparty na spoofingu X-Forwarded-For.",
+        "tech": "Node.js · Express · Helmet · Gitleaks · OWASP ZAP · Cloudflare · Render",
+        "live": "https://hermanportfolio.pl/",
+        "github": "https://github.com/HermanIS1/portfolioUpgraded",
+        "image": "images/portfolio.png"
+    },
+    {
+        "title": "Debloated Spotify Client",
+        "description": "Webowy klient Spotify wykorzystujący OAuth PKCE, Spotify Web API oraz Web Playback SDK. Obsługuje bibliotekę, playlisty, wyszukiwanie i sterowanie odtwarzaniem.",
+        "tech": "React · Spotify Web API · OAuth PKCE · Web Playback SDK",
+        "live": "https://spotify-client-xi-cyan.vercel.app/",
+        "github": "https://github.com/HermanIS1/spotify-client",
+        "image": "images/spotifyapp.png"
+    },
+    {
+        "title": "Beyond Earth",
+        "description": "Landing page wykonany w HTML i CSS, wdrożony przez GitHub Pages. Jeden z wcześniejszych projektów frontendowych.",
+        "tech": "HTML · CSS · GitHub Pages",
+        "live": "https://hermanis1.github.io/website/",
+        "github": "https://github.com/HermanIS1/website",
+        "image": "images/beyond.png"
+    }
 ]
