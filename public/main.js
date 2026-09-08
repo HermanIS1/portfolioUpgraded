@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initReveal();
     initScrollSigil();
     initContactForm();
-    initSpotifyV2();
     initProjects();
     initTerminal();
     initTaskbarClock();

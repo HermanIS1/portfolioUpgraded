@@ -254,74 +254,51 @@
                         <span class="social-text">GitHub</span>
                         <span class="social-hover">kliknij, żeby przejść</span>
                     </a>
-                    <div
-                        aria-label="Spotify now playing"
-                        class="social-zone spotify-zone"
-                        id="spotify-widget"
-                        tabindex="0"
-                    >
-                        <div class="spotify-mini">
-                            <img
-                                alt=""
-                                class="spotify-mini-cover"
-                                id="spotify-mini-cover"
-                                src="images/chivas-cover.png"
-                            />
-                            <div class="spotify-mini-info">
-                                <span class="spotify-mini-status" id="spotify-mini-status"
-                                    >SPOTIFY</span
-                                >
-                                <strong id="spotify-mini-title">loading...</strong>
-                                <span id="spotify-mini-artist">---</span>
-                            </div>
-                        </div>
-                        <div class="spotify-popup" id="spotify-popup">
-                            <div class="spotify-popup-header">
-                                <span>SPOTIFY // NOW PLAYING</span>
-                                <span id="spotify-live-indicator">● LIVE</span>
-                            </div>
-                            <img
-                                alt=""
-                                class="spotify-popup-cover"
-                                id="spotify-popup-cover"
-                                src="images/chivas-cover.png"
-                            />
-                            <div class="spotify-popup-track">
-                                <strong id="spotify-popup-title">loading...</strong>
-                                <span id="spotify-popup-artist">---</span>
-                                <small id="spotify-popup-album">---</small>
-                            </div>
-                            <div class="spotify-progress">
-                                <div class="spotify-progress-track">
-                                    <div
-                                        class="spotify-progress-fill"
-                                        id="spotify-progress-fill"
-                                    ></div>
-                                </div>
-                                <div class="spotify-progress-times">
-                                    <span id="spotify-current-time">0:00</span>
-                                    <span id="spotify-duration">0:00</span>
-                                </div>
-                            </div>
-                            <a
-                                class="spotify-open-link"
-                                href="https://open.spotify.com/"
-                                id="spotify-open-link"
-                                rel="noopener noreferrer"
-                                target="_blank"
-                            >
-                                OPEN IN SPOTIFY ↗
-                            </a>
-                            <div class="spotify-lyrics" id="spotify-lyrics">
-                                <div class="spotify-lyrics-label">LIVE LYRICS</div>
-                                <p class="spotify-lyric previous" id="spotify-lyrics-prev">---</p>
-                                <p class="spotify-lyric current" id="spotify-lyrics-current">
-                                    SYNCING...
-                                </p>
-                                <p class="spotify-lyric next" id="spotify-lyrics-next">---</p>
-                            </div>
-                        </div>
-                    </div>
+                    <a
+  class="social-zone music-node"
+  id="music-node"
+  href="https://open.spotify.com/"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Open Spotify"
+>
+  <div class="music-node-grid" aria-hidden="true"></div>
+
+  <div class="music-node-disc" aria-hidden="true">
+    <div class="music-node-disc-ring"></div>
+    <div class="music-node-disc-core">⛧</div>
+  </div>
+
+  <div class="music-node-copy">
+    <span class="music-node-kicker">AUDIO.EXTERNAL // NODE_02</span>
+
+    <div class="music-node-title">
+      <span>MUSIC</span>
+      <strong>NODE.</strong>
+    </div>
+
+    <div class="music-node-meta">
+      <span>PROVIDER // SPOTIFY</span>
+      <span>TELEMETRY // DISABLED</span>
+    </div>
+
+    <div class="music-node-action">
+      <span>OPEN SPOTIFY</span>
+      <b>↗</b>
+    </div>
+  </div>
+
+  <div class="music-node-bars" aria-hidden="true">
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+  </div>
+
+  <span class="music-node-status">
+    <i></i>
+    EXTERNAL LINK
+  </span>
+
+  <span class="music-node-index" aria-hidden="true">02</span>
+</a>
                 </div>
                 <div aria-hidden="true" class="hero-cutline"></div>
                 <div aria-hidden="true" class="hero-coordinate hero-coordinate-a">53.0138°N</div>
