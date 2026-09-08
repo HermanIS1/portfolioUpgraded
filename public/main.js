@@ -1,15 +1,15 @@
-document.addEventListener("DOMContentLoaded", () => {
-  initIntro();
-  initReveal();
-  initScrollSigil();
-  initContactForm();
-  initSpotify();
-  initProjects();
-  initTerminal();
-  initTaskbarClock();
-  initSecretFolder();
+document.addEventListener('DOMContentLoaded', () => {
+    initIntro();
+    initReveal();
+    initScrollSigil();
+    initContactForm();
+    //initSpotify();
+    initProjects();
+    initTerminal();
+    initTaskbarClock();
+    initSecretFolder();
 
-  initPageTransitions();
+    initPageTransitions();
 });
 
 /* ================= GLOBAL ================= */
@@ -19,263 +19,271 @@ const INTRO_DURATION = 2800;
 /* ================= INTRO ================= */
 
 function initIntro() {
-  const intro = document.getElementById("intro-screen");
-  const percent = document.getElementById("hack-percent");
-  const progress = document.getElementById("hack-progress");
-  const log = document.getElementById("hack-log");
-  const hackPhase = document.getElementById("hack-phase");
-  const accessPhase = document.getElementById("access-phase");
+    const intro = document.getElementById('intro-screen');
+    const percent = document.getElementById('hack-percent');
+    const progress = document.getElementById('hack-progress');
+    const log = document.getElementById('hack-log');
+    const hackPhase = document.getElementById('hack-phase');
+    const accessPhase = document.getElementById('access-phase');
 
-  if (!intro) return;
+    if (!intro) return;
 
-  const alreadyPlayed = sessionStorage.getItem("introPlayed");
+    const alreadyPlayed = sessionStorage.getItem('introPlayed');
 
-  if (alreadyPlayed) {
-    intro.style.display = "none";
-    return;
-  }
-
-  const logs = [
-    "[SCAN] searching exposed portfolio ports...",
-    "[FOUND] /api/projects endpoint",
-    "[INJECT] loading interface payload",
-    "[DECRYPT] visual_layer.css",
-    "[DECRYPT] spotify_module.js",
-    "[AUTH] bypassing portfolio protection",
-    "[BYPASS] injecting HermanOS kernel",
-    "[MOUNT] /public/index.html",
-    "[SYNC] synchronizing project database",
-    "[VERIFY] checking developer signature",
-    "[AUTH] verifying user: HERMAN",
-    "[OK] access level elevated",
-    "[BOOT] loading interface modules",
-    "[OK] HermanOS shell ready",
-  ];
-
-  let value = 0;
-  let logIndex = 0;
-
-  const percentInterval = setInterval(() => {
-    const jump = Math.floor(Math.random() * 7) + 2;
-
-    value += jump;
-
-    if (value > 100) value = 100;
-
-    if (percent) {
-      percent.textContent = `${value}%`;
+    if (alreadyPlayed) {
+        intro.style.display = 'none';
+        return;
     }
 
-    if (progress) {
-      progress.style.width = `${value}%`;
-    }
+    const logs = [
+        '[SCAN] searching exposed portfolio ports...',
+        '[FOUND] /api/projects endpoint',
+        '[INJECT] loading interface payload',
+        '[DECRYPT] visual_layer.css',
+        '[DECRYPT] spotify_module.js',
+        '[AUTH] bypassing portfolio protection',
+        '[BYPASS] injecting HermanOS kernel',
+        '[MOUNT] /public/index.html',
+        '[SYNC] synchronizing project database',
+        '[VERIFY] checking developer signature',
+        '[AUTH] verifying user: HERMAN',
+        '[OK] access level elevated',
+        '[BOOT] loading interface modules',
+        '[OK] HermanOS shell ready',
+    ];
 
-    if (log && logIndex < logs.length && value >= logIndex * 7) {
-      log.textContent += logs[logIndex] + "\n";
+    let value = 0;
+    let logIndex = 0;
 
-      log.scrollTop = log.scrollHeight;
+    const percentInterval = setInterval(() => {
+        const jump = Math.floor(Math.random() * 7) + 2;
 
-      logIndex++;
-    }
+        value += jump;
 
-    if (value >= 100) {
-      clearInterval(percentInterval);
+        if (value > 100) value = 100;
 
-      setTimeout(() => {
-        if (hackPhase) {
-          hackPhase.style.transition = "0.4s ease";
-          hackPhase.style.opacity = "0";
+        if (percent) {
+            percent.textContent = `${value}%`;
         }
 
-        if (accessPhase) {
-          accessPhase.classList.add("active");
+        if (progress) {
+            progress.style.width = `${value}%`;
         }
-      }, 450);
 
-      setTimeout(() => {
-        intro.classList.add("fade-out");
-      }, 2200);
+        if (log && logIndex < logs.length && value >= logIndex * 7) {
+            log.textContent += logs[logIndex] + '\n';
 
-      setTimeout(() => {
-        intro.style.display = "none";
+            log.scrollTop = log.scrollHeight;
 
-        sessionStorage.setItem("introPlayed", "true");
-      }, 3000);
-    }
-  }, 115);
+            logIndex++;
+        }
+
+        if (value >= 100) {
+            clearInterval(percentInterval);
+
+            setTimeout(() => {
+                if (hackPhase) {
+                    hackPhase.style.transition = '0.4s ease';
+                    hackPhase.style.opacity = '0';
+                }
+
+                if (accessPhase) {
+                    accessPhase.classList.add('active');
+                }
+            }, 450);
+
+            setTimeout(() => {
+                intro.classList.add('fade-out');
+            }, 2200);
+
+            setTimeout(() => {
+                intro.style.display = 'none';
+
+                sessionStorage.setItem('introPlayed', 'true');
+            }, 3000);
+        }
+    }, 115);
 }
 /* ================= REVEAL ================= */
 
 function initReveal() {
-  const sections = document.querySelectorAll("section");
+    const sections = document.querySelectorAll('section');
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    },
-    { threshold: 0.2 },
-  );
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        },
+        { threshold: 0.2 }
+    );
 
-  sections.forEach((section) => {
-    section.classList.add("hidden");
-    observer.observe(section);
-  });
+    sections.forEach((section) => {
+        section.classList.add('hidden');
+        observer.observe(section);
+    });
 }
 
 /* ================= SCROLL SIGIL ================= */
 
 function initScrollSigil() {
-  const sigil = document.getElementById("scroll-sigil");
-  if (!sigil) return;
+    const sigil = document.getElementById('scroll-sigil');
+    if (!sigil) return;
 
-  let lastScroll = window.scrollY;
-  let timeout;
+    let lastScroll = window.scrollY;
+    let timeout;
 
-  window.addEventListener("scroll", () => {
-    const current = window.scrollY;
+    window.addEventListener('scroll', () => {
+        const current = window.scrollY;
 
-    if (current > lastScroll) {
-      sigil.style.top = "auto";
-      sigil.style.bottom = "40px";
-    } else {
-      sigil.style.bottom = "auto";
-      sigil.style.top = "40px";
-    }
+        if (current > lastScroll) {
+            sigil.style.top = 'auto';
+            sigil.style.bottom = '40px';
+        } else {
+            sigil.style.bottom = 'auto';
+            sigil.style.top = '40px';
+        }
 
-    sigil.style.opacity = "1";
+        sigil.style.opacity = '1';
 
-    clearTimeout(timeout);
+        clearTimeout(timeout);
 
-    timeout = setTimeout(() => {
-      sigil.style.opacity = "0";
-    }, 700);
+        timeout = setTimeout(() => {
+            sigil.style.opacity = '0';
+        }, 700);
 
-    lastScroll = current;
-  });
+        lastScroll = current;
+    });
 }
 
 /* ================= CONTACT FORM ================= */
-
 function initContactForm() {
-  const form = document.getElementById("contact-form");
-  const status = document.getElementById("form-status");
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
 
-  if (!form) return;
+    if (!form || !status) return;
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    const emailInput = document.getElementById('email');
+    const messageInput = document.getElementById('message');
+    const websiteInput = document.getElementById('website');
+    const button = form.querySelector('.mail-send-btn');
 
-    const email = document.getElementById("email").value;
-    const message = document.getElementById("message").value;
+    if (!emailInput || !messageInput || !button) return;
 
-    const btn = form.querySelector(".mail-send-btn");
-    const original = btn.innerText;
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
 
-    btn.innerText = "Sending...";
-    btn.disabled = true;
+        const email = emailInput.value.trim();
+        const message = messageInput.value.trim();
+        const website = websiteInput?.value ?? '';
 
-    status.textContent = "Sending message...";
+        const originalButtonText = button.textContent;
 
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, message }),
-      });
+        button.disabled = true;
+        button.textContent = 'TRANSMITTING...';
 
-      const data = await res.json();
+        status.textContent = '> ESTABLISHING SECURE CHANNEL...';
+        status.className = 'form-status';
 
-      if (res.ok) {
-        form.reset();
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    email,
+                    message,
+                    website,
+                }),
+            });
 
-        status.innerHTML = "✓ MESSAGE DELIVERED";
-        status.className = "form-status success";
+            const data = await response.json();
 
-        setTimeout(() => {
-          status.innerHTML = "";
-        }, 3500);
-      } else {
-        status.textContent = data.error || "Something went wrong";
-        status.className = "form-status error";
-      }
-    } catch (err) {
-      console.error(err);
+            if (!response.ok) {
+                throw new Error(data.error || 'Message transmission failed.');
+            }
 
-      status.textContent = "Server error";
-      status.className = "form-status error";
-    }
+            form.reset();
 
-    btn.innerText = original;
-    btn.disabled = false;
-  });
+            status.textContent = '> TRANSMISSION COMPLETE // MESSAGE DELIVERED';
+            status.className = 'form-status success';
+        } catch (error) {
+            console.error('Contact form error:', error.message);
+
+            status.textContent = '> TRANSMISSION FAILED // CONTACT NODE UNAVAILABLE';
+            status.className = 'form-status error';
+        } finally {
+            button.disabled = false;
+            button.textContent = originalButtonText;
+        }
+    });
 }
 
 /* ================= SPOTIFY ================= */
 
 function initSpotify() {
-  fetchSpotify();
-  setInterval(fetchSpotify, 15000);
+    fetchSpotify();
+    setInterval(fetchSpotify, 15000);
 }
 
 async function fetchSpotify() {
-  const track = document.querySelector(".spotify-track");
-  const cover = document.querySelector(".spotify-cover");
-  const label = document.querySelector(".spotify-label");
+    const track = document.querySelector('.spotify-track');
+    const cover = document.querySelector('.spotify-cover');
+    const label = document.querySelector('.spotify-label');
 
-  if (!track || !cover || !label) return;
+    if (!track || !cover || !label) return;
 
-  try {
-    const res = await fetch("/api/spotify");
-    const data = await res.json();
+    try {
+        const res = await fetch('/api/spotify');
+        const data = await res.json();
 
-    if (data.isPlaying) {
-      label.innerText = "NOW PLAYING";
+        if (data.isPlaying) {
+            label.innerText = 'NOW PLAYING';
 
-      track.innerHTML = `
+            track.innerHTML = `
 <a href="${data.songUrl}" target="_blank"
 style="color:inherit;text-decoration:none;">
 ${data.artist} – ${data.title}
 </a>`;
 
-      cover.src = data.albumImageUrl;
-    } else {
-      label.innerText = "PAUSED";
-      track.innerText = "nic nie leci";
-      cover.src = "images/chivas-cover.png";
+            cover.src = data.albumImageUrl;
+        } else {
+            label.innerText = 'PAUSED';
+            track.innerText = 'nic nie leci';
+            cover.src = 'images/chivas-cover.png';
+        }
+    } catch (err) {
+        console.error('Spotify error:', err);
     }
-  } catch (err) {
-    console.error("Spotify error:", err);
-  }
 }
 
 /* ================= PROJECTS ================= */
 
 function initProjects() {
-  loadProjects();
+    loadProjects();
 }
 
 /* ================= CARD GENERATOR ================= */
 
-function createProjectCard(p, mode = "preview") {
-  const techItems = p.tech
-    ? p.tech
-        .split(/[,.·]/)
-        .map((item) => item.trim())
-        .filter(Boolean)
-        .slice(0, 4)
-        .map((item) => `<span>${item}</span>`)
-        .join("")
-    : "";
+function createProjectCard(p, mode = 'preview') {
+    const techItems = p.tech
+        ? p.tech
+              .split(/[,.·]/)
+              .map((item) => item.trim())
+              .filter(Boolean)
+              .slice(0, 4)
+              .map((item) => `<span>${item}</span>`)
+              .join('')
+        : '';
 
-  return `
+    return `
   <div class="project-card">
     <div class="project-preview">
-      <img src="${p.image || "images/project1.png"}" alt="${p.title}">
-      <div class="project-status">${p.WorkInProgress ? "WIP" : "ONLINE"}</div>
+      <img src="${p.image || 'images/project1.png'}" alt="${p.title}">
+      <div class="project-status">${p.WorkInProgress ? 'WIP' : 'ONLINE'}</div>
     </div>
 
     <div class="project-content">
@@ -287,9 +295,9 @@ function createProjectCard(p, mode = "preview") {
       </div>
 
       <div class="project-actions">
-        ${p.live ? `<a href="${p.live}" target="_blank" class="project-btn">LIVE</a>` : ""}
-        ${p.github ? `<a href="${p.github}" target="_blank" class="project-btn">CODE</a>` : ""}
-        ${p.WorkInProgress ? `<span class="project-wip">${p.WorkInProgress}</span>` : ""}
+        ${p.live ? `<a href="${p.live}" target="_blank" class="project-btn">LIVE</a>` : ''}
+        ${p.github ? `<a href="${p.github}" target="_blank" class="project-btn">CODE</a>` : ''}
+        ${p.WorkInProgress ? `<span class="project-wip">${p.WorkInProgress}</span>` : ''}
       </div>
     </div>
   </div>
@@ -298,45 +306,54 @@ function createProjectCard(p, mode = "preview") {
 /* ================= LOAD ================= */
 
 async function loadProjects() {
-  const preview = document.getElementById("projects-preview");
-  const container = document.getElementById("projects-container");
+    const preview = document.getElementById('projects-preview');
+    const container = document.getElementById('projects-container');
 
-  try {
-    const res = await fetch("/api/projects");
-    const projects = await res.json();
+    try {
+        const res = await fetch('/data/projects.json');
 
-    /* ===== GŁÓWNA ===== */
+        if (!res.ok) {
+            throw new Error(`Projects request failed: ${res.status}`);
+        }
 
-    if (preview) {
-      preview.innerHTML = "";
+        const projects = await res.json();
 
-      projects.slice(0, 3).forEach((p) => {
-        preview.innerHTML += createProjectCard(p, "preview");
-      });
-    }
+        if (!Array.isArray(projects)) {
+            throw new Error('Projects data is not an array');
+        }
 
-    /* ===== PODSTRONA PROJECTS ===== */
+        /* ===== GŁÓWNA ===== */
 
-    if (container) {
-      container.innerHTML = "";
+        if (preview) {
+            preview.innerHTML = '';
 
-      projects.forEach((p) => {
-        container.innerHTML += createProjectCard(p, "full");
-      });
-    }
-  } catch (err) {
-    console.error("Projects error:", err);
+            projects.slice(0, 3).forEach((p) => {
+                preview.innerHTML += createProjectCard(p, 'preview');
+            });
+        }
 
-    if (preview) {
-      preview.innerHTML = `
+        /* ===== PODSTRONA PROJECTS ===== */
+
+        if (container) {
+            container.innerHTML = '';
+
+            projects.forEach((p) => {
+                container.innerHTML += createProjectCard(p, 'full');
+            });
+        }
+    } catch (err) {
+        console.error('Projects error:', err);
+
+        if (preview) {
+            preview.innerHTML = `
         <p style="color: var(--green); font-family: monospace;">
           failed to load projects
         </p>
       `;
-    }
+        }
 
-    if (container) {
-      container.innerHTML = `
+        if (container) {
+            container.innerHTML = `
         <p style="
           color: var(--green);
           font-family: monospace;
@@ -346,204 +363,204 @@ async function loadProjects() {
           failed to load projects database
         </p>
       `;
+        }
     }
-  }
 }
 
 /* ================= TERMINAL ================= */
 function initTerminal() {
-  const text = document.getElementById("terminal-text");
-  const inputLine = document.querySelector(".terminal-input-line");
-  const input = document.getElementById("terminal-input");
+    const text = document.getElementById('terminal-text');
+    const inputLine = document.querySelector('.terminal-input-line');
+    const input = document.getElementById('terminal-input');
 
-  if (!text) return;
+    if (!text) return;
 
-  const lines = [
-    "herman@dev:~$ boot portfolio",
-    "loading modules...",
-    "spotify connected",
-    "projects loaded",
-    "welcome back, herman",
-  ];
+    const lines = [
+        'herman@dev:~$ boot portfolio',
+        'loading modules...',
+        'spotify connected',
+        'projects loaded',
+        'welcome back, herman',
+    ];
 
-  let line = 0;
-  let char = 0;
+    let line = 0;
+    let char = 0;
 
-  function type() {
-    if (line < lines.length) {
-      if (char < lines[line].length) {
-        text.textContent += lines[line][char];
-        char++;
-        setTimeout(type, 25);
-      } else {
-        text.textContent += "\n";
-        line++;
-        char = 0;
-        setTimeout(type, 250);
-      }
-    } else {
-      if (inputLine) inputLine.style.display = "flex";
-      if (input) input.focus();
+    function type() {
+        if (line < lines.length) {
+            if (char < lines[line].length) {
+                text.textContent += lines[line][char];
+                char++;
+                setTimeout(type, 25);
+            } else {
+                text.textContent += '\n';
+                line++;
+                char = 0;
+                setTimeout(type, 250);
+            }
+        } else {
+            if (inputLine) inputLine.style.display = 'flex';
+            if (input) input.focus();
+        }
     }
-  }
 
-  type();
+    type();
 }
 /* ================= BLOCK COPY ================= */
 
-document.addEventListener("contextmenu", (e) => {
-  e.preventDefault();
+document.addEventListener('contextmenu', (e) => {
+    e.preventDefault();
 });
 
-document.addEventListener("dragstart", (e) => {
-  e.preventDefault();
+document.addEventListener('dragstart', (e) => {
+    e.preventDefault();
 });
 
 function initPageTransitions() {
-  const links = document.querySelectorAll("a");
+    const links = document.querySelectorAll('a');
 
-  links.forEach((link) => {
-    link.addEventListener("click", (e) => {
-      const url = link.getAttribute("href");
+    links.forEach((link) => {
+        link.addEventListener('click', (e) => {
+            const url = link.getAttribute('href');
 
-      if (!url) return;
-      if (url.startsWith("#")) return;
-      if (url.startsWith("http")) return;
-      if (link.target === "_blank") return;
+            if (!url) return;
+            if (url.startsWith('#')) return;
+            if (url.startsWith('http')) return;
+            if (link.target === '_blank') return;
 
-      e.preventDefault();
+            e.preventDefault();
 
-      const transition = document.getElementById("page-transition");
+            const transition = document.getElementById('page-transition');
 
-      if (transition) {
-        transition.classList.add("active");
-      }
+            if (transition) {
+                transition.classList.add('active');
+            }
 
-      setTimeout(() => {
-        window.location.href = url;
-      }, 400);
+            setTimeout(() => {
+                window.location.href = url;
+            }, 400);
+        });
     });
-  });
 }
 /* ================= ZEGAR ================= */
 function initTaskbarClock() {
-  const clock = document.getElementById("taskbar-clock");
-  const date = document.getElementById("taskbar-date");
+    const clock = document.getElementById('taskbar-clock');
+    const date = document.getElementById('taskbar-date');
 
-  if (!clock || !date) return;
+    if (!clock || !date) return;
 
-  function updateClock() {
-    const now = new Date();
+    function updateClock() {
+        const now = new Date();
 
-    clock.textContent = now.toLocaleTimeString("pl-PL", {
-      hour: "2-digit",
-      minute: "2-digit",
-    });
+        clock.textContent = now.toLocaleTimeString('pl-PL', {
+            hour: '2-digit',
+            minute: '2-digit',
+        });
 
-    date.textContent = now.toLocaleDateString("pl-PL", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    });
-  }
+        date.textContent = now.toLocaleDateString('pl-PL', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+        });
+    }
 
-  updateClock();
-  setInterval(updateClock, 1000);
+    updateClock();
+    setInterval(updateClock, 1000);
 }
 
 function initSecretFolder() {
-  const folder = document.getElementById("secret-folder");
-  const modal = document.getElementById("secret-modal");
-  const input = document.getElementById("secret-password");
-  const submit = document.getElementById("secret-submit");
-  const close = document.getElementById("secret-close");
-  const status = document.getElementById("secret-status");
+    const folder = document.getElementById('secret-folder');
+    const modal = document.getElementById('secret-modal');
+    const input = document.getElementById('secret-password');
+    const submit = document.getElementById('secret-submit');
+    const close = document.getElementById('secret-close');
+    const status = document.getElementById('secret-status');
 
-  if (!folder || !modal || !input || !submit || !close || !status) return;
+    if (!folder || !modal || !input || !submit || !close || !status) return;
 
-  function openModal() {
-    modal.classList.add("active");
-    input.value = "";
-    status.textContent = "";
-    setTimeout(() => input.focus(), 50);
-  }
-
-  function closeModal() {
-    modal.classList.remove("active");
-  }
-
-  function checkPassword() {
-    if (input.value === "2137") {
-      status.style.color = "var(--green)";
-      status.textContent = "ACCESS GRANTED";
-
-      setTimeout(() => {
-        window.open("https://www.youtube.com/watch?v=iik25wqIuFo", "_blank");
-        closeModal();
-      }, 500);
-    } else {
-      status.style.color = "rgba(255, 60, 90, 0.9)";
-      status.textContent = "ACCESS DENIED";
-      input.value = "";
-      input.focus();
+    function openModal() {
+        modal.classList.add('active');
+        input.value = '';
+        status.textContent = '';
+        setTimeout(() => input.focus(), 50);
     }
-  }
 
-  folder.addEventListener("click", (e) => {
-    e.preventDefault();
-    openModal();
-  });
+    function closeModal() {
+        modal.classList.remove('active');
+    }
 
-  submit.addEventListener("click", checkPassword);
+    function checkPassword() {
+        if (input.value === '2137') {
+            status.style.color = 'var(--green)';
+            status.textContent = 'ACCESS GRANTED';
 
-  input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") checkPassword();
-    if (e.key === "Escape") closeModal();
-  });
+            setTimeout(() => {
+                window.open('https://www.youtube.com/watch?v=iik25wqIuFo', '_blank');
+                closeModal();
+            }, 500);
+        } else {
+            status.style.color = 'rgba(255, 60, 90, 0.9)';
+            status.textContent = 'ACCESS DENIED';
+            input.value = '';
+            input.focus();
+        }
+    }
 
-  close.addEventListener("click", closeModal);
+    folder.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal();
+    });
 
-  modal.addEventListener("click", (e) => {
-    if (e.target === modal) closeModal();
-  });
+    submit.addEventListener('click', checkPassword);
+
+    input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') checkPassword();
+        if (e.key === 'Escape') closeModal();
+    });
+
+    close.addEventListener('click', closeModal);
+
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+    });
 }
 
 /* ================= CV MODAL LOGIC ================= */
 function initCVModal() {
-  const openBtn = document.getElementById("open-cv-btn");
-  const overlay = document.getElementById("cv-modal-overlay");
-  const closeBtn = document.getElementById("cv-close-btn");
+    const openBtn = document.getElementById('open-cv-btn');
+    const overlay = document.getElementById('cv-modal-overlay');
+    const closeBtn = document.getElementById('cv-close-btn');
 
-  if (!openBtn || !overlay || !closeBtn) return;
+    if (!openBtn || !overlay || !closeBtn) return;
 
-  // Otwieranie
-  openBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    overlay.classList.remove("hidden");
-  });
+    // Otwieranie
+    openBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        overlay.classList.remove('hidden');
+    });
 
-  // Zamykanie krzyżykiem
-  closeBtn.addEventListener("click", () => {
-    overlay.classList.add("hidden");
-  });
+    // Zamykanie krzyżykiem
+    closeBtn.addEventListener('click', () => {
+        overlay.classList.add('hidden');
+    });
 
-  // Zamykanie po kliknięciu w tło (poza oknem)
-  overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) {
-      overlay.classList.add("hidden");
-    }
-  });
+    // Zamykanie po kliknięciu w tło (poza oknem)
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            overlay.classList.add('hidden');
+        }
+    });
 
-  // Zamykanie Escapem
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !overlay.classList.contains("hidden")) {
-      overlay.classList.add("hidden");
-    }
-  });
+    // Zamykanie Escapem
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !overlay.classList.contains('hidden')) {
+            overlay.classList.add('hidden');
+        }
+    });
 }
 
 // Upewnij się, że funkcja jest wywoływana po załadowaniu DOM
 // Dodaj to do swojego głównego bloku document.addEventListener("DOMContentLoaded", ...)
-document.addEventListener("DOMContentLoaded", () => {
-  initCVModal();
+document.addEventListener('DOMContentLoaded', () => {
+    initCVModal();
 });
