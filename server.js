@@ -4,7 +4,7 @@ const { getNowPlaying } = require('./services/spotify');
 const path = require('path');
 const express = require('express');
 const helmet = require('helmet');
-const { rateLimit } = require('express-rate-limit');
+const { rateLimit, ipKeyGenerator } = require('express-rate-limit');
 const { Resend } = require('resend');
 
 const app = express();
@@ -21,7 +21,6 @@ const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KE
 app.disable('x-powered-by');
 
 // Render / reverse proxy
-app.set('trust proxy', 1);
 
 app.use(
     helmet({
@@ -61,6 +60,16 @@ const contactLimiter = rateLimit({
     limit: 5,
     standardHeaders: 'draft-8',
     legacyHeaders: false,
+
+    keyGenerator: (req) => {
+        const cfIp = req.get('CF-Connecting-IP');
+
+        if (process.env.RENDER === 'true' && cfIp) {
+            return ipKeyGenerator(cfIp);
+        }
+
+        return ipKeyGenerator(req.socket.remoteAddress);
+    },
 
     message: {
         error: 'Za dużo prób. Spróbuj ponownie później.',
