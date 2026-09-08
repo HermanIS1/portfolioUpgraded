@@ -98,22 +98,6 @@ app.get('/healthz', (req, res) => {
     });
 });
 
-app.get('/debug/ip', (req, res) => {
-    if (process.env.IS_PULL_REQUEST !== 'true') {
-        return res.status(404).json({
-            error: 'Not found',
-        });
-    }
-
-    return res.status(200).json({
-        render: process.env.RENDER ?? null,
-        isPullRequest: process.env.IS_PULL_REQUEST ?? null,
-        xForwardedFor: req.get('X-Forwarded-For') || null,
-        cfConnectingIp: req.get('CF-Connecting-IP') || null,
-        remoteAddress: req.socket.remoteAddress || null,
-    });
-});
-
 app.post('/api/contact', contactLimiter, async (req, res) => {
     const { email, message, website } = req.body ?? {};
 
