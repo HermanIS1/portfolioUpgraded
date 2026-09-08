@@ -14,13 +14,7 @@ const PUBLIC_DIR = path.join(__dirname, 'public');
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
-// ======================================================
-// BASIC HARDENING
-// ======================================================
-
 app.disable('x-powered-by');
-
-// Render / reverse proxy
 
 app.use(
     helmet({
@@ -59,10 +53,6 @@ app.use(
     })
 );
 
-// ======================================================
-// RATE LIMITS
-// ======================================================
-
 const contactLimiter = rateLimit({
     windowMs: 15 * 60 * 1000,
     limit: 5,
@@ -88,10 +78,6 @@ const contactLimiter = rateLimit({
     },
 });
 
-// ======================================================
-// API
-// ======================================================
-
 app.get('/healthz', (req, res) => {
     res.status(200).json({
         status: 'ok',
@@ -101,7 +87,6 @@ app.get('/healthz', (req, res) => {
 app.post('/api/contact', contactLimiter, async (req, res) => {
     const { email, message, website } = req.body ?? {};
 
-    // Honeypot
     if (website) {
         return res.status(200).json({
             success: true,
@@ -191,20 +176,12 @@ app.get('/api/spotify/now-playing', async (req, res) => {
     }
 });
 
-// ======================================================
-// STATIC FRONTEND
-// ======================================================
-
 app.use(
     express.static(PUBLIC_DIR, {
         etag: true,
         maxAge: '1h',
     })
 );
-
-// ======================================================
-// 404
-// ======================================================
 
 app.use((req, res) => {
     if (req.path.startsWith('/api/')) {
@@ -216,10 +193,6 @@ app.use((req, res) => {
     return res.status(404).sendFile(path.join(PUBLIC_DIR, 'index.html'));
 });
 
-// ======================================================
-// GLOBAL ERROR HANDLER
-// ======================================================
-
 app.use((error, req, res, next) => {
     if (error?.type === 'entity.too.large') {
         return res.status(413).json({
@@ -227,7 +200,6 @@ app.use((error, req, res, next) => {
         });
     }
 
-    // Błędny JSON wysłany przez klienta.
     if (error instanceof SyntaxError && error.status === 400 && 'body' in error) {
         return res.status(400).json({
             error: 'Invalid JSON.',
@@ -240,10 +212,6 @@ app.use((error, req, res, next) => {
         error: 'Internal server error.',
     });
 });
-
-// ======================================================
-// START
-// ======================================================
 
 app.listen(PORT, () => {
     console.log(`Herman Portfolio listening on port ${PORT}`);

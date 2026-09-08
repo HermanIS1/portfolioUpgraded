@@ -12,11 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initPageTransitions();
 });
 
-/* ================= GLOBAL ================= */
-
 const INTRO_DURATION = 2800;
-
-/* ================= INTRO ================= */
 
 function initIntro() {
     const intro = document.getElementById('intro-screen');
@@ -104,7 +100,6 @@ function initIntro() {
         }
     }, 115);
 }
-/* ================= REVEAL ================= */
 
 function initReveal() {
     const sections = document.querySelectorAll('section');
@@ -125,8 +120,6 @@ function initReveal() {
         observer.observe(section);
     });
 }
-
-/* ================= SCROLL SIGIL ================= */
 
 function initScrollSigil() {
     const sigil = document.getElementById('scroll-sigil');
@@ -158,7 +151,6 @@ function initScrollSigil() {
     });
 }
 
-/* ================= CONTACT FORM ================= */
 function initContactForm() {
     const form = document.getElementById('contact-form');
     const status = document.getElementById('form-status');
@@ -222,13 +214,9 @@ function initContactForm() {
     });
 }
 
-/* ================= PROJECTS ================= */
-
 function initProjects() {
     loadProjects();
 }
-
-/* ================= CARD GENERATOR ================= */
 
 function createProjectLink(url, text) {
     try {
@@ -327,8 +315,6 @@ function createProjectCard(project) {
     return card;
 }
 
-/* ================= LOAD ================= */
-
 function showProjectsError(container, message) {
     if (!container) return;
 
@@ -378,7 +364,7 @@ async function loadProjects() {
         showProjectsError(container, 'failed to load projects database');
     }
 }
-/* ================= TERMINAL ================= */
+
 function initTerminal() {
     const text = document.getElementById('terminal-text');
     const inputLine = document.querySelector('.terminal-input-line');
@@ -417,7 +403,6 @@ function initTerminal() {
 
     type();
 }
-/* ================= BLOCK COPY ================= */
 
 document.addEventListener('contextmenu', (e) => {
     e.preventDefault();
@@ -453,7 +438,7 @@ function initPageTransitions() {
         });
     });
 }
-/* ================= ZEGAR ================= */
+
 function initTaskbarClock() {
     const clock = document.getElementById('taskbar-clock');
     const date = document.getElementById('taskbar-date');
@@ -536,7 +521,6 @@ function initSecretFolder() {
     });
 }
 
-/* ================= CV MODAL LOGIC ================= */
 function initCVModal() {
     const openBtn = document.getElementById('open-cv-btn');
     const overlay = document.getElementById('cv-modal-overlay');
@@ -544,25 +528,21 @@ function initCVModal() {
 
     if (!openBtn || !overlay || !closeBtn) return;
 
-    // Otwieranie
     openBtn.addEventListener('click', (e) => {
         e.preventDefault();
         overlay.classList.remove('hidden');
     });
 
-    // Zamykanie krzyżykiem
     closeBtn.addEventListener('click', () => {
         overlay.classList.add('hidden');
     });
 
-    // Zamykanie po kliknięciu w tło (poza oknem)
     overlay.addEventListener('click', (e) => {
         if (e.target === overlay) {
             overlay.classList.add('hidden');
         }
     });
 
-    // Zamykanie Escapem
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && !overlay.classList.contains('hidden')) {
             overlay.classList.add('hidden');
@@ -570,13 +550,9 @@ function initCVModal() {
     });
 }
 
-// Upewnij się, że funkcja jest wywoływana po załadowaniu DOM
-// Dodaj to do swojego głównego bloku document.addEventListener("DOMContentLoaded", ...)
 document.addEventListener('DOMContentLoaded', () => {
     initCVModal();
 });
-
-/* ================= SPOTIFY V2 ================= */
 
 let spotifyState = null;
 let spotifyProgressTimer = null;

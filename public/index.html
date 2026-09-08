@@ -1,549 +1,604 @@
 <!doctype html>
+
 <html lang="pl">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta charset="utf-8" />
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
         <meta
+            content="Portfolio Hermana — Linux, network security, AppSec, web development i własna infrastruktura."
             name="description"
-            content="Portfolio Hermana – student informatyki. Projekty programistyczne, Node.js, JavaScript, IT i technologie."
         />
         <meta
+            content="portfolio, cybersecurity, network security, linux, fedora, appsec, nodejs, herman"
             name="keywords"
-            content="portfolio, programming, javascript, nodejs, IT, developer, herman"
         />
-        <meta name="author" content="Herman" />
-        <meta property="og:title" content="Herman – Portfolio" />
-        <meta
-            property="og:description"
-            content="IT / Games / Programming. Projekty, kod i technologie."
-        />
-        <meta property="og:image" content="/images/preview.png" />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://hermanportfolio.pl" />
-        <title>Portfolio | Herman</title>
-
-        <link rel="icon" href="images/favicon.ico" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link rel="preload" href="style.css" as="style" />
-        <link rel="stylesheet" href="style.css" />
-
+        <meta content="Herman" name="author" />
+        <meta content="Herman // Network Security &amp; Linux" property="og:title" />
+        <meta content="Linux / Network Security / AppSec / Projects." property="og:description" />
+        <meta content="/images/preview.png" property="og:image" />
+        <meta content="website" property="og:type" />
+        <meta content="https://hermanportfolio.pl" property="og:url" />
+        <title>HERMAN // Portfolio</title>
+        <link href="images/favicon.ico" rel="icon" />
+        <link href="https://fonts.googleapis.com" rel="preconnect" />
+        <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
         <link
+            href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&amp;family=Inter:wght@400;500;600;700&amp;display=swap"
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Inter:wght@400;500&display=swap"
         />
+        <link href="style.css" rel="stylesheet" />
     </head>
-
-    <body>
+    <body class="breach-ui">
         <div id="cursor-glow"></div>
-
         <div id="intro-screen">
-            <div class="hack-phase" id="hack-phase">
-                <div class="hack-corner top-left"></div>
-                <div class="hack-corner top-right"></div>
-                <div class="hack-corner bottom-left"></div>
-                <div class="hack-corner bottom-right"></div>
-
-                <div class="hack-header">
-                    <span>HERMANOS BREACH PROTOCOL</span>
-                    <span>v2.1.3.7</span>
-                </div>
-
-                <div class="hack-center">
-                    <div class="hack-label">HACKING PORTFOLIO INTERFACE</div>
-                    <div class="hack-percent" id="hack-percent">0%</div>
-                    <div class="hack-bar"><div id="hack-progress"></div></div>
-                    <pre id="hack-log"></pre>
-                </div>
-
-                <div class="hack-warning">SYSTEM OVERRIDE IN PROGRESS</div>
-            </div>
-
-            <div class="access-phase" id="access-phase">
-                <div class="access-window">
-                    <div class="access-top">
-                        <span>HERMANOS</span>
-                        <span>SECURE SESSION</span>
+            <div class="hack-phase intro-v5" id="hack-phase">
+                <div class="intro-grid"></div>
+                <div class="intro-noise"></div>
+                <div class="intro-beam"></div>
+                <div class="intro-corner intro-corner-tl"></div>
+                <div class="intro-corner intro-corner-tr"></div>
+                <div class="intro-corner intro-corner-bl"></div>
+                <div class="intro-corner intro-corner-br"></div>
+                <header class="intro-topbar">
+                    <div class="intro-brand">
+                        <span class="intro-brand-mark">H</span>
+                        <div>
+                            <strong>HERMANOS // BREACH CORE</strong>
+                            <small>SECURE INTERFACE BOOTSTRAP</small>
+                        </div>
                     </div>
-
-                    <h1>ACCESS GRANTED</h1>
-
-                    <div class="access-data">
-                        <p>USER: HERMAN</p>
-                        <p>MODE: DEVELOPER</p>
-                        <p>STATUS: ONLINE</p>
-                        <p>BUILD: v2.1.3.7</p>
+                    <div class="intro-top-meta">
+                        <span>NODE_01</span>
+                        <span>BUILD 2.1.3.7</span>
+                        <span class="intro-live"><i></i> LIVE</span>
+                    </div>
+                </header>
+                <aside class="intro-route">
+                    <span class="intro-side-label">ROUTE.TRACE</span>
+                    <div class="intro-route-line"><i></i><span>EDGE</span><b>CF</b></div>
+                    <div class="intro-route-line"><i></i><span>ORIGIN</span><b>RENDER</b></div>
+                    <div class="intro-route-line"><i></i><span>APP</span><b>EXPRESS</b></div>
+                    <div class="intro-route-line"><i></i><span>STATE</span><b>ARMED</b></div>
+                </aside>
+                <aside class="intro-integrity">
+                    <span class="intro-side-label">INTEGRITY.MAP</span>
+                    <div><span>CSP</span><strong>LOCKED</strong></div>
+                    <div><span>SECRETS</span><strong>CLEAN</strong></div>
+                    <div><span>RATE LIMIT</span><strong>ACTIVE</strong></div>
+                    <div><span>SESSION</span><strong>LOCAL</strong></div>
+                </aside>
+                <div class="intro-core">
+                    <div aria-hidden="true" class="intro-orbit">
+                        <span class="orbit-a"></span>
+                        <span class="orbit-b"></span>
+                        <span class="orbit-c"></span>
+                        <b>⛧</b>
+                    </div>
+                    <p class="hack-label">KERNEL HANDSHAKE // OVERRIDE SEQUENCE</p>
+                    <div class="intro-percent-wrap">
+                        <div class="hack-percent" id="hack-percent">0%</div>
+                        <span class="intro-percent-caption">INTERFACE DECRYPTION</span>
+                    </div>
+                    <div class="hack-bar">
+                        <div id="hack-progress"></div>
+                        <span class="hack-bar-marker marker-1"></span>
+                        <span class="hack-bar-marker marker-2"></span>
+                        <span class="hack-bar-marker marker-3"></span>
+                    </div>
+                    <div class="intro-console">
+                        <div class="intro-console-head">
+                            <span>BREACH.LOG</span>
+                            <span>STDOUT // ACTIVE</span>
+                        </div>
+                        <pre id="hack-log"></pre>
+                    </div>
+                </div>
+                <div class="hack-warning">
+                    <span></span>
+                    SYSTEM OVERRIDE IN PROGRESS
+                    <span></span>
+                </div>
+                <div class="intro-coord intro-coord-a">53.0138N // 18.5984E</div>
+                <div class="intro-coord intro-coord-b">HERMANOS_PROTOCOL::0x2137</div>
+            </div>
+            <div class="access-phase access-v5" id="access-phase">
+                <div class="access-scan"></div>
+                <div aria-hidden="true" class="access-sigil">⛧</div>
+                <div class="access-v5-frame">
+                    <div class="access-v5-kicker">AUTHENTICATION COMPLETE // SESSION HIJACKED</div>
+                    <h1 class="access-v5-title" data-text="HERMAN"><span>HER</span><b>MAN</b></h1>
+                    <div class="access-v5-line"></div>
+                    <div class="access-v5-data">
+                        <div>
+                            <span>USER</span>
+                            <strong>HERMAN</strong>
+                        </div>
+                        <div>
+                            <span>MODE</span>
+                            <strong>DEVELOPER</strong>
+                        </div>
+                        <div>
+                            <span>FOCUS</span>
+                            <strong>NETWORK SECURITY</strong>
+                        </div>
+                        <div>
+                            <span>STATUS</span>
+                            <strong class="access-ok">ACCESS GRANTED</strong>
+                        </div>
+                    </div>
+                    <div class="access-v5-footer">
+                        <span>LOADING ACTIVE INTERFACE</span>
+                        <span class="access-v5-dots">■ ■ ■ ■ ■ ■ ■</span>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="os-shell">
-            <main class="os-desktop">
-                <section class="os-window hero-window">
-                    <div class="window-bar">
-                        <span>user_profile.exe</span>
-                        <div class="window-actions"><i></i><i></i><i></i></div>
+        <div aria-hidden="true" class="ambient-sigil">⛧</div>
+        <div aria-hidden="true" class="ambient-code ambient-code-a">0x4845524D414E</div>
+        <div aria-hidden="true" class="ambient-code ambient-code-b">NET.SEC // NODE_01</div>
+        <aside class="os-taskbar breach-rail">
+            <div class="taskbar-left">
+                <div class="taskbar-logo">H</div>
+                <span>HERMANOS</span>
+            </div>
+            <nav aria-label="Nawigacja główna" class="taskbar-center">
+                <a href="#projects">Projects</a>
+                <a href="#skills">Skills</a>
+                <a href="#contact">Contact</a>
+                <a href="#" id="open-cv-btn">CV</a>
+                <a class="secret-folder" href="#" id="secret-folder">
+                    <span>◆</span>
+                    <span>SYS</span>
+                </a>
+            </nav>
+            <div class="taskbar-right">
+                <span class="footer-status"></span>
+                <span>ONLINE</span>
+                <span id="taskbar-clock">00:00</span>
+                <span id="taskbar-date">00.00.0000</span>
+            </div>
+        </aside>
+        <main class="breach-main">
+            <section class="breach-hero" id="home">
+                <div class="hero-frame-label">HERMANOS // ACTIVE NODE</div>
+                <div class="hero-frame-build">BUILD 2.1.3.7</div>
+                <div class="hero-copy">
+                    <div class="hero-eyebrow">
+                        <span class="hero-eyebrow-dot"></span>
+                        NETWORK SECURITY / LINUX / APPSEC
                     </div>
-
-                    <div class="hero-system-grid">
-                        <div class="profile-module">
-                            <div class="photo-wrap">
-                                <img
-                                    src="images/profilowe.png"
-                                    class="profile-img circle"
-                                    alt="Herman"
-                                />
-                            </div>
-
-                            <p class="hero-role">IT / Games / Programming</p>
+                    <h1 class="hero-title" data-text="HERMAN">
+                        <span class="white">HER</span><span class="green">MAN</span>
+                    </h1>
+                    <p class="hero-specialization">
+                        BUILDING SYSTEMS <span>//</span> BREAKING ASSUMPTIONS
+                    </p>
+                    <p class="hero-description">
+                        Student informatyki rozwijający się w kierunku bezpieczeństwa sieci. Buduję
+                        własne środowiska Linux, konfiguruję infrastrukturę i testuję bezpieczeństwo
+                        aplikacji przez praktyczne projekty.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="hero-btn hero-btn-primary" href="#projects">VIEW OPERATIONS</a>
+                        <a
+                            class="hero-btn"
+                            href="https://github.com/HermanIS1"
+                            rel="noopener noreferrer"
+                            target="_blank"
+                        >
+                            GITHUB ↗
+                        </a>
+                        <a class="hero-btn" href="#contact">CONTACT</a>
+                    </div>
+                </div>
+                <div class="hero-portrait">
+                    <div aria-hidden="true" class="portrait-backdrop">H</div>
+                    <img alt="Herman" class="profile-img" src="images/profilowe.png" />
+                    <div class="profile-status">
+                        <span class="status-dot"></span>
+                        <span>NODE ONLINE</span>
+                    </div>
+                    <div aria-hidden="true" class="portrait-index">01</div>
+                </div>
+                <aside class="hero-hud">
+                    <div class="module-title">SYSTEM.PROFILE</div>
+                    <div class="hero-status-grid">
+                        <div class="hero-status-row">
+                            <span>STATUS</span>
+                            <strong class="status-online">ONLINE</strong>
                         </div>
-
-                        <div class="identity-module">
-                            <h1 class="hero-title">
-                                <span class="white">HER</span><span class="green">MAN</span>
-                            </h1>
-
-                            <div class="hero-claim">
-                                <div class="hero-line strong">Dobry w wielu rzeczach.</div>
-                                <div class="hero-line">Perfekcyjny w żadnej.</div>
-                                <div class="hero-line faded">Ale się staram.</div>
-                            </div>
+                        <div class="hero-status-row">
+                            <span>SYSTEM</span>
+                            <strong>FEDORA LINUX</strong>
                         </div>
-
-                        <div class="about-module">
-                            <div class="module-title">about.data</div>
-                            <p>
-                                Student informatyki. Interesuję się IT szeroko — od sprzętu po
-                                podstawy programowania. Składam i konfiguruję komputery, zajmuję się
-                                diagnostyką i naprawą sprzętu. Uczę się programowania!
-                            </p>
+                        <div class="hero-status-row">
+                            <span>FOCUS</span>
+                            <strong>NETWORK SECURITY</strong>
                         </div>
-
-                        <div class="terminal module-terminal">
-                            <pre id="terminal-text"></pre>
-
-                            <div class="terminal-input-line">
-                                <span>herman@dev:~$</span>
-                                <input id="terminal-input" />
-                                <span class="terminal-cursor">█</span>
-                            </div>
+                        <div class="hero-status-row">
+                            <span>ROLE</span>
+                            <strong>CS STUDENT</strong>
                         </div>
-
-                        <div class="social-module">
-                            <div class="social-cut"></div>
-
-                            <a
-                                href="https://github.com/HermanIS1"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="social-zone github-zone"
-                            >
-                                <svg class="social-logo github-logo" viewBox="0 0 24 24">
-                                    <path
-                                        fill="currentColor"
-                                        d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.207 11.385.6.111.793-.261.793-.579 0-.285-.011-1.04-.016-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.082-.729.082-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.492.998.108-.776.418-1.305.76-1.605-2.665-.303-5.466-1.332-5.466-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.655 1.653.243 2.874.119 3.176.77.84 1.235 1.91 1.235 3.221 0 4.61-2.805 5.625-5.475 5.921.43.37.814 1.102.814 2.222 0 1.604-.015 2.896-.015 3.286 0 .321.192.694.801.576C20.565 21.796 24 17.296 24 12c0-6.63-5.37-12-12-12z"
-                                    />
-                                </svg>
-
-                                <span class="social-text">GitHub</span>
-                                <span class="social-hover">kliknij, żeby przejść</span>
-                            </a>
-
-                            <div
-                                class="social-zone spotify-zone"
-                                id="spotify-widget"
-                                tabindex="0"
-                                aria-label="Spotify now playing"
-                            >
-                                <div class="spotify-mini">
-                                    <img
-                                        id="spotify-mini-cover"
-                                        class="spotify-mini-cover"
-                                        src="images/chivas-cover.png"
-                                        alt=""
-                                    />
-
-                                    <div class="spotify-mini-info">
-                                        <span id="spotify-mini-status" class="spotify-mini-status"
-                                            >SPOTIFY</span
-                                        >
-                                        <strong id="spotify-mini-title">loading...</strong>
-                                        <span id="spotify-mini-artist">---</span>
-                                    </div>
-                                </div>
-
-                                <div class="spotify-popup" id="spotify-popup">
-                                    <div class="spotify-popup-header">
-                                        <span>SPOTIFY // NOW PLAYING</span>
-                                        <span id="spotify-live-indicator">● LIVE</span>
-                                    </div>
-
-                                    <img
-                                        id="spotify-popup-cover"
-                                        class="spotify-popup-cover"
-                                        src="images/chivas-cover.png"
-                                        alt=""
-                                    />
-
-                                    <div class="spotify-popup-track">
-                                        <strong id="spotify-popup-title">loading...</strong>
-                                        <span id="spotify-popup-artist">---</span>
-                                        <small id="spotify-popup-album">---</small>
-                                    </div>
-
-                                    <div class="spotify-progress">
-                                        <div class="spotify-progress-track">
-                                            <div
-                                                id="spotify-progress-fill"
-                                                class="spotify-progress-fill"
-                                            ></div>
-                                        </div>
-
-                                        <div class="spotify-progress-times">
-                                            <span id="spotify-current-time">0:00</span>
-                                            <span id="spotify-duration">0:00</span>
-                                        </div>
-                                    </div>
-
-                                    <a
-                                        id="spotify-open-link"
-                                        class="spotify-open-link"
-                                        href="https://open.spotify.com/"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                    >
-                                        OPEN IN SPOTIFY ↗
-                                    </a>
-
-                                    <div class="spotify-lyrics" id="spotify-lyrics">
-                                        <div class="spotify-lyrics-label">LIVE LYRICS</div>
-
-                                        <p id="spotify-lyrics-prev" class="spotify-lyric previous">
-                                            ---
-                                        </p>
-                                        <p
-                                            id="spotify-lyrics-current"
-                                            class="spotify-lyric current"
-                                        >
-                                            SYNCING...
-                                        </p>
-                                        <p id="spotify-lyrics-next" class="spotify-lyric next">
-                                            ---
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="hero-status-row">
+                            <span>LOCATION</span>
+                            <strong>POLAND</strong>
                         </div>
                     </div>
-                </section>
-
-                <section id="projects" class="os-window section-box">
-                    <div class="window-bar">
-                        <span>projects.database</span>
-                        <div class="window-actions"><i></i><i></i><i></i></div>
+                </aside>
+                <div class="terminal module-terminal">
+                    <div class="terminal-head">
+                        <span>LOCAL.SHELL</span>
+                        <span>TTY01</span>
                     </div>
-
-                    <h3><span>01.</span> Projekty</h3>
-                    <div id="projects-preview" class="projects-grid"></div>
-
-                    <a href="projects.html" class="scroll">Zobacz wszystkie →</a>
-                </section>
-
-                <section id="skills" class="os-window section-box skills-window">
-                    <div class="window-bar">
-                        <span>installed.modules</span>
-                        <div class="window-actions"><i></i><i></i><i></i></div>
+                    <pre id="terminal-text"></pre>
+                    <div class="terminal-input-line">
+                        <span>herman@dev:~$</span>
+                        <input aria-label="Terminal input" id="terminal-input" />
+                        <span class="terminal-cursor">█</span>
                     </div>
-
-                    <div class="skills-console">
-                        <div class="skills-header">
-                            <h3>Umiem podstawy</h3>
-                            <span>STATUS: LEARNING</span>
-                        </div>
-
-                        <div class="skill-modules">
-                            <div class="skill-module">
-                                <div class="skill-top"><span>C</span><em>CORE</em></div>
-                                <div class="skill-bar">
-                                    <i class="skill-level skill-level-42"></i>
-                                </div>
-                                <p>syntax / pointers / basics</p>
-                            </div>
-
-                            <div class="skill-module">
-                                <div class="skill-top"><span>JavaScript</span><em>ACTIVE</em></div>
-                                <div class="skill-bar">
-                                    <i class="skill-level skill-level-55"></i>
-                                </div>
-                                <p>DOM / fetch / frontend logic</p>
-                            </div>
-
-                            <div class="skill-module">
-                                <div class="skill-top"><span>Node.js</span><em>SERVER</em></div>
-                                <div class="skill-bar">
-                                    <i class="skill-level skill-level-48"></i>
-                                </div>
-                                <p>Express / APIs / backend routes</p>
-                            </div>
-
-                            <div class="skill-module">
-                                <div class="skill-top"><span>HTML</span><em>STRUCTURE</em></div>
-                                <div class="skill-bar">
-                                    <i class="skill-level skill-level-70"></i>
-                                </div>
-                                <p>semantic layout / forms</p>
-                            </div>
-
-                            <div class="skill-module">
-                                <div class="skill-top"><span>CSS</span><em>VISUAL</em></div>
-                                <div class="skill-bar">
-                                    <i class="skill-level skill-level-65"></i>
-                                </div>
-                                <p>layout / effects / responsive</p>
+                </div>
+                <div class="social-module">
+                    <div class="social-cut"></div>
+                    <a
+                        class="social-zone github-zone"
+                        href="https://github.com/HermanIS1"
+                        rel="noopener noreferrer"
+                        target="_blank"
+                    >
+                        <svg class="social-logo github-logo" viewbox="0 0 24 24">
+                            <path
+                                d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.207 11.385.6.111.793-.261.793-.579 0-.285-.011-1.04-.016-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.082-.729.082-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.492.998.108-.776.418-1.305.76-1.605-2.665-.303-5.466-1.332-5.466-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.655 1.653.243 2.874.119 3.176.77.84 1.235 1.91 1.235 3.221 0 4.61-2.805 5.625-5.475 5.921.43.37.814 1.102.814 2.222 0 1.604-.015 2.896-.015 3.286 0 .321.192.694.801.576C20.565 21.796 24 17.296 24 12c0-6.63-5.37-12-12-12z"
+                                fill="currentColor"
+                            ></path>
+                        </svg>
+                        <span class="social-text">GitHub</span>
+                        <span class="social-hover">kliknij, żeby przejść</span>
+                    </a>
+                    <div
+                        aria-label="Spotify now playing"
+                        class="social-zone spotify-zone"
+                        id="spotify-widget"
+                        tabindex="0"
+                    >
+                        <div class="spotify-mini">
+                            <img
+                                alt=""
+                                class="spotify-mini-cover"
+                                id="spotify-mini-cover"
+                                src="images/chivas-cover.png"
+                            />
+                            <div class="spotify-mini-info">
+                                <span class="spotify-mini-status" id="spotify-mini-status"
+                                    >SPOTIFY</span
+                                >
+                                <strong id="spotify-mini-title">loading...</strong>
+                                <span id="spotify-mini-artist">---</span>
                             </div>
                         </div>
-                    </div>
-                </section>
-
-                <section id="contact" class="os-window section-box mail-window">
-                    <div class="window-bar">
-                        <span>mail.compose</span>
-                        <div class="window-actions"><i></i><i></i><i></i></div>
-                    </div>
-
-                    <div class="mail-layout">
-                        <aside class="mail-sidebar">
-                            <div class="mail-logo">HM</div>
-                            <div class="mail-folder active"><span>●</span> Compose</div>
-                            <div class="mail-folder"><span>○</span> Inbox</div>
-                            <div class="mail-folder"><span>○</span> Sent</div>
-                            <div class="mail-folder"><span>○</span> Drafts</div>
-                        </aside>
-
-                        <div class="mail-compose">
-                            <div class="mail-compose-top">
-                                <span>New encrypted message</span>
-                                <span>STATUS: READY</span>
+                        <div class="spotify-popup" id="spotify-popup">
+                            <div class="spotify-popup-header">
+                                <span>SPOTIFY // NOW PLAYING</span>
+                                <span id="spotify-live-indicator">● LIVE</span>
                             </div>
-
-                            <form id="contact-form" class="contact-form mail-form">
-                                <div class="mail-row">
-                                    <span>From</span>
-                                    <div class="mail-static">visitor@external.net</div>
-                                </div>
-
-                                <div class="mail-row">
-                                    <span>To</span>
-                                    <div class="mail-static">herman@hermanos.dev</div>
-                                </div>
-
-                                <div class="mail-row mail-input-row">
-                                    <label for="email">Twój e-mail</label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        required
-                                        placeholder="wpisz tutaj swój adres e-mail"
-                                    />
-                                </div>
-
-                                <div class="mail-subject">
-                                    <span>Subject</span>
-                                    <div>Portfolio contact protocol</div>
-                                </div>
-
-                                <div class="mail-body">
-                                    <label for="message">Message</label>
-                                    <textarea
-                                        id="message"
-                                        rows="8"
-                                        required
-                                        placeholder="Napisz wiadomość..."
-                                    ></textarea>
-                                </div>
-
-                                <div class="form-honeypot" aria-hidden="true">
-                                    <label for="website">Website</label>
-                                    <input
-                                        type="text"
-                                        id="website"
-                                        name="website"
-                                        tabindex="-1"
-                                        autocomplete="off"
-                                    />
-                                </div>
-
-                                <div class="mail-bottom">
-                                    <button type="submit" class="mail-send-btn">
-                                        SEND MESSAGE
-                                    </button>
+                            <img
+                                alt=""
+                                class="spotify-popup-cover"
+                                id="spotify-popup-cover"
+                                src="images/chivas-cover.png"
+                            />
+                            <div class="spotify-popup-track">
+                                <strong id="spotify-popup-title">loading...</strong>
+                                <span id="spotify-popup-artist">---</span>
+                                <small id="spotify-popup-album">---</small>
+                            </div>
+                            <div class="spotify-progress">
+                                <div class="spotify-progress-track">
                                     <div
-                                        id="form-status"
-                                        class="form-status"
-                                        role="status"
-                                        aria-live="polite"
+                                        class="spotify-progress-fill"
+                                        id="spotify-progress-fill"
                                     ></div>
                                 </div>
-                            </form>
+                                <div class="spotify-progress-times">
+                                    <span id="spotify-current-time">0:00</span>
+                                    <span id="spotify-duration">0:00</span>
+                                </div>
+                            </div>
+                            <a
+                                class="spotify-open-link"
+                                href="https://open.spotify.com/"
+                                id="spotify-open-link"
+                                rel="noopener noreferrer"
+                                target="_blank"
+                            >
+                                OPEN IN SPOTIFY ↗
+                            </a>
+                            <div class="spotify-lyrics" id="spotify-lyrics">
+                                <div class="spotify-lyrics-label">LIVE LYRICS</div>
+                                <p class="spotify-lyric previous" id="spotify-lyrics-prev">---</p>
+                                <p class="spotify-lyric current" id="spotify-lyrics-current">
+                                    SYNCING...
+                                </p>
+                                <p class="spotify-lyric next" id="spotify-lyrics-next">---</p>
+                            </div>
                         </div>
                     </div>
-                </section>
-            </main>
-
-            <div class="os-taskbar">
-                <div class="taskbar-left">
-                    <div class="taskbar-logo">H</div>
-                    <span>HERMANOS v2.1.3.7</span>
                 </div>
-
-                <nav class="taskbar-center">
-                    <a href="#projects">Projects</a>
-                    <a href="#skills">Skills</a>
-                    <a href="#contact">Contact</a>
-
-                    <a href="#" id="open-cv-btn">CV</a>
-
-                    <a href="#" id="secret-folder" class="secret-folder">
-                        <span>📁</span>
-                        <span>System</span>
-                    </a>
-                </nav>
-
-                <div class="taskbar-right">
-                    <span class="footer-status"></span>
-                    <span>ONLINE</span>
-                    <span id="taskbar-clock">00:00</span>
-                    <span id="taskbar-date">05.05.2026</span>
+                <div aria-hidden="true" class="hero-cutline"></div>
+                <div aria-hidden="true" class="hero-coordinate hero-coordinate-a">53.0138°N</div>
+                <div aria-hidden="true" class="hero-coordinate hero-coordinate-b">18.5984°E</div>
+            </section>
+            <div aria-hidden="true" class="breach-marquee">
+                <div>
+                    NETWORK SECURITY  ◆   LINUX INFRASTRUCTURE  ◆   APPSEC  ◆   FEDORA  ◆  
+                    WIRESHARK  ◆   NODE.JS  ◆   NETWORK SECURITY  ◆   LINUX INFRASTRUCTURE  ◆  
+                    APPSEC  ◆  
                 </div>
             </div>
-            <div id="secret-modal" class="secret-modal">
-                <div class="secret-modal-box">
-                    <div class="secret-modal-bar">
-                        <span>restricted.folder</span>
-                        <button type="button" id="secret-close">×</button>
+            <section class="breach-section breach-projects" id="projects">
+                <header class="section-head">
+                    <div>
+                        <span class="section-index">01 // OPERATIONS</span>
+                        <h2>SELECTED<br />PROJECTS</h2>
                     </div>
-
-                    <div class="secret-modal-content">
-                        <p class="secret-modal-title">ENTER ACCESS CODE</p>
-
+                    <p>
+                        Projekty, które najlepiej pokazują jak pracuję: Linux, infrastruktura,
+                        bezpieczeństwo i software.
+                    </p>
+                </header>
+                <div class="projects-grid" id="projects-preview"></div>
+                <a class="scroll" href="projects.html">OPEN FULL ARCHIVE →</a>
+            </section>
+            <section class="breach-section breach-skills" id="skills">
+                <header class="section-head section-head-right">
+                    <div>
+                        <span class="section-index">02 // CAPABILITY MATRIX</span>
+                        <h2>ACTIVE<br />MODULES</h2>
+                    </div>
+                    <p>
+                        Nie procenty z dupy — technologie, z którymi faktycznie pracuję albo których
+                        aktualnie się uczę.
+                    </p>
+                </header>
+                <div class="skills-console">
+                    <div class="skills-header">
+                        <span>MODULE REGISTRY</span>
+                        <span>STATUS // LIVE</span>
+                    </div>
+                    <div class="skill-modules">
+                        <article class="skill-module">
+                            <div class="skill-top"><span>Linux</span><em>ACTIVE</em></div>
+                            <p>Fedora KDE / systemd / BTRFS / SSH / shell</p>
+                        </article>
+                        <article class="skill-module">
+                            <div class="skill-top"><span>Networking</span><em>LEARNING</em></div>
+                            <p>TCP/IP / DNS / Wireshark / Tailscale / routing</p>
+                        </article>
+                        <article class="skill-module">
+                            <div class="skill-top"><span>AppSec</span><em>ACTIVE</em></div>
+                            <p>CSP / Helmet / Gitleaks / OWASP ZAP / rate limiting</p>
+                        </article>
+                        <article class="skill-module">
+                            <div class="skill-top"><span>Web</span><em>ACTIVE</em></div>
+                            <p>HTML / CSS / JavaScript / Node.js / Express</p>
+                        </article>
+                        <article class="skill-module">
+                            <div class="skill-top"><span>Tooling</span><em>DAILY</em></div>
+                            <p>Git / GitHub / npm / VS Code / Linux CLI</p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+            <section class="breach-section breach-contact" id="contact">
+                <div class="contact-copy">
+                    <span class="section-index">03 // TRANSMISSION</span>
+                    <h2>SEND<br /><span>SIGNAL.</span></h2>
+                    <p>
+                        Masz projekt, pytanie albo po prostu chcesz się odezwać? Kanał jest otwarty.
+                    </p>
+                    <div class="contact-meta">
+                        <span>CHANNEL // HTTPS</span>
+                        <span>STATUS // READY</span>
+                        <span>NODE // HERMAN</span>
+                    </div>
+                </div>
+                <form class="contact-form signal-form" id="contact-form">
+                    <div class="signal-field">
+                        <label for="email">01 // RETURN ADDRESS</label>
                         <input
-                            id="secret-password"
-                            type="password"
-                            placeholder="wpisz hasło..."
-                            autocomplete="off"
+                            autocomplete="email"
+                            id="email"
+                            placeholder="your@email.com"
+                            required=""
+                            type="email"
                         />
-
-                        <div class="secret-modal-actions">
-                            <button type="button" id="secret-submit">UNLOCK</button>
-                            <span id="secret-status"></span>
-                        </div>
+                    </div>
+                    <div class="signal-field signal-message">
+                        <label for="message">02 // PAYLOAD</label>
+                        <textarea
+                            id="message"
+                            placeholder="Napisz wiadomość..."
+                            required=""
+                            rows="8"
+                        ></textarea>
+                    </div>
+                    <div aria-hidden="true" class="form-honeypot">
+                        <label for="website">Website</label>
+                        <input
+                            autocomplete="off"
+                            id="website"
+                            name="website"
+                            tabindex="-1"
+                            type="text"
+                        />
+                    </div>
+                    <div class="signal-submit">
+                        <button class="mail-send-btn" type="submit">TRANSMIT MESSAGE</button>
+                        <div
+                            aria-live="polite"
+                            class="form-status"
+                            id="form-status"
+                            role="status"
+                        ></div>
+                    </div>
+                </form>
+            </section>
+            <footer class="breach-footer">
+                <span>HERMANOS // 2026</span>
+                <span>NETWORK SECURITY / LINUX / SOFTWARE</span>
+                <span>END OF TRANSMISSION</span>
+            </footer>
+        </main>
+        <div class="secret-modal" id="secret-modal">
+            <div class="secret-modal-box">
+                <div class="secret-modal-bar">
+                    <span>restricted.folder</span>
+                    <button id="secret-close" type="button">×</button>
+                </div>
+                <div class="secret-modal-content">
+                    <p class="secret-modal-title">ENTER ACCESS CODE</p>
+                    <input
+                        autocomplete="off"
+                        id="secret-password"
+                        placeholder="wpisz hasło..."
+                        type="password"
+                    />
+                    <div class="secret-modal-actions">
+                        <button id="secret-submit" type="button">UNLOCK</button>
+                        <span id="secret-status"></span>
                     </div>
                 </div>
             </div>
-            <div id="scroll-sigil">⛧</div>
         </div>
-        <div id="cv-modal-overlay" class="cv-overlay hidden">
-            <div class="os-window cv-window">
-                <div class="window-bar cv-bar">
-                    <span>C:\HermanOS\system32\personnel_record.exe</span>
-                    <div class="window-actions">
-                        <button type="button" id="cv-close-btn" class="close-btn">×</button>
-                    </div>
-                </div>
-
-                <div class="cv-layout">
-                    <aside class="cv-sidebar">
-                        <h2 class="cv-name">HERMAN</h2>
-                        <div class="cv-role">Student Informatyki / IT Enthusiast</div>
-
-                        <div class="cv-info-list">
-                            <p><span>></span> LOCATION: Toruń</p>
-                            <p><span>></span> TARGET: Cybersecurity</p>
-                        </div>
-
-                        <div class="cv-terminal-mini">
-                            > loading authentic data... > parsing skills.cfg... > system ready.
-                        </div>
-
-                        <div class="cv-download-info">
-                            <span class="cv-download-info-text">
-                                PEŁNA WERSJA DOKUMENTU<br />DOSTĘPNA PONIŻEJ
-                            </span>
-                        </div>
-
-                        <a href="Herman_CV.pdf" download class="mail-send-btn cv-download-btn"
-                            >DOWNLOAD .PDF</a
+        <div id="scroll-sigil">⛧</div>
+        <div class="cv-overlay hidden" id="cv-modal-overlay">
+            <div class="cv-window cv-v5">
+                <div class="cv-v5-topbar">
+                    <div class="cv-v5-path">C:\HERMANOS\SECURE\OPERATOR_DOSSIER.exe</div>
+                    <div class="cv-v5-classification">
+                        <span>CLASS // PERSONAL</span>
+                        <span>NODE // HERMAN</span>
+                        <button
+                            aria-label="Zamknij CV"
+                            class="close-btn"
+                            id="cv-close-btn"
+                            type="button"
                         >
+                            ×
+                        </button>
+                    </div>
+                </div>
+                <div class="cv-v5-layout">
+                    <aside class="cv-v5-identity">
+                        <div class="cv-v5-id-label">OPERATOR // 01</div>
+                        <div class="cv-v5-portrait">
+                            <div aria-hidden="true" class="cv-v5-portrait-mark">H</div>
+                            <img alt="Herman" src="images/profilowe.png" />
+                            <div class="cv-v5-online"><i></i> VERIFIED</div>
+                        </div>
+                        <h2 class="cv-name">HERMAN</h2>
+                        <p class="cv-v5-role">NETWORK SECURITY // LINUX // APPSEC</p>
+                        <div class="cv-v5-id-grid">
+                            <div><span>LOCATION</span><strong>POLAND</strong></div>
+                            <div><span>EDUCATION</span><strong>CS / UMK</strong></div>
+                            <div><span>SYSTEM</span><strong>FEDORA</strong></div>
+                            <div><span>TARGET</span><strong>NETWORK SECURITY</strong></div>
+                        </div>
+                        <div class="cv-v5-terminal">
+                            <div class="cv-v5-terminal-head">IDENTITY.CHECK</div>
+                            <p>&gt; profile loaded</p>
+                            <p>&gt; projects verified</p>
+                            <p>&gt; security focus active</p>
+                            <p class="cv-v5-terminal-ok">&gt; clearance granted_</p>
+                        </div>
+                        <a class="mail-send-btn cv-download-btn" download="" href="Herman_CV.pdf">
+                            DOWNLOAD FULL PDF
+                        </a>
                     </aside>
-
-                    <div class="cv-body">
-                        <div class="cv-section">
-                            <h3>[ EDUKACJA ]</h3>
-                            <p class="cv-highlight">Uniwersytet Mikołaja Kopernika w Toruniu</p>
-                            <p>Wydział Fizyki, Astronomii i Informatyki Stosowanej (WFAiIS)</p>
-                            <p>Kierunek: Informatyka Stosowana (Studia inżynierskie)</p>
+                    <div class="cv-v5-content">
+                        <header class="cv-v5-hero">
+                            <div>
+                                <span class="cv-v5-eyebrow">SECURE PERSONNEL RECORD // 2026</span>
+                                <h3>TECHNICAL<br /><b>PROFILE.</b></h3>
+                            </div>
+                            <p>
+                                Student Informatyki Stosowanej rozwijający się w kierunku
+                                bezpieczeństwa sieci. Linux, infrastruktura, web security i
+                                praktyczne projekty zamiast pustych pasków procentowych.
+                            </p>
+                        </header>
+                        <div class="cv-v5-matrix">
+                            <section class="cv-v5-panel cv-v5-education">
+                                <div class="cv-v5-panel-no">01</div>
+                                <span class="cv-v5-panel-label">EDUCATION</span>
+                                <h4>Uniwersytet Mikołaja Kopernika w Toruniu</h4>
+                                <p>WFAiIS // Informatyka Stosowana // studia inżynierskie</p>
+                            </section>
+                            <section class="cv-v5-panel cv-v5-focus">
+                                <div class="cv-v5-panel-no">02</div>
+                                <span class="cv-v5-panel-label">CURRENT FOCUS</span>
+                                <h4>Network Security</h4>
+                                <p>TCP/IP · DNS · Wireshark · Linux · hardening · AppSec</p>
+                            </section>
+                            <section class="cv-v5-panel cv-v5-stack">
+                                <div class="cv-v5-panel-no">03</div>
+                                <span class="cv-v5-panel-label">ACTIVE STACK</span>
+                                <div class="cv-v5-tags">
+                                    <span>Fedora</span>
+                                    <span>Linux</span>
+                                    <span>Node.js</span>
+                                    <span>Express</span>
+                                    <span>JavaScript</span>
+                                    <span>Git</span>
+                                    <span>Tailscale</span>
+                                    <span>Syncthing</span>
+                                    <span>OWASP ZAP</span>
+                                    <span>Gitleaks</span>
+                                </div>
+                            </section>
+                            <section class="cv-v5-panel cv-v5-projects">
+                                <div class="cv-v5-panel-no">04</div>
+                                <span class="cv-v5-panel-label">SELECTED OPERATIONS</span>
+                                <div class="cv-v5-project">
+                                    <span>01</span>
+                                    <div>
+                                        <strong>HERMAN Workstation // Linux Infrastructure</strong>
+                                        <p>
+                                            Fedora, BTRFS, SSH, Tailscale, Syncthing i automatyzacja
+                                            środowiska.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="cv-v5-project">
+                                    <span>02</span>
+                                    <div>
+                                        <strong>Portfolio // Security Rebuild</strong>
+                                        <p>
+                                            CSP, hardening, Gitleaks, ZAP i naprawa realnego bypassu
+                                            rate limitera.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="cv-v5-project">
+                                    <span>03</span>
+                                    <div>
+                                        <strong>Debloated Spotify Client</strong>
+                                        <p>
+                                            React, OAuth PKCE, Spotify Web API i Web Playback SDK.
+                                        </p>
+                                    </div>
+                                </div>
+                            </section>
                         </div>
-
-                        <div class="cv-section">
-                            <h3>[ STOS TECHNOLOGICZNY ]</h3>
-                            <ul class="cv-list">
-                                <li>
-                                    <span class="cv-highlight">Web Development:</span> HTML, CSS,
-                                    JavaScript (DOM, Fetch), Node.js (Express, REST API)
-                                </li>
-                                <li>
-                                    <span class="cv-highlight">Core:</span> Podstawy języka C
-                                    (wskaźniki, algorytmy, składnia)
-                                </li>
-                                <li>
-                                    <span class="cv-highlight">Hardware &amp; OS:</span> Składanie
-                                    PC, diagnostyka problemów, naprawa sprzętu, optymalizacja
-                                    systemów
-                                </li>
-                                <li>
-                                    <span class="cv-highlight">Narzędzia i środowisko:</span> Git,
-                                    GitHub, npm, Node, VSC, podstawy systemów Linux
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="cv-section">
-                            <h3>[ PROJEKTY ]</h3>
-                            <p class="cv-highlight">HermanOS Web Portfolio (v2)</p>
-                            <p class="cv-project-description">
-                                Własny, interaktywny interfejs webowy stylizowany na system
-                                operacyjny. Zintegrowany z API Spotify za pomocą Node.js.
-                            </p>
-
-                            <p class="cv-highlight">Debloated Spotify App</p>
-                            <p class="cv-project-description">
-                                Zoptymalizowana aplikacja webowa integrująca Spotify API. Skupiona
-                                na czystym przepływie danych i odczycie aktualnie odtwarzanych
-                                utworów.
-                            </p>
-
-                            <p class="cv-system-log">
-                                > SYS.LOG: Pozostałe projekty są aktualnie w fazie rozwoju i zostaną
-                                udostępnione wkrótce...
-                            </p>
-                        </div>
-
-                        <div class="cv-section cv-warning-box">
-                            <p class="cv-warning-title">[ SYS.WARNING: WIDOK SKRÓCONY ]</p>
-                            <p class="cv-warning-text">
-                                Powyższe dane to jedynie wyciąg z systemu. Aby zapoznać się z pełną
-                                historią, szczegółami projektów i kompletną listą umiejętności,
-                                pobierz autoryzowany plik PDF używając przycisku w panelu bocznym.
-                            </p>
+                        <div class="cv-v5-bottom">
+                            <span>STATUS // LEARNING</span>
+                            <span>PROFILE // ACTIVE</span>
+                            <span>FULL RECORD // PDF</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
         <div id="page-transition"></div>
-
         <script src="main.js"></script>
     </body>
 </html>
