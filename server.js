@@ -71,6 +71,12 @@ const contactLimiter = rateLimit({
 
     keyGenerator: (req) => {
         if (process.env.RENDER === 'true') {
+            console.log('IP DEBUG:', {
+                xff: req.get('X-Forwarded-For'),
+                cfConnectingIp: req.get('CF-Connecting-IP'),
+                remoteAddress: req.socket.remoteAddress,
+            });
+
             const forwardedFor = req.get('X-Forwarded-For');
 
             if (forwardedFor) {
@@ -80,10 +86,6 @@ const contactLimiter = rateLimit({
         }
 
         return ipKeyGenerator(req.socket.remoteAddress);
-    },
-
-    message: {
-        error: 'Za dużo prób. Spróbuj ponownie później.',
     },
 });
 
