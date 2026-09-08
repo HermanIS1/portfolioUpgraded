@@ -687,8 +687,7 @@ body::after {
     transition: 0.22s ease;
 }
 
-.github-zone,
-.spotify-zone {
+.github-zone {
     clip-path: none;
 }
 
@@ -703,8 +702,7 @@ body::after {
         inset 0 0 24px rgba(0, 255, 102, 0.08);
 }
 
-.github-zone::after,
-.spotify-zone::after {
+.github-zone::after {
     content: '';
     position: absolute;
     inset: 0;
@@ -771,71 +769,6 @@ body::after {
 .github-zone:hover .social-hover {
     opacity: 1;
     text-shadow: 0 0 8px rgba(0, 255, 102, 0.7);
-}
-
-.spotify-hover-card {
-    position: relative;
-    z-index: 7;
-    right: auto;
-    bottom: auto;
-
-    width: 100%;
-
-    display: grid;
-    grid-template-columns: 34px 1fr;
-    gap: 7px;
-    align-items: center;
-
-    padding: 7px;
-
-    opacity: 0.8;
-
-    background: rgba(0, 0, 0, 0.58);
-    border: 1px solid rgba(0, 255, 102, 0.28);
-
-    box-shadow:
-        0 0 10px rgba(0, 255, 102, 0.18),
-        inset 0 0 14px rgba(0, 255, 102, 0.04);
-}
-
-.spotify-zone:hover .spotify-hover-card {
-    opacity: 1;
-    border-color: rgba(0, 255, 102, 0.65);
-}
-
-.spotify-hover-card .spotify-cover {
-    width: 34px !important;
-    height: 34px !important;
-    object-fit: cover;
-    margin: 0 !important;
-    border-radius: 3px;
-    border: 1px solid rgba(0, 255, 102, 0.4);
-}
-
-.spotify-hover-card .spotify-label {
-    display: block;
-    margin-bottom: 2px;
-
-    font-size: 7px;
-    letter-spacing: 1px;
-    color: rgba(0, 255, 102, 0.6);
-}
-
-.spotify-hover-card .spotify-track {
-    display: block;
-    max-width: 72px;
-
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-
-    font-size: 9px;
-    color: var(--green);
-}
-
-.spotify-hover-card .spotify-track a {
-    color: var(--green) !important;
-    text-decoration: none !important;
 }
 
 /* ================= PROJECTS ================= */
@@ -1548,16 +1481,6 @@ body::after {
             0 0 30px rgba(0, 255, 102, 0.8),
             0 0 50px rgba(0, 255, 102, 0.6);
     }
-}
-
-.side-links-panel,
-.spotify-mini,
-.github-mini,
-.footer,
-.os-topbar,
-.terminal-dock-wrap,
-.dock-icon {
-    display: none !important;
 }
 
 /* ================= RESPONSIVE ================= */
@@ -2344,4 +2267,330 @@ body::after {
     color: rgba(234, 234, 234, 0.8);
     line-height: 1.6;
     margin-bottom: 0;
+}
+/* ======================================================
+   SPOTIFY V2
+   ====================================================== */
+
+.hero-window,
+.social-module {
+    overflow: visible;
+}
+
+/* ---------- MINI CARD ---------- */
+/* ---------- MINI CARD ---------- */
+
+.spotify-zone {
+    position: relative;
+    z-index: 20;
+
+    display: block;
+    min-height: 128px;
+    padding: 0;
+
+    overflow: visible;
+    clip-path: none;
+}
+
+.spotify-zone:hover,
+.spotify-zone:focus-within {
+    z-index: 50;
+}
+
+.spotify-mini {
+    position: absolute;
+    inset: 0;
+
+    overflow: hidden;
+
+    background: #050706;
+}
+
+.spotify-mini-cover {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border: 0;
+
+    filter: brightness(0.55) saturate(1.15);
+    transition:
+        transform 0.3s ease,
+        filter 0.3s ease;
+}
+
+.spotify-zone:hover .spotify-mini-cover {
+    transform: scale(1.06);
+    filter: brightness(0.68) saturate(1.25);
+}
+
+.spotify-mini::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.96) 0%,
+        rgba(0, 0, 0, 0.75) 32%,
+        rgba(0, 0, 0, 0.2) 68%,
+        transparent 100%
+    );
+
+    pointer-events: none;
+}
+
+.spotify-mini-info {
+    position: absolute;
+    z-index: 2;
+
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    min-width: 0;
+}
+
+.spotify-mini-status {
+    margin-bottom: 2px;
+
+    color: var(--green);
+
+    font-family: monospace;
+    font-size: 8px;
+    letter-spacing: 1.5px;
+
+    text-shadow: 0 0 8px rgba(0, 255, 102, 0.7);
+}
+
+#spotify-mini-title {
+    overflow: hidden;
+
+    color: #fff;
+
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.1;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    text-shadow: 0 2px 10px #000;
+}
+
+#spotify-mini-artist {
+    overflow: hidden;
+
+    color: var(--green);
+
+    font-family: monospace;
+    font-size: 11px;
+
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    text-shadow: 0 2px 10px #000;
+}
+/* ---------- BIG POPUP ---------- */
+
+.spotify-popup {
+    position: absolute;
+    z-index: 1000;
+
+    right: calc(100% + 14px);
+    bottom: 0;
+
+    width: 360px;
+    max-height: calc(100vh - 40px);
+    padding: 14px;
+
+    overflow-y: auto;
+
+    background: rgba(5, 8, 6, 0.98);
+    border: 1px solid rgba(0, 255, 102, 0.5);
+
+    box-shadow:
+        0 18px 50px rgba(0, 0, 0, 0.7),
+        0 0 28px rgba(0, 255, 102, 0.12);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateX(8px) scale(0.98);
+    pointer-events: none;
+
+    transition:
+        opacity 0.18s ease,
+        transform 0.18s ease,
+        visibility 0.18s ease;
+}
+
+.spotify-zone:hover .spotify-popup,
+.spotify-zone:focus-within .spotify-popup,
+.spotify-zone:focus .spotify-popup {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateX(0) scale(1);
+    pointer-events: auto;
+}
+
+.spotify-popup-header {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 12px;
+
+    color: var(--green);
+    font-family: monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.spotify-popup-cover {
+    display: block;
+
+    width: 100%;
+    aspect-ratio: 1;
+
+    object-fit: cover;
+
+    margin-bottom: 14px;
+}
+
+.spotify-popup-track {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.spotify-popup-track strong {
+    color: #fff;
+    font-size: 18px;
+}
+
+.spotify-popup-track span {
+    color: var(--green);
+}
+
+.spotify-popup-track small {
+    opacity: 0.55;
+}
+
+/* ---------- PROGRESS ---------- */
+
+.spotify-progress {
+    margin-top: 16px;
+}
+
+.spotify-progress-track {
+    width: 100%;
+    height: 4px;
+
+    overflow: hidden;
+
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.spotify-progress-fill {
+    width: 0;
+    height: 100%;
+
+    background: var(--green);
+
+    transition: width 0.5s linear;
+}
+
+.spotify-progress-times {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 5px;
+
+    font-family: monospace;
+    font-size: 10px;
+    opacity: 0.6;
+}
+
+/* ---------- OPEN BUTTON ---------- */
+
+.spotify-open-link {
+    display: block;
+
+    margin-top: 14px;
+    padding: 9px;
+
+    border: 1px solid rgba(0, 255, 102, 0.35);
+
+    color: var(--green);
+    font-family: monospace;
+    font-size: 11px;
+
+    text-align: center;
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.spotify-open-link:hover {
+    background: rgba(0, 255, 102, 0.08);
+    border-color: var(--green);
+
+    box-shadow: 0 0 14px rgba(0, 255, 102, 0.2);
+}
+
+/* ---------- LIVE LYRICS ---------- */
+
+.spotify-lyrics {
+    margin-top: 16px;
+    padding-top: 14px;
+
+    border-top: 1px dashed rgba(0, 255, 102, 0.25);
+
+    text-align: center;
+}
+
+.spotify-lyrics-label {
+    margin-bottom: 12px;
+
+    color: var(--green);
+    font-family: monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.spotify-lyric {
+    margin: 5px 0;
+
+    font-family: monospace;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+.spotify-lyric.previous,
+.spotify-lyric.next {
+    font-size: 10px;
+    opacity: 0.3;
+}
+
+.spotify-lyric.current {
+    color: var(--green);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    opacity: 1;
+
+    text-shadow: 0 0 10px rgba(0, 255, 102, 0.45);
 }

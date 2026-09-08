@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initReveal();
     initScrollSigil();
     initContactForm();
-    //initSpotify();
+    initSpotifyV2();
     initProjects();
     initTerminal();
     initTaskbarClock();
@@ -40,7 +40,7 @@ function initIntro() {
         '[FOUND] /api/projects endpoint',
         '[INJECT] loading interface payload',
         '[DECRYPT] visual_layer.css',
-        '[DECRYPT] spotify_module.js',
+        '[DECRYPT] interface_modules.js',
         '[AUTH] bypassing portfolio protection',
         '[BYPASS] injecting HermanOS kernel',
         '[MOUNT] /public/index.html',
@@ -222,66 +222,6 @@ function initContactForm() {
     });
 }
 
-/* ================= SPOTIFY ================= */
-
-async function fetchSpotify() {
-    const track = document.querySelector('.spotify-track');
-    const cover = document.querySelector('.spotify-cover');
-    const label = document.querySelector('.spotify-label');
-
-    if (!track || !cover || !label) return;
-
-    try {
-        const res = await fetch('/api/spotify');
-
-        if (!res.ok) {
-            throw new Error(`Spotify request failed: ${res.status}`);
-        }
-
-        const data = await res.json();
-
-        if (data.isPlaying) {
-            label.textContent = 'NOW PLAYING';
-
-            const trackText = `${data.artist || 'Unknown artist'} – ${
-                data.title || 'Unknown track'
-            }`;
-
-            track.replaceChildren();
-
-            try {
-                const songUrl = new URL(data.songUrl);
-
-                if (['http:', 'https:'].includes(songUrl.protocol)) {
-                    const link = document.createElement('a');
-
-                    link.href = songUrl.href;
-                    link.textContent = trackText;
-                    link.target = '_blank';
-                    link.rel = 'noopener noreferrer';
-                    link.className = 'spotify-track-link';
-
-                    track.append(link);
-                } else {
-                    track.textContent = trackText;
-                }
-            } catch {
-                track.textContent = trackText;
-            }
-
-            if (data.albumImageUrl) {
-                cover.src = data.albumImageUrl;
-            }
-        } else {
-            label.textContent = 'PAUSED';
-            track.textContent = 'nic nie leci';
-            cover.src = 'images/chivas-cover.png';
-        }
-    } catch (err) {
-        console.error('Spotify error:', err);
-    }
-}
-
 /* ================= PROJECTS ================= */
 
 function initProjects() {
@@ -449,7 +389,7 @@ function initTerminal() {
     const lines = [
         'herman@dev:~$ boot portfolio',
         'loading modules...',
-        'spotify connected',
+        'security modules loaded',
         'projects loaded',
         'welcome back, herman',
     ];
@@ -635,3 +575,183 @@ function initCVModal() {
 document.addEventListener('DOMContentLoaded', () => {
     initCVModal();
 });
+
+/* ================= SPOTIFY V2 ================= */
+
+let spotifyState = null;
+let spotifyProgressTimer = null;
+
+function formatSpotifyTime(milliseconds) {
+    const totalSeconds = Math.max(0, Math.floor(milliseconds / 1000));
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = String(totalSeconds % 60).padStart(2, '0');
+
+    return `${minutes}:${seconds}`;
+}
+
+function getSpotifyProgress() {
+    if (!spotifyState) return 0;
+
+    let progress = spotifyState.progressMs || 0;
+
+    if (spotifyState.isPlaying) {
+        progress += Date.now() - spotifyState.receivedAt;
+    }
+
+    return Math.min(progress, spotifyState.durationMs || progress);
+}
+
+function updateSpotifyProgress() {
+    if (!spotifyState) return;
+
+    const fill = document.getElementById('spotify-progress-fill');
+    const currentTime = document.getElementById('spotify-current-time');
+    const duration = document.getElementById('spotify-duration');
+
+    if (!fill || !currentTime || !duration) return;
+
+    const progress = getSpotifyProgress();
+    const durationMs = spotifyState.durationMs || 0;
+
+    const percentage = durationMs > 0 ? Math.min((progress / durationMs) * 100, 100) : 0;
+
+    fill.style.width = `${percentage}%`;
+
+    currentTime.textContent = formatSpotifyTime(progress);
+    duration.textContent = formatSpotifyTime(durationMs);
+    updateSpotifyLyrics();
+}
+function updateSpotifyLyrics() {
+    if (!spotifyState?.lyrics?.length) return;
+
+    const previous = document.getElementById('spotify-lyrics-prev');
+    const current = document.getElementById('spotify-lyrics-current');
+    const next = document.getElementById('spotify-lyrics-next');
+
+    if (!previous || !current || !next) return;
+
+    const progress = getSpotifyProgress();
+
+    let currentIndex = 0;
+
+    for (let i = 0; i < spotifyState.lyrics.length; i++) {
+        if (spotifyState.lyrics[i].timeMs <= progress) {
+            currentIndex = i;
+        } else {
+            break;
+        }
+    }
+
+    previous.textContent = spotifyState.lyrics[currentIndex - 1]?.text || '';
+
+    current.textContent = spotifyState.lyrics[currentIndex]?.text || '---';
+
+    next.textContent = spotifyState.lyrics[currentIndex + 1]?.text || '';
+}
+
+function renderSpotify(data) {
+    const miniCover = document.getElementById('spotify-mini-cover');
+    const miniStatus = document.getElementById('spotify-mini-status');
+    const miniTitle = document.getElementById('spotify-mini-title');
+    const miniArtist = document.getElementById('spotify-mini-artist');
+
+    const popupCover = document.getElementById('spotify-popup-cover');
+    const popupTitle = document.getElementById('spotify-popup-title');
+    const popupArtist = document.getElementById('spotify-popup-artist');
+    const popupAlbum = document.getElementById('spotify-popup-album');
+
+    const liveIndicator = document.getElementById('spotify-live-indicator');
+    const openLink = document.getElementById('spotify-open-link');
+
+    if (
+        !miniCover ||
+        !miniStatus ||
+        !miniTitle ||
+        !miniArtist ||
+        !popupCover ||
+        !popupTitle ||
+        !popupArtist ||
+        !popupAlbum ||
+        !liveIndicator ||
+        !openLink
+    ) {
+        return;
+    }
+
+    if (!data.isPlaying && !data.title) {
+        miniStatus.textContent = 'SPOTIFY IDLE';
+        miniTitle.textContent = 'nothing playing';
+        miniArtist.textContent = '---';
+
+        liveIndicator.textContent = '○ IDLE';
+
+        return;
+    }
+
+    const cover = data.albumImageUrl || '/images/chivas-cover.png';
+
+    miniCover.src = cover;
+    popupCover.src = cover;
+
+    miniTitle.textContent = data.title || 'Unknown track';
+    miniArtist.textContent = data.artist || 'Unknown artist';
+
+    popupTitle.textContent = data.title || 'Unknown track';
+    popupArtist.textContent = data.artist || 'Unknown artist';
+    popupAlbum.textContent = data.album || 'Unknown album';
+
+    miniStatus.textContent = data.isPlaying ? 'NOW PLAYING' : 'PAUSED';
+    liveIndicator.textContent = data.isPlaying ? '● LIVE' : 'Ⅱ PAUSED';
+
+    if (data.songUrl) {
+        try {
+            const url = new URL(data.songUrl);
+
+            if (['http:', 'https:'].includes(url.protocol)) {
+                openLink.href = url.href;
+            }
+        } catch {
+            openLink.href = 'https://open.spotify.com/';
+        }
+    }
+
+    spotifyState = {
+        isPlaying: Boolean(data.isPlaying),
+        progressMs: Number(data.progressMs) || 0,
+        durationMs: Number(data.durationMs) || 0,
+        receivedAt: Date.now(),
+        lyrics: Array.isArray(data.lyrics) ? data.lyrics : [],
+    };
+
+    updateSpotifyProgress();
+}
+
+async function fetchSpotifyV2() {
+    try {
+        const response = await fetch('/api/spotify/now-playing');
+
+        if (!response.ok) {
+            throw new Error(`Spotify request failed: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        renderSpotify(data);
+    } catch (error) {
+        console.error('Spotify V2 error:', error.message);
+
+        const status = document.getElementById('spotify-mini-status');
+
+        if (status) {
+            status.textContent = 'SPOTIFY OFFLINE';
+        }
+    }
+}
+
+function initSpotifyV2() {
+    fetchSpotifyV2();
+
+    setInterval(fetchSpotifyV2, 10_000);
+
+    spotifyProgressTimer = setInterval(updateSpotifyProgress, 500);
+}

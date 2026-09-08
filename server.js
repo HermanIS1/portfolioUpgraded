@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+const { getNowPlaying } = require('./services/spotify');
 const path = require('path');
 const express = require('express');
 const helmet = require('helmet');
@@ -151,6 +152,20 @@ app.post('/api/contact', contactLimiter, async (req, res) => {
 
         return res.status(500).json({
             error: 'Błąd serwera.',
+        });
+    }
+});
+
+app.get('/api/spotify/now-playing', async (req, res) => {
+    try {
+        const nowPlaying = await getNowPlaying();
+
+        return res.status(200).json(nowPlaying);
+    } catch (error) {
+        console.error('Spotify error:', error?.message || 'Unknown Spotify error');
+
+        return res.status(503).json({
+            error: 'Spotify temporarily unavailable.',
         });
     }
 });

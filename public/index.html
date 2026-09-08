@@ -150,25 +150,87 @@
                                 <span class="social-hover">kliknij, żeby przejść</span>
                             </a>
 
-                            <div class="social-zone spotify-zone">
-                                <svg class="social-logo spotify-logo" viewBox="0 0 24 24">
-                                    <path
-                                        fill="currentColor"
-                                        d="M12 0C5.37 0 0 5.373 0 12c0 6.627 5.37 12 12 12s12-5.373 12-12C24 5.373 18.63 0 12 0zm5.52 17.34c-.22.36-.69.48-1.05.27-2.87-1.76-6.49-2.16-10.77-1.2-.41.09-.82-.17-.91-.58-.09-.41.17-.82.58-.91 4.66-1.04 8.66-.58 11.88 1.38.36.22.48.69.27 1.05zm1.5-3.34c-.27.44-.85.58-1.29.31-3.29-2.02-8.32-2.61-12.21-1.43-.5.15-1.02-.13-1.17-.63-.15-.5.13-1.02.63-1.17 4.36-1.32 9.86-.68 13.78 1.69.44.27.58.85.31 1.29zm.13-3.5c-3.95-2.34-10.48-2.56-14.23-1.38-.6.18-1.23-.15-1.41-.75-.18-.6.15-1.23.75-1.41 4.28-1.29 11.4-1.04 15.74 1.56.54.32.71 1.01.39 1.55-.32.54-1.01.71-1.55.39z"
-                                    />
-                                </svg>
-
-                                <span class="social-text">Spotify</span>
-
-                                <div class="social-hover spotify-hover-card">
+                            <div
+                                class="social-zone spotify-zone"
+                                id="spotify-widget"
+                                tabindex="0"
+                                aria-label="Spotify now playing"
+                            >
+                                <div class="spotify-mini">
                                     <img
-                                        class="spotify-cover"
+                                        id="spotify-mini-cover"
+                                        class="spotify-mini-cover"
                                         src="images/chivas-cover.png"
                                         alt=""
                                     />
-                                    <div>
-                                        <span class="spotify-label">NOW PLAYING</span>
-                                        <span class="spotify-track">loading...</span>
+
+                                    <div class="spotify-mini-info">
+                                        <span id="spotify-mini-status" class="spotify-mini-status"
+                                            >SPOTIFY</span
+                                        >
+                                        <strong id="spotify-mini-title">loading...</strong>
+                                        <span id="spotify-mini-artist">---</span>
+                                    </div>
+                                </div>
+
+                                <div class="spotify-popup" id="spotify-popup">
+                                    <div class="spotify-popup-header">
+                                        <span>SPOTIFY // NOW PLAYING</span>
+                                        <span id="spotify-live-indicator">● LIVE</span>
+                                    </div>
+
+                                    <img
+                                        id="spotify-popup-cover"
+                                        class="spotify-popup-cover"
+                                        src="images/chivas-cover.png"
+                                        alt=""
+                                    />
+
+                                    <div class="spotify-popup-track">
+                                        <strong id="spotify-popup-title">loading...</strong>
+                                        <span id="spotify-popup-artist">---</span>
+                                        <small id="spotify-popup-album">---</small>
+                                    </div>
+
+                                    <div class="spotify-progress">
+                                        <div class="spotify-progress-track">
+                                            <div
+                                                id="spotify-progress-fill"
+                                                class="spotify-progress-fill"
+                                            ></div>
+                                        </div>
+
+                                        <div class="spotify-progress-times">
+                                            <span id="spotify-current-time">0:00</span>
+                                            <span id="spotify-duration">0:00</span>
+                                        </div>
+                                    </div>
+
+                                    <a
+                                        id="spotify-open-link"
+                                        class="spotify-open-link"
+                                        href="https://open.spotify.com/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        OPEN IN SPOTIFY ↗
+                                    </a>
+
+                                    <div class="spotify-lyrics" id="spotify-lyrics">
+                                        <div class="spotify-lyrics-label">LIVE LYRICS</div>
+
+                                        <p id="spotify-lyrics-prev" class="spotify-lyric previous">
+                                            ---
+                                        </p>
+                                        <p
+                                            id="spotify-lyrics-current"
+                                            class="spotify-lyric current"
+                                        >
+                                            SYNCING...
+                                        </p>
+                                        <p id="spotify-lyrics-next" class="spotify-lyric next">
+                                            ---
+                                        </p>
                                     </div>
                                 </div>
                             </div>
