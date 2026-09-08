@@ -24,8 +24,23 @@ app.set('trust proxy', 1);
 
 app.use(
     helmet({
-        // Włączymy restrykcyjne CSP po posprzątaniu frontendu.
-        contentSecurityPolicy: false,
+        contentSecurityPolicy: {
+            directives: {
+                defaultSrc: ["'self'"],
+                scriptSrc: ["'self'"],
+                styleSrc: ["'self'", 'https://fonts.googleapis.com'],
+                fontSrc: ["'self'", 'https://fonts.gstatic.com'],
+                imgSrc: ["'self'", 'data:', 'https://i.scdn.co'],
+                connectSrc: ["'self'"],
+                objectSrc: ["'none'"],
+                baseUri: ["'self'"],
+                frameAncestors: ["'none'"],
+                formAction: ["'self'"],
+            },
+        },
+        frameguard: {
+            action: 'deny',
+        },
     })
 );
 

@@ -1,542 +1,487 @@
 <!doctype html>
 <html lang="pl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Portfolio Hermana – student informatyki. Projekty programistyczne, Node.js, JavaScript, IT i technologie."
-    />
-    <meta
-      name="keywords"
-      content="portfolio, programming, javascript, nodejs, IT, developer, herman"
-    />
-    <meta name="author" content="Herman" />
-    <meta property="og:title" content="Herman – Portfolio" />
-    <meta
-      property="og:description"
-      content="IT / Games / Programming. Projekty, kod i technologie."
-    />
-    <meta property="og:image" content="/images/preview.png" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://hermanportfolio.pl" />
-    <title>Portfolio | Herman</title>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="Portfolio Hermana – student informatyki. Projekty programistyczne, Node.js, JavaScript, IT i technologie."
+        />
+        <meta
+            name="keywords"
+            content="portfolio, programming, javascript, nodejs, IT, developer, herman"
+        />
+        <meta name="author" content="Herman" />
+        <meta property="og:title" content="Herman – Portfolio" />
+        <meta
+            property="og:description"
+            content="IT / Games / Programming. Projekty, kod i technologie."
+        />
+        <meta property="og:image" content="/images/preview.png" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://hermanportfolio.pl" />
+        <title>Portfolio | Herman</title>
 
-    <link rel="icon" href="images/favicon.ico" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" href="style.css" as="style" />
-    <link rel="stylesheet" href="style.css" />
+        <link rel="icon" href="images/favicon.ico" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preload" href="style.css" as="style" />
+        <link rel="stylesheet" href="style.css" />
 
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Inter:wght@400;500&display=swap"
-      onload="
-        this.onload = null;
-        this.rel = 'stylesheet';
-      "
-    />
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Inter:wght@400;500&display=swap"
+        />
+    </head>
 
-    <noscript>
-      <link
-        href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=Inter:wght@400;500&display=swap"
-        rel="stylesheet"
-      />
-    </noscript>
-  </head>
+    <body>
+        <div id="cursor-glow"></div>
 
-  <body>
-    <div id="cursor-glow"></div>
+        <div id="intro-screen">
+            <div class="hack-phase" id="hack-phase">
+                <div class="hack-corner top-left"></div>
+                <div class="hack-corner top-right"></div>
+                <div class="hack-corner bottom-left"></div>
+                <div class="hack-corner bottom-right"></div>
 
-    <div id="intro-screen">
-      <div class="hack-phase" id="hack-phase">
-        <div class="hack-corner top-left"></div>
-        <div class="hack-corner top-right"></div>
-        <div class="hack-corner bottom-left"></div>
-        <div class="hack-corner bottom-right"></div>
+                <div class="hack-header">
+                    <span>HERMANOS BREACH PROTOCOL</span>
+                    <span>v2.1.3.7</span>
+                </div>
 
-        <div class="hack-header">
-          <span>HERMANOS BREACH PROTOCOL</span>
-          <span>v2.1.3.7</span>
+                <div class="hack-center">
+                    <div class="hack-label">HACKING PORTFOLIO INTERFACE</div>
+                    <div class="hack-percent" id="hack-percent">0%</div>
+                    <div class="hack-bar"><div id="hack-progress"></div></div>
+                    <pre id="hack-log"></pre>
+                </div>
+
+                <div class="hack-warning">SYSTEM OVERRIDE IN PROGRESS</div>
+            </div>
+
+            <div class="access-phase" id="access-phase">
+                <div class="access-window">
+                    <div class="access-top">
+                        <span>HERMANOS</span>
+                        <span>SECURE SESSION</span>
+                    </div>
+
+                    <h1>ACCESS GRANTED</h1>
+
+                    <div class="access-data">
+                        <p>USER: HERMAN</p>
+                        <p>MODE: DEVELOPER</p>
+                        <p>STATUS: ONLINE</p>
+                        <p>BUILD: v2.1.3.7</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="hack-center">
-          <div class="hack-label">HACKING PORTFOLIO INTERFACE</div>
-          <div class="hack-percent" id="hack-percent">0%</div>
-          <div class="hack-bar"><div id="hack-progress"></div></div>
-          <pre id="hack-log"></pre>
+        <div class="os-shell">
+            <main class="os-desktop">
+                <section class="os-window hero-window">
+                    <div class="window-bar">
+                        <span>user_profile.exe</span>
+                        <div class="window-actions"><i></i><i></i><i></i></div>
+                    </div>
+
+                    <div class="hero-system-grid">
+                        <div class="profile-module">
+                            <div class="photo-wrap">
+                                <img
+                                    src="images/profilowe.png"
+                                    class="profile-img circle"
+                                    alt="Herman"
+                                />
+                            </div>
+
+                            <p class="hero-role">IT / Games / Programming</p>
+                        </div>
+
+                        <div class="identity-module">
+                            <h1 class="hero-title">
+                                <span class="white">HER</span><span class="green">MAN</span>
+                            </h1>
+
+                            <div class="hero-claim">
+                                <div class="hero-line strong">Dobry w wielu rzeczach.</div>
+                                <div class="hero-line">Perfekcyjny w żadnej.</div>
+                                <div class="hero-line faded">Ale się staram.</div>
+                            </div>
+                        </div>
+
+                        <div class="about-module">
+                            <div class="module-title">about.data</div>
+                            <p>
+                                Student informatyki. Interesuję się IT szeroko — od sprzętu po
+                                podstawy programowania. Składam i konfiguruję komputery, zajmuję się
+                                diagnostyką i naprawą sprzętu. Uczę się programowania!
+                            </p>
+                        </div>
+
+                        <div class="terminal module-terminal">
+                            <pre id="terminal-text"></pre>
+
+                            <div class="terminal-input-line">
+                                <span>herman@dev:~$</span>
+                                <input id="terminal-input" />
+                                <span class="terminal-cursor">█</span>
+                            </div>
+                        </div>
+
+                        <div class="social-module">
+                            <div class="social-cut"></div>
+
+                            <a
+                                href="https://github.com/HermanIS1"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="social-zone github-zone"
+                            >
+                                <svg class="social-logo github-logo" viewBox="0 0 24 24">
+                                    <path
+                                        fill="currentColor"
+                                        d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.207 11.385.6.111.793-.261.793-.579 0-.285-.011-1.04-.016-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.082-.729.082-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.492.998.108-.776.418-1.305.76-1.605-2.665-.303-5.466-1.332-5.466-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.655 1.653.243 2.874.119 3.176.77.84 1.235 1.91 1.235 3.221 0 4.61-2.805 5.625-5.475 5.921.43.37.814 1.102.814 2.222 0 1.604-.015 2.896-.015 3.286 0 .321.192.694.801.576C20.565 21.796 24 17.296 24 12c0-6.63-5.37-12-12-12z"
+                                    />
+                                </svg>
+
+                                <span class="social-text">GitHub</span>
+                                <span class="social-hover">kliknij, żeby przejść</span>
+                            </a>
+
+                            <div class="social-zone spotify-zone">
+                                <svg class="social-logo spotify-logo" viewBox="0 0 24 24">
+                                    <path
+                                        fill="currentColor"
+                                        d="M12 0C5.37 0 0 5.373 0 12c0 6.627 5.37 12 12 12s12-5.373 12-12C24 5.373 18.63 0 12 0zm5.52 17.34c-.22.36-.69.48-1.05.27-2.87-1.76-6.49-2.16-10.77-1.2-.41.09-.82-.17-.91-.58-.09-.41.17-.82.58-.91 4.66-1.04 8.66-.58 11.88 1.38.36.22.48.69.27 1.05zm1.5-3.34c-.27.44-.85.58-1.29.31-3.29-2.02-8.32-2.61-12.21-1.43-.5.15-1.02-.13-1.17-.63-.15-.5.13-1.02.63-1.17 4.36-1.32 9.86-.68 13.78 1.69.44.27.58.85.31 1.29zm.13-3.5c-3.95-2.34-10.48-2.56-14.23-1.38-.6.18-1.23-.15-1.41-.75-.18-.6.15-1.23.75-1.41 4.28-1.29 11.4-1.04 15.74 1.56.54.32.71 1.01.39 1.55-.32.54-1.01.71-1.55.39z"
+                                    />
+                                </svg>
+
+                                <span class="social-text">Spotify</span>
+
+                                <div class="social-hover spotify-hover-card">
+                                    <img
+                                        class="spotify-cover"
+                                        src="images/chivas-cover.png"
+                                        alt=""
+                                    />
+                                    <div>
+                                        <span class="spotify-label">NOW PLAYING</span>
+                                        <span class="spotify-track">loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="projects" class="os-window section-box">
+                    <div class="window-bar">
+                        <span>projects.database</span>
+                        <div class="window-actions"><i></i><i></i><i></i></div>
+                    </div>
+
+                    <h3><span>01.</span> Projekty</h3>
+                    <div id="projects-preview" class="projects-grid"></div>
+
+                    <a href="projects.html" class="scroll">Zobacz wszystkie →</a>
+                </section>
+
+                <section id="skills" class="os-window section-box skills-window">
+                    <div class="window-bar">
+                        <span>installed.modules</span>
+                        <div class="window-actions"><i></i><i></i><i></i></div>
+                    </div>
+
+                    <div class="skills-console">
+                        <div class="skills-header">
+                            <h3>Umiem podstawy</h3>
+                            <span>STATUS: LEARNING</span>
+                        </div>
+
+                        <div class="skill-modules">
+                            <div class="skill-module">
+                                <div class="skill-top"><span>C</span><em>CORE</em></div>
+                                <div class="skill-bar">
+                                    <i class="skill-level skill-level-42"></i>
+                                </div>
+                                <p>syntax / pointers / basics</p>
+                            </div>
+
+                            <div class="skill-module">
+                                <div class="skill-top"><span>JavaScript</span><em>ACTIVE</em></div>
+                                <div class="skill-bar">
+                                    <i class="skill-level skill-level-55"></i>
+                                </div>
+                                <p>DOM / fetch / frontend logic</p>
+                            </div>
+
+                            <div class="skill-module">
+                                <div class="skill-top"><span>Node.js</span><em>SERVER</em></div>
+                                <div class="skill-bar">
+                                    <i class="skill-level skill-level-48"></i>
+                                </div>
+                                <p>Express / APIs / backend routes</p>
+                            </div>
+
+                            <div class="skill-module">
+                                <div class="skill-top"><span>HTML</span><em>STRUCTURE</em></div>
+                                <div class="skill-bar">
+                                    <i class="skill-level skill-level-70"></i>
+                                </div>
+                                <p>semantic layout / forms</p>
+                            </div>
+
+                            <div class="skill-module">
+                                <div class="skill-top"><span>CSS</span><em>VISUAL</em></div>
+                                <div class="skill-bar">
+                                    <i class="skill-level skill-level-65"></i>
+                                </div>
+                                <p>layout / effects / responsive</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="contact" class="os-window section-box mail-window">
+                    <div class="window-bar">
+                        <span>mail.compose</span>
+                        <div class="window-actions"><i></i><i></i><i></i></div>
+                    </div>
+
+                    <div class="mail-layout">
+                        <aside class="mail-sidebar">
+                            <div class="mail-logo">HM</div>
+                            <div class="mail-folder active"><span>●</span> Compose</div>
+                            <div class="mail-folder"><span>○</span> Inbox</div>
+                            <div class="mail-folder"><span>○</span> Sent</div>
+                            <div class="mail-folder"><span>○</span> Drafts</div>
+                        </aside>
+
+                        <div class="mail-compose">
+                            <div class="mail-compose-top">
+                                <span>New encrypted message</span>
+                                <span>STATUS: READY</span>
+                            </div>
+
+                            <form id="contact-form" class="contact-form mail-form">
+                                <div class="mail-row">
+                                    <span>From</span>
+                                    <div class="mail-static">visitor@external.net</div>
+                                </div>
+
+                                <div class="mail-row">
+                                    <span>To</span>
+                                    <div class="mail-static">herman@hermanos.dev</div>
+                                </div>
+
+                                <div class="mail-row mail-input-row">
+                                    <label for="email">Twój e-mail</label>
+                                    <input
+                                        type="email"
+                                        id="email"
+                                        required
+                                        placeholder="wpisz tutaj swój adres e-mail"
+                                    />
+                                </div>
+
+                                <div class="mail-subject">
+                                    <span>Subject</span>
+                                    <div>Portfolio contact protocol</div>
+                                </div>
+
+                                <div class="mail-body">
+                                    <label for="message">Message</label>
+                                    <textarea
+                                        id="message"
+                                        rows="8"
+                                        required
+                                        placeholder="Napisz wiadomość..."
+                                    ></textarea>
+                                </div>
+
+                                <div class="form-honeypot" aria-hidden="true">
+                                    <label for="website">Website</label>
+                                    <input
+                                        type="text"
+                                        id="website"
+                                        name="website"
+                                        tabindex="-1"
+                                        autocomplete="off"
+                                    />
+                                </div>
+
+                                <div class="mail-bottom">
+                                    <button type="submit" class="mail-send-btn">
+                                        SEND MESSAGE
+                                    </button>
+                                    <div
+                                        id="form-status"
+                                        class="form-status"
+                                        role="status"
+                                        aria-live="polite"
+                                    ></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <div class="os-taskbar">
+                <div class="taskbar-left">
+                    <div class="taskbar-logo">H</div>
+                    <span>HERMANOS v2.1.3.7</span>
+                </div>
+
+                <nav class="taskbar-center">
+                    <a href="#projects">Projects</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#contact">Contact</a>
+
+                    <a href="#" id="open-cv-btn">CV</a>
+
+                    <a href="#" id="secret-folder" class="secret-folder">
+                        <span>📁</span>
+                        <span>System</span>
+                    </a>
+                </nav>
+
+                <div class="taskbar-right">
+                    <span class="footer-status"></span>
+                    <span>ONLINE</span>
+                    <span id="taskbar-clock">00:00</span>
+                    <span id="taskbar-date">05.05.2026</span>
+                </div>
+            </div>
+            <div id="secret-modal" class="secret-modal">
+                <div class="secret-modal-box">
+                    <div class="secret-modal-bar">
+                        <span>restricted.folder</span>
+                        <button type="button" id="secret-close">×</button>
+                    </div>
+
+                    <div class="secret-modal-content">
+                        <p class="secret-modal-title">ENTER ACCESS CODE</p>
+
+                        <input
+                            id="secret-password"
+                            type="password"
+                            placeholder="wpisz hasło..."
+                            autocomplete="off"
+                        />
+
+                        <div class="secret-modal-actions">
+                            <button type="button" id="secret-submit">UNLOCK</button>
+                            <span id="secret-status"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="scroll-sigil">⛧</div>
+        </div>
+        <div id="cv-modal-overlay" class="cv-overlay hidden">
+            <div class="os-window cv-window">
+                <div class="window-bar cv-bar">
+                    <span>C:\HermanOS\system32\personnel_record.exe</span>
+                    <div class="window-actions">
+                        <button type="button" id="cv-close-btn" class="close-btn">×</button>
+                    </div>
+                </div>
+
+                <div class="cv-layout">
+                    <aside class="cv-sidebar">
+                        <h2 class="cv-name">HERMAN</h2>
+                        <div class="cv-role">Student Informatyki / IT Enthusiast</div>
+
+                        <div class="cv-info-list">
+                            <p><span>></span> LOCATION: Toruń</p>
+                            <p><span>></span> TARGET: Cybersecurity</p>
+                        </div>
+
+                        <div class="cv-terminal-mini">
+                            > loading authentic data... > parsing skills.cfg... > system ready.
+                        </div>
+
+                        <div class="cv-download-info">
+                            <span class="cv-download-info-text">
+                                PEŁNA WERSJA DOKUMENTU<br />DOSTĘPNA PONIŻEJ
+                            </span>
+                        </div>
+
+                        <a href="Herman_CV.pdf" download class="mail-send-btn cv-download-btn"
+                            >DOWNLOAD .PDF</a
+                        >
+                    </aside>
+
+                    <div class="cv-body">
+                        <div class="cv-section">
+                            <h3>[ EDUKACJA ]</h3>
+                            <p class="cv-highlight">Uniwersytet Mikołaja Kopernika w Toruniu</p>
+                            <p>Wydział Fizyki, Astronomii i Informatyki Stosowanej (WFAiIS)</p>
+                            <p>Kierunek: Informatyka Stosowana (Studia inżynierskie)</p>
+                        </div>
+
+                        <div class="cv-section">
+                            <h3>[ STOS TECHNOLOGICZNY ]</h3>
+                            <ul class="cv-list">
+                                <li>
+                                    <span class="cv-highlight">Web Development:</span> HTML, CSS,
+                                    JavaScript (DOM, Fetch), Node.js (Express, REST API)
+                                </li>
+                                <li>
+                                    <span class="cv-highlight">Core:</span> Podstawy języka C
+                                    (wskaźniki, algorytmy, składnia)
+                                </li>
+                                <li>
+                                    <span class="cv-highlight">Hardware &amp; OS:</span> Składanie
+                                    PC, diagnostyka problemów, naprawa sprzętu, optymalizacja
+                                    systemów
+                                </li>
+                                <li>
+                                    <span class="cv-highlight">Narzędzia i środowisko:</span> Git,
+                                    GitHub, npm, Node, VSC, podstawy systemów Linux
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="cv-section">
+                            <h3>[ PROJEKTY ]</h3>
+                            <p class="cv-highlight">HermanOS Web Portfolio (v2)</p>
+                            <p class="cv-project-description">
+                                Własny, interaktywny interfejs webowy stylizowany na system
+                                operacyjny. Zintegrowany z API Spotify za pomocą Node.js.
+                            </p>
+
+                            <p class="cv-highlight">Debloated Spotify App</p>
+                            <p class="cv-project-description">
+                                Zoptymalizowana aplikacja webowa integrująca Spotify API. Skupiona
+                                na czystym przepływie danych i odczycie aktualnie odtwarzanych
+                                utworów.
+                            </p>
+
+                            <p class="cv-system-log">
+                                > SYS.LOG: Pozostałe projekty są aktualnie w fazie rozwoju i zostaną
+                                udostępnione wkrótce...
+                            </p>
+                        </div>
+
+                        <div class="cv-section cv-warning-box">
+                            <p class="cv-warning-title">[ SYS.WARNING: WIDOK SKRÓCONY ]</p>
+                            <p class="cv-warning-text">
+                                Powyższe dane to jedynie wyciąg z systemu. Aby zapoznać się z pełną
+                                historią, szczegółami projektów i kompletną listą umiejętności,
+                                pobierz autoryzowany plik PDF używając przycisku w panelu bocznym.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="hack-warning">SYSTEM OVERRIDE IN PROGRESS</div>
-      </div>
+        <div id="page-transition"></div>
 
-      <div class="access-phase" id="access-phase">
-        <div class="access-window">
-          <div class="access-top">
-            <span>HERMANOS</span>
-            <span>SECURE SESSION</span>
-          </div>
-
-          <h1>ACCESS GRANTED</h1>
-
-          <div class="access-data">
-            <p>USER: HERMAN</p>
-            <p>MODE: DEVELOPER</p>
-            <p>STATUS: ONLINE</p>
-            <p>BUILD: v2.1.3.7</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="os-shell">
-      <main class="os-desktop">
-        <section class="os-window hero-window">
-          <div class="window-bar">
-            <span>user_profile.exe</span>
-            <div class="window-actions"><i></i><i></i><i></i></div>
-          </div>
-
-          <div class="hero-system-grid">
-            <div class="profile-module">
-              <div class="photo-wrap">
-                <img
-                  src="images/profilowe.png"
-                  class="profile-img circle"
-                  alt="Herman"
-                />
-              </div>
-
-              <p class="hero-role">IT / Games / Programming</p>
-            </div>
-
-            <div class="identity-module">
-              <h1 class="hero-title">
-                <span class="white">HER</span><span class="green">MAN</span>
-              </h1>
-
-              <div class="hero-claim">
-                <div class="hero-line strong">Dobry w wielu rzeczach.</div>
-                <div class="hero-line">Perfekcyjny w żadnej.</div>
-                <div class="hero-line faded">Ale się staram.</div>
-              </div>
-            </div>
-
-            <div class="about-module">
-              <div class="module-title">about.data</div>
-              <p>
-                Student informatyki. Interesuję się IT szeroko — od sprzętu po
-                podstawy programowania. Składam i konfiguruję komputery, zajmuję
-                się diagnostyką i naprawą sprzętu. Uczę się programowania!
-              </p>
-            </div>
-
-            <div class="terminal module-terminal">
-              <pre id="terminal-text"></pre>
-
-              <div class="terminal-input-line">
-                <span>herman@dev:~$</span>
-                <input id="terminal-input" />
-                <span class="terminal-cursor">█</span>
-              </div>
-            </div>
-
-            <div class="social-module">
-              <div class="social-cut"></div>
-
-              <a
-                href="https://github.com/HermanIS1"
-                target="_blank"
-                class="social-zone github-zone"
-              >
-                <svg class="social-logo github-logo" viewBox="0 0 24 24">
-                  <path
-                    fill="currentColor"
-                    d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.207 11.385.6.111.793-.261.793-.579 0-.285-.011-1.04-.016-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.082-.729.082-.729 1.205.084 1.84 1.237 1.84 1.237 1.07 1.835 2.807 1.305 3.492.998.108-.776.418-1.305.76-1.605-2.665-.303-5.466-1.332-5.466-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.536-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.655 1.653.243 2.874.119 3.176.77.84 1.235 1.91 1.235 3.221 0 4.61-2.805 5.625-5.475 5.921.43.37.814 1.102.814 2.222 0 1.604-.015 2.896-.015 3.286 0 .321.192.694.801.576C20.565 21.796 24 17.296 24 12c0-6.63-5.37-12-12-12z"
-                  />
-                </svg>
-
-                <span class="social-text">GitHub</span>
-                <span class="social-hover">kliknij, żeby przejść</span>
-              </a>
-
-              <div class="social-zone spotify-zone">
-                <svg class="social-logo spotify-logo" viewBox="0 0 24 24">
-                  <path
-                    fill="currentColor"
-                    d="M12 0C5.37 0 0 5.373 0 12c0 6.627 5.37 12 12 12s12-5.373 12-12C24 5.373 18.63 0 12 0zm5.52 17.34c-.22.36-.69.48-1.05.27-2.87-1.76-6.49-2.16-10.77-1.2-.41.09-.82-.17-.91-.58-.09-.41.17-.82.58-.91 4.66-1.04 8.66-.58 11.88 1.38.36.22.48.69.27 1.05zm1.5-3.34c-.27.44-.85.58-1.29.31-3.29-2.02-8.32-2.61-12.21-1.43-.5.15-1.02-.13-1.17-.63-.15-.5.13-1.02.63-1.17 4.36-1.32 9.86-.68 13.78 1.69.44.27.58.85.31 1.29zm.13-3.5c-3.95-2.34-10.48-2.56-14.23-1.38-.6.18-1.23-.15-1.41-.75-.18-.6.15-1.23.75-1.41 4.28-1.29 11.4-1.04 15.74 1.56.54.32.71 1.01.39 1.55-.32.54-1.01.71-1.55.39z"
-                  />
-                </svg>
-
-                <span class="social-text">Spotify</span>
-
-                <div class="social-hover spotify-hover-card">
-                  <img
-                    class="spotify-cover"
-                    src="images/chivas-cover.png"
-                    alt=""
-                  />
-                  <div>
-                    <span class="spotify-label">NOW PLAYING</span>
-                    <span class="spotify-track">loading...</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="projects" class="os-window section-box">
-          <div class="window-bar">
-            <span>projects.database</span>
-            <div class="window-actions"><i></i><i></i><i></i></div>
-          </div>
-
-          <h3><span>01.</span> Projekty</h3>
-          <div id="projects-preview" class="projects-grid"></div>
-
-          <a href="projects.html" class="scroll">Zobacz wszystkie →</a>
-        </section>
-
-        <section id="skills" class="os-window section-box skills-window">
-          <div class="window-bar">
-            <span>installed.modules</span>
-            <div class="window-actions"><i></i><i></i><i></i></div>
-          </div>
-
-          <div class="skills-console">
-            <div class="skills-header">
-              <h3>Umiem podstawy</h3>
-              <span>STATUS: LEARNING</span>
-            </div>
-
-            <div class="skill-modules">
-              <div class="skill-module">
-                <div class="skill-top"><span>C</span><em>CORE</em></div>
-                <div class="skill-bar"><i style="width: 42%"></i></div>
-                <p>syntax / pointers / basics</p>
-              </div>
-
-              <div class="skill-module">
-                <div class="skill-top">
-                  <span>JavaScript</span><em>ACTIVE</em>
-                </div>
-                <div class="skill-bar"><i style="width: 55%"></i></div>
-                <p>DOM / fetch / frontend logic</p>
-              </div>
-
-              <div class="skill-module">
-                <div class="skill-top"><span>Node.js</span><em>SERVER</em></div>
-                <div class="skill-bar"><i style="width: 48%"></i></div>
-                <p>Express / APIs / backend routes</p>
-              </div>
-
-              <div class="skill-module">
-                <div class="skill-top"><span>HTML</span><em>STRUCTURE</em></div>
-                <div class="skill-bar"><i style="width: 70%"></i></div>
-                <p>semantic layout / forms</p>
-              </div>
-
-              <div class="skill-module">
-                <div class="skill-top"><span>CSS</span><em>VISUAL</em></div>
-                <div class="skill-bar"><i style="width: 65%"></i></div>
-                <p>layout / effects / responsive</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="contact" class="os-window section-box mail-window">
-          <div class="window-bar">
-            <span>mail.compose</span>
-            <div class="window-actions"><i></i><i></i><i></i></div>
-          </div>
-
-          <div class="mail-layout">
-            <aside class="mail-sidebar">
-              <div class="mail-logo">HM</div>
-              <div class="mail-folder active"><span>●</span> Compose</div>
-              <div class="mail-folder"><span>○</span> Inbox</div>
-              <div class="mail-folder"><span>○</span> Sent</div>
-              <div class="mail-folder"><span>○</span> Drafts</div>
-            </aside>
-
-            <div class="mail-compose">
-              <div class="mail-compose-top">
-                <span>New encrypted message</span>
-                <span>STATUS: READY</span>
-              </div>
-
-              <form id="contact-form" class="contact-form mail-form">
-                <div class="mail-row">
-                  <span>From</span>
-                  <div class="mail-static">visitor@external.net</div>
-                </div>
-
-                <div class="mail-row">
-                  <span>To</span>
-                  <div class="mail-static">herman@hermanos.dev</div>
-                </div>
-
-                <div class="mail-row mail-input-row">
-                  <label for="email">Twój e-mail</label>
-                  <input
-                    type="email"
-                    id="email"
-                    required
-                    placeholder="wpisz tutaj swój adres e-mail"
-                  />
-                </div>
-
-                <div class="mail-subject">
-                  <span>Subject</span>
-                  <div>Portfolio contact protocol</div>
-                </div>
-
-                <div class="mail-body">
-                  <label for="message">Message</label>
-                  <textarea
-                    id="message"
-                    rows="8"
-                    required
-                    placeholder="Napisz wiadomość..."
-                  ></textarea>
-                </div>
-
-                <div class="form-honeypot" aria-hidden="true">
-                  <label for="website">Website</label>
-                  <input
-                    type="text"
-                    id="website"
-                    name="website"
-                    tabindex="-1"
-                    autocomplete="off"
-                  />
-                </div>
-
-                <div class="mail-bottom">
-                  <button type="submit" class="mail-send-btn">
-                    SEND MESSAGE
-                  </button>
-                  <div
-                    id="form-status"
-                    class="form-status"
-                    role="status"
-                    aria-live="polite"
-                  ></div>
-                </div>
-              </form>
-            </div>
-          </div>
-        </section>
-      </main>
-
-      <div class="os-taskbar">
-        <div class="taskbar-left">
-          <div class="taskbar-logo">H</div>
-          <span>HERMANOS v2.1.3.7</span>
-        </div>
-
-        <nav class="taskbar-center">
-          <a href="#projects">Projects</a>
-          <a href="#skills">Skills</a>
-          <a href="#contact">Contact</a>
-
-          <a href="#" id="open-cv-btn">CV</a>
-
-          <a href="#" id="secret-folder" class="secret-folder">
-            <span>📁</span>
-            <span>System</span>
-          </a>
-        </nav>
-
-        <div class="taskbar-right">
-          <span class="footer-status"></span>
-          <span>ONLINE</span>
-          <span id="taskbar-clock">00:00</span>
-          <span id="taskbar-date">05.05.2026</span>
-        </div>
-      </div>
-      <div id="secret-modal" class="secret-modal">
-        <div class="secret-modal-box">
-          <div class="secret-modal-bar">
-            <span>restricted.folder</span>
-            <button type="button" id="secret-close">×</button>
-          </div>
-
-          <div class="secret-modal-content">
-            <p class="secret-modal-title">ENTER ACCESS CODE</p>
-
-            <input
-              id="secret-password"
-              type="password"
-              placeholder="wpisz hasło..."
-              autocomplete="off"
-            />
-
-            <div class="secret-modal-actions">
-              <button type="button" id="secret-submit">UNLOCK</button>
-              <span id="secret-status"></span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="scroll-sigil">⛧</div>
-    </div>
-    <div id="cv-modal-overlay" class="cv-overlay hidden">
-      <div class="os-window cv-window">
-        <div class="window-bar cv-bar">
-          <span>C:\HermanOS\system32\personnel_record.exe</span>
-          <div class="window-actions">
-            <button type="button" id="cv-close-btn" class="close-btn">×</button>
-          </div>
-        </div>
-
-        <div class="cv-layout">
-          <aside class="cv-sidebar">
-            <h2 class="cv-name">HERMAN</h2>
-            <div class="cv-role">Student Informatyki / IT Enthusiast</div>
-
-            <div class="cv-info-list">
-              <p><span>></span> LOCATION: Toruń</p>
-              <p><span>></span> TARGET: Cybersecurity</p>
-            </div>
-
-            <div class="cv-terminal-mini">
-              > loading authentic data... > parsing skills.cfg... > system
-              ready.
-            </div>
-
-            <div style="text-align: center; margin-bottom: 15px">
-              <span
-                style="
-                  font-size: 10px;
-                  color: rgba(234, 234, 234, 0.6);
-                  font-family: monospace;
-                  letter-spacing: 1px;
-                "
-              >
-                PEŁNA WERSJA DOKUMENTU<br />DOSTĘPNA PONIŻEJ
-              </span>
-            </div>
-
-            <a
-              href="Herman_CV.pdf"
-              download
-              class="mail-send-btn cv-download-btn"
-              >DOWNLOAD .PDF</a
-            >
-          </aside>
-
-          <div class="cv-body">
-            <div class="cv-section">
-              <h3>[ EDUKACJA ]</h3>
-              <p class="cv-highlight">
-                Uniwersytet Mikołaja Kopernika w Toruniu
-              </p>
-              <p>
-                Wydział Fizyki, Astronomii i Informatyki Stosowanej (WFAiIS)
-              </p>
-              <p>Kierunek: Informatyka Stosowana (Studia inżynierskie)</p>
-            </div>
-
-            <div class="cv-section">
-              <h3>[ STOS TECHNOLOGICZNY ]</h3>
-              <ul class="cv-list">
-                <li>
-                  <span class="cv-highlight">Web Development:</span> HTML, CSS,
-                  JavaScript (DOM, Fetch), Node.js (Express, REST API)
-                </li>
-                <li>
-                  <span class="cv-highlight">Core:</span> Podstawy języka C
-                  (wskaźniki, algorytmy, składnia)
-                </li>
-                <li>
-                  <span class="cv-highlight">Hardware &amp; OS:</span> Składanie
-                  PC, diagnostyka problemów, naprawa sprzętu, optymalizacja
-                  systemów
-                </li>
-                <li>
-                  <span class="cv-highlight">Narzędzia i środowisko:</span> Git,
-                  GitHub, npm, Node, VSC, podstawy systemów Linux
-                </li>
-              </ul>
-            </div>
-
-            <div class="cv-section">
-              <h3>[ PROJEKTY ]</h3>
-              <p class="cv-highlight">HermanOS Web Portfolio (v2)</p>
-              <p style="margin-bottom: 12px">
-                Własny, interaktywny interfejs webowy stylizowany na system
-                operacyjny. Zintegrowany z API Spotify za pomocą Node.js.
-              </p>
-
-              <p class="cv-highlight">Debloated Spotify App</p>
-              <p style="margin-bottom: 12px">
-                Zoptymalizowana aplikacja webowa integrująca Spotify API.
-                Skupiona na czystym przepływie danych i odczycie aktualnie
-                odtwarzanych utworów.
-              </p>
-
-              <p
-                style="
-                  color: rgba(0, 255, 102, 0.6);
-                  font-family: monospace;
-                  font-size: 12px;
-                  margin-top: 18px;
-                  border-left: 2px solid var(--green);
-                  padding-left: 10px;
-                "
-              >
-                > SYS.LOG: Pozostałe projekty są aktualnie w fazie rozwoju i
-                zostaną udostępnione wkrótce...
-              </p>
-            </div>
-
-            <div
-              class="cv-section"
-              style="
-                margin-top: 40px;
-                padding: 20px;
-                border: 1px dashed rgba(0, 255, 102, 0.4);
-                background: rgba(0, 255, 102, 0.05);
-                text-align: center;
-              "
-            >
-              <p
-                style="
-                  color: var(--green);
-                  font-family: monospace;
-                  font-size: 14px;
-                  margin-bottom: 10px;
-                  font-weight: bold;
-                  letter-spacing: 1px;
-                "
-              >
-                [ SYS.WARNING: WIDOK SKRÓCONY ]
-              </p>
-              <p
-                style="
-                  font-size: 13px;
-                  color: rgba(234, 234, 234, 0.8);
-                  line-height: 1.6;
-                  margin-bottom: 0;
-                "
-              >
-                Powyższe dane to jedynie wyciąg z systemu. Aby zapoznać się z
-                pełną historią, szczegółami projektów i kompletną listą
-                umiejętności, pobierz autoryzowany plik PDF używając przycisku w
-                panelu bocznym.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div id="page-transition"></div>
-
-    <script src="main.js"></script>
-  </body>
+        <script src="main.js"></script>
+    </body>
 </html>

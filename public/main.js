@@ -224,11 +224,6 @@ function initContactForm() {
 
 /* ================= SPOTIFY ================= */
 
-function initSpotify() {
-    fetchSpotify();
-    setInterval(fetchSpotify, 15000);
-}
-
 async function fetchSpotify() {
     const track = document.querySelector('.spotify-track');
     const cover = document.querySelector('.spotify-cover');
@@ -238,21 +233,48 @@ async function fetchSpotify() {
 
     try {
         const res = await fetch('/api/spotify');
+
+        if (!res.ok) {
+            throw new Error(`Spotify request failed: ${res.status}`);
+        }
+
         const data = await res.json();
 
         if (data.isPlaying) {
-            label.innerText = 'NOW PLAYING';
+            label.textContent = 'NOW PLAYING';
 
-            track.innerHTML = `
-<a href="${data.songUrl}" target="_blank"
-style="color:inherit;text-decoration:none;">
-${data.artist} – ${data.title}
-</a>`;
+            const trackText = `${data.artist || 'Unknown artist'} – ${
+                data.title || 'Unknown track'
+            }`;
 
-            cover.src = data.albumImageUrl;
+            track.replaceChildren();
+
+            try {
+                const songUrl = new URL(data.songUrl);
+
+                if (['http:', 'https:'].includes(songUrl.protocol)) {
+                    const link = document.createElement('a');
+
+                    link.href = songUrl.href;
+                    link.textContent = trackText;
+                    link.target = '_blank';
+                    link.rel = 'noopener noreferrer';
+                    link.className = 'spotify-track-link';
+
+                    track.append(link);
+                } else {
+                    track.textContent = trackText;
+                }
+            } catch {
+                track.textContent = trackText;
+            }
+
+            if (data.albumImageUrl) {
+                cover.src = data.albumImageUrl;
+            }
         } else {
-            label.innerText = 'PAUSED';
-            track.innerText = 'nic nie leci';
+            label.textContent = 'PAUSED';
+            track.textContent = 'nic nie leci';
             cover.src = 'images/chivas-cover.png';
         }
     } catch (err) {
@@ -268,42 +290,114 @@ function initProjects() {
 
 /* ================= CARD GENERATOR ================= */
 
-function createProjectCard(p, mode = 'preview') {
-    const techItems = p.tech
-        ? p.tech
-              .split(/[,.·]/)
-              .map((item) => item.trim())
-              .filter(Boolean)
-              .slice(0, 4)
-              .map((item) => `<span>${item}</span>`)
-              .join('')
-        : '';
+function createProjectLink(url, text) {
+    try {
+        const parsedUrl = new URL(url, window.location.origin);
 
-    return `
-  <div class="project-card">
-    <div class="project-preview">
-      <img src="${p.image || 'images/project1.png'}" alt="${p.title}">
-      <div class="project-status">${p.WorkInProgress ? 'WIP' : 'ONLINE'}</div>
-    </div>
+        if (!['http:', 'https:'].includes(parsedUrl.protocol)) {
+            return null;
+        }
 
-    <div class="project-content">
-      <h4>${p.title}</h4>
-      <p>${p.description}</p>
+        const link = document.createElement('a');
 
-      <div class="project-tech">
-        ${techItems}
-      </div>
+        link.href = parsedUrl.href;
+        link.textContent = text;
+        link.className = 'project-btn';
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
 
-      <div class="project-actions">
-        ${p.live ? `<a href="${p.live}" target="_blank" class="project-btn">LIVE</a>` : ''}
-        ${p.github ? `<a href="${p.github}" target="_blank" class="project-btn">CODE</a>` : ''}
-        ${p.WorkInProgress ? `<span class="project-wip">${p.WorkInProgress}</span>` : ''}
-      </div>
-    </div>
-  </div>
-  `;
+        return link;
+    } catch {
+        return null;
+    }
 }
+
+function createProjectCard(project) {
+    const card = document.createElement('div');
+    card.className = 'project-card';
+
+    const preview = document.createElement('div');
+    preview.className = 'project-preview';
+
+    const image = document.createElement('img');
+    image.src = project.image || 'images/project1.png';
+    image.alt = project.title || 'Project preview';
+
+    const projectStatus = document.createElement('div');
+    projectStatus.className = 'project-status';
+    projectStatus.textContent = project.WorkInProgress ? 'WIP' : 'ONLINE';
+
+    preview.append(image, projectStatus);
+
+    const content = document.createElement('div');
+    content.className = 'project-content';
+
+    const title = document.createElement('h4');
+    title.textContent = project.title || 'Untitled project';
+
+    const description = document.createElement('p');
+    description.textContent = project.description || '';
+
+    const tech = document.createElement('div');
+    tech.className = 'project-tech';
+
+    if (typeof project.tech === 'string') {
+        project.tech
+            .split(/[,.·]/)
+            .map((item) => item.trim())
+            .filter(Boolean)
+            .slice(0, 4)
+            .forEach((item) => {
+                const tag = document.createElement('span');
+                tag.textContent = item;
+                tech.append(tag);
+            });
+    }
+
+    const actions = document.createElement('div');
+    actions.className = 'project-actions';
+
+    if (project.live) {
+        const liveLink = createProjectLink(project.live, 'LIVE');
+
+        if (liveLink) {
+            actions.append(liveLink);
+        }
+    }
+
+    if (project.github) {
+        const githubLink = createProjectLink(project.github, 'CODE');
+
+        if (githubLink) {
+            actions.append(githubLink);
+        }
+    }
+
+    if (project.WorkInProgress) {
+        const workInProgress = document.createElement('span');
+        workInProgress.className = 'project-wip';
+        workInProgress.textContent = String(project.WorkInProgress);
+
+        actions.append(workInProgress);
+    }
+
+    content.append(title, description, tech, actions);
+    card.append(preview, content);
+
+    return card;
+}
+
 /* ================= LOAD ================= */
+
+function showProjectsError(container, message) {
+    if (!container) return;
+
+    const error = document.createElement('p');
+    error.className = 'projects-error';
+    error.textContent = message;
+
+    container.replaceChildren(error);
+}
 
 async function loadProjects() {
     const preview = document.getElementById('projects-preview');
@@ -322,51 +416,28 @@ async function loadProjects() {
             throw new Error('Projects data is not an array');
         }
 
-        /* ===== GŁÓWNA ===== */
-
         if (preview) {
-            preview.innerHTML = '';
+            preview.replaceChildren();
 
-            projects.slice(0, 3).forEach((p) => {
-                preview.innerHTML += createProjectCard(p, 'preview');
+            projects.slice(0, 3).forEach((project) => {
+                preview.append(createProjectCard(project));
             });
         }
 
-        /* ===== PODSTRONA PROJECTS ===== */
-
         if (container) {
-            container.innerHTML = '';
+            container.replaceChildren();
 
-            projects.forEach((p) => {
-                container.innerHTML += createProjectCard(p, 'full');
+            projects.forEach((project) => {
+                container.append(createProjectCard(project));
             });
         }
-    } catch (err) {
-        console.error('Projects error:', err);
+    } catch (error) {
+        console.error('Projects error:', error);
 
-        if (preview) {
-            preview.innerHTML = `
-        <p style="color: var(--green); font-family: monospace;">
-          failed to load projects
-        </p>
-      `;
-        }
-
-        if (container) {
-            container.innerHTML = `
-        <p style="
-          color: var(--green);
-          font-family: monospace;
-          text-align: center;
-          padding: 60px 0;
-        ">
-          failed to load projects database
-        </p>
-      `;
-        }
+        showProjectsError(preview, 'failed to load projects');
+        showProjectsError(container, 'failed to load projects database');
     }
 }
-
 /* ================= TERMINAL ================= */
 function initTerminal() {
     const text = document.getElementById('terminal-text');
