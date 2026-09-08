@@ -1,69 +1,242 @@
-# 💻 HERMANOS BREACH PROTOCOL
+# 💀 HERMANOS // BREACH PROTOCOL
 
-> ACCESS GRANTED
+> `ACCESS GRANTED // NODE ONLINE`
 
-Portfolio stworzone przeze mnie jako miejsce do prezentacji projektów, nauki programowania i rozwoju w IT.
+Personalne portfolio zbudowane jako fikcyjny interfejs systemowy **HERMANOS**.
 
-🌐 Live: https://hermanportfolio.pl
+Projekt łączy web development, Linux, infrastrukturę i bezpieczeństwo aplikacji w jeden spójny interfejs inspirowany terminalami, systemami operatorskimi i estetyką cyber/deathcore.
 
-## 📖 O projekcie
+🌐 **Live:** https://hermanportfolio.pl
 
-To nie jest klasyczne portfolio.
+---
 
-Zamiast kolejnej strony z białym tłem i listą umiejętności postawiłem na klimat terminala oraz fikcyjnego systemu "HERMANOS", który przedstawia moje projekty, umiejętności i drogę rozwoju jako studenta informatyki.
+## ⚡ O projekcie
 
-Portfolio pokazuje zarówno ukończone projekty, jak i technologie, których aktualnie się uczę.
+To nie jest klasyczne portfolio z gotowego template'u.
 
-## 🚀 Funkcje
+HERMANOS powstał jako własny interfejs prezentujący moje projekty, aktualny stack technologiczny i kierunek rozwoju jako studenta Informatyki Stosowanej.
 
-- Interfejs inspirowany terminalem
-- Responsywny design
-- Sekcja projektów
-- Kontakt przez formularz
-- Animacje i efekty wizualne
-- Prezentacja aktualnie rozwijanych umiejętności
-
-## 🛠 Technologie
-
-- HTML5
-- CSS3
-- JavaScript
-- Node.js
-- Express.js
-
-## 📂 Aktualne umiejętności
+Obecnie skupiam się głównie na:
 
 ```txt
-C            █████░░░░░  podstawy
-JavaScript   ██████░░░░  aktywna nauka
-Node.js      █████░░░░░  backend
-HTML         ███████░░░  semantyka
-CSS          ██████░░░░  layout i responsive
+NETWORK SECURITY
+LINUX
+INFRASTRUCTURE
+APPSEC
 ```
+
+Cały projekt był wielokrotnie przebudowywany — zarówno wizualnie, jak i od strony backendu oraz bezpieczeństwa.
+
+---
+
+## 🔥 Interface
+
+Aktualna wersja zawiera m.in.:
+
+- custom boot / breach sequence
+- pełnoekranowe intro HERMANOS
+- asymetryczny hero layout
+- interaktywny terminal
+- moduł projektów
+- capability matrix
+- Technical Profile / CV interface
+- formularz kontaktowy
+- GitHub external node
+- Music Node
+- responsywny layout
+- animacje, scanlines, gridy i efekty systemowe
+
+---
+
+## 🛡 Security Rebuild
+
+Portfolio przeszło osobny rebuild skupiony na bezpieczeństwie backendu i redukcji attack surface.
+
+Zaimplementowane zostały m.in.:
+
+```txt
+CSP
+Helmet
+Rate Limiting
+Input Validation
+Honeypot
+Security Headers
+Secret Scanning
+Dependency Auditing
+```
+
+Do testów wykorzystałem:
+
+- OWASP ZAP
+- Gitleaks
+- npm audit
+- curl / manual endpoint testing
+
+Podczas testowania rate limitera wykryłem również problem związany z obsługą adresu klienta i nagłówków proxy, który następnie został poprawiony.
+
+---
+
+## 🧪 Selected Projects
+
+### HERMAN Workstation // Linux Infrastructure
+
+Środowisko Fedora KDE łączące desktop i laptop w jeden workflow.
+
+Technologie i narzędzia:
+
+```txt
+Fedora
+Linux
+Tailscale
+Syncthing
+SSH Ed25519
+BTRFS
+systemd
+```
+
+---
+
+### Portfolio // Security Rebuild
+
+Przebudowa backendu i warstwy bezpieczeństwa obecnego portfolio.
+
+```txt
+Node.js
+Express
+Helmet
+CSP
+Rate Limiting
+Gitleaks
+OWASP ZAP
+Cloudflare
+Render
+```
+
+---
+
+### Debloated Spotify Client
+
+Własny klient Spotify skupiony na uproszczonym interfejsie i obsłudze podstawowych funkcji odtwarzacza.
+
+```txt
+React
+Spotify Web API
+OAuth PKCE
+Web Playback SDK
+```
+
+---
+
+## 🛠 Stack
+
+### Frontend
+
+```txt
+HTML5
+CSS3
+JavaScript
+```
+
+### Backend
+
+```txt
+Node.js
+Express
+Resend
+```
+
+### Security / Infrastructure
+
+```txt
+Helmet
+OWASP ZAP
+Gitleaks
+Cloudflare
+Render
+Linux
+Git
+```
+
+---
+
+## 🐧 Current Direction
+
+Nie używam już procentowych pasków typu:
+
+```txt
+JavaScript ██████░░░░ 60%
+```
+
+bo takie wartości niewiele znaczą.
+
+Zamiast tego portfolio pokazuje technologie, z którymi faktycznie pracuję lub których aktualnie się uczę.
+
+Aktualny kierunek:
+
+```txt
+NETWORKING
+├── TCP/IP
+├── DNS
+└── Wireshark
+
+LINUX
+├── Fedora
+├── systemd
+├── SSH
+└── BTRFS
+
+APPSEC
+├── CSP
+├── Hardening
+├── Input Validation
+├── Rate Limiting
+├── OWASP ZAP
+└── Gitleaks
+
+WEB
+├── JavaScript
+├── Node.js
+├── Express
+└── REST API
+```
+
+---
 
 ## 🎯 Cel projektu
 
-Głównym celem portfolio jest dokumentowanie mojego rozwoju w IT.
+HERMANOS jest jednocześnie:
 
-Regularnie dodaję nowe projekty, poprawiam istniejące rozwiązania i uczę się kolejnych technologii, dlatego strona będzie stale rozwijana.
+- portfolio
+- projektem webowym
+- środowiskiem do eksperymentowania
+- miejscem dokumentowania mojego rozwoju
 
-## 📸 Podgląd
+Projekt będzie rozwijany razem z moimi umiejętnościami i kolejnymi projektami związanymi głównie z **Network Security, Linux i AppSec**.
+
+---
+
+## 📸 Preview
 
 ![Portfolio Preview](./preview.png)
 
-## 📬 Kontakt
+---
 
-Jeżeli masz pytania lub chcesz się skontaktować:
+## 📬 Contact
 
-📧 przez formularz na stronie
+Najprościej skontaktować się ze mną przez formularz dostępny bezpośrednio na stronie:
 
 🌐 https://hermanportfolio.pl
+
+GitHub:
+
+https://github.com/HermanIS1
 
 ---
 
 ```txt
 USER: HERMAN
-STATUS: ONLINE
-MODE: DEVELOPER
+NODE: ONLINE
+FOCUS: NETWORK SECURITY
+SYSTEM: FEDORA
 MISSION: KEEP LEARNING
 ```
